@@ -5,8 +5,9 @@ export interface Props {
 
 const { title } = Astro.props;
 import { supabase } from '../lib/backend.js';
-const { user } = Astro.props;
-const authed = user !== null;
+
+const { data: { user } } = await supabase.auth.getUser()
+
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -19,10 +20,12 @@ const authed = user !== null;
 	</head>
 	<body>
 		<nav class="bg-black place-items-center gap-6 pt-3">
-			{authed && <a href="/dashboard">Dashboard</a>}
-			{authed && <a href="/logout">Logout</a>}
-			{!authed && <a href="/login">Login</a>}
-			{!authed && <a href="/signup">Signup</a>}
+			{!user && (
+				<a href="/login" class="text-white">Login</a>
+			)}
+			{user && (
+				<a href="/logout" class="text-white">Logout</a>
+			)}
 		</nav>
 		<slot />
 	</body>
