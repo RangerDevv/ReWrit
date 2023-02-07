@@ -1,22 +1,13 @@
 ---
-//  import { supabase } from "../lib/backend";
+ import { supabase } from "../lib/backend";
  import Logout from "../components/logout.svelte";
----
-<script>
-import { supabase } from "../lib/backend"
 
-    // check if the github user is logged in
-    function checkLogin() {
-        supabase.auth.onAuthStateChange((event, session) => {
-            if (event === 'SIGNED_IN') {
-                console.log('signed in')
-            } else {
-                window.location.href = '/login'
-            }
-        })
-    }
-    checkLogin();
-</script>
+ let user = (await supabase.auth.getUser(Astro.cookies.get("my-access-token").value)).data.user
+if(user == null) {
+    location.replace("/")
+}
+---
+
 <!-- Create a basic dashbaord -->
 <div>
     <h1>My Dashboard</h1>
