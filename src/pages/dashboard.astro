@@ -1,15 +1,17 @@
 ---
  import { supabase } from "../lib/backend";
  import Logout from "../components/logout.svelte";
-
- 
-const { data: { user } } = await supabase.auth.getUser()
-
-if (!user) {
-    location.replace('/')
-}
 ---
-
+<script>
+    import { supabase } from "../lib/backend";
+    let { data: user, error } = await supabase.auth.user();
+    if (error) {
+        console.log(error);
+    }
+    if (!user) {
+        window.location.href = "/login";
+    }
+</script>
 <!-- Create a basic dashbaord -->
 <div>
     <h1>My Dashboard</h1>
