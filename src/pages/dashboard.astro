@@ -1,6 +1,16 @@
 ---
+//  import { supabase } from "../lib/backend";
  import Logout from "../components/logout.svelte";
 ---
+<script>
+import { supabase } from "../lib/backend"
+
+    // check if the github user is logged in
+    let user = (await supabase.auth.getUser(Astro.cookies.get("my-access-token").value)).data.user
+    if (!user) {
+        Astro.redirect("/")
+    }
+</script>
 <!-- Create a basic dashbaord -->
 <div>
     <h1>My Dashboard</h1>
