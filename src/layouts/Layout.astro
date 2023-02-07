@@ -45,9 +45,7 @@ import Login from '../components/login.svelte';
 			<!-- {!authed && (
 				<Login client:only="svelte" />
 			)} -->
-			{authed && (
-				<Logout client:only="svelte" />
-			)}
+			{authed && <Logout client:only="svelte" />}
 		</nav>
 		<slot />
 	</body>
