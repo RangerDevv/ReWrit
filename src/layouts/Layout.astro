@@ -9,6 +9,7 @@ import { supabase } from '../lib/backend.js';
 const { data: { user } } = await supabase.auth.getUser()
 
 import Logout from '../components/logout.svelte';
+import Login from '../components/login.svelte';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -21,12 +22,9 @@ import Logout from '../components/logout.svelte';
 	</head>
 	<body>
 		<nav class="bg-black w-screen gap-6 m-6 flex flex-row text-xl font-semibold justify-center">
-			<a href="/" class="text-white">Home</a>
+			<a href="/" class="text-white text-2xl pt-2">Home</a>
 			{!user && (
-				<a href="/login" class="text-white">Login</a>
-			)}
-			{user && (
-				<a href="/logout" class="text-white">Logout</a>
+				<Login client:only="svelte" />
 			)}
 			{user && (
 				<Logout client:only="svelte" />
