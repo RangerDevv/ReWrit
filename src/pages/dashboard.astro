@@ -1,6 +1,7 @@
 ---
  import { supabase } from "../lib/backend";
  import Logout from "../components/logout.svelte";
+ import Layout from "../layouts/Layout.astro";
 ---
 <script>
     import { supabase } from "../lib/backend";
@@ -10,7 +11,8 @@
     }
 </script>
 <!-- Create a basic dashbaord -->
-<div>
+<Layout tite="Dashbaord">
+<div class="text-white">
     <h1>My Dashboard</h1>
     <div class="row">
         <div class="col-md-6">
@@ -58,3 +60,4 @@
     </div>
     <Logout client:only="svelte" />
 </div>
+</Layout>
