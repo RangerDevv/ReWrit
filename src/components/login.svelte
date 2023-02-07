@@ -5,9 +5,6 @@
 async function signInWithGitHub() {
         const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'github',
-        options: {
-            redirectTo: 'https://debate-practice.vercel.app/dashboard'
-        },
   })
 }
 </script>

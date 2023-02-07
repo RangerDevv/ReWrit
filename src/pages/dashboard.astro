@@ -6,9 +6,14 @@
 import { supabase } from "../lib/backend"
 
     // check if the github user is logged in
-    let user = (await supabase.auth.getUser(Astro.cookies.get("my-access-token").value)).data.user
-    if (!user) {
-        Astro.redirect("/")
+    function checkLogin() {
+        supabase.auth.onAuthStateChange((event, session) => {
+            if (event === 'SIGNED_IN') {
+                console.log('signed in')
+            } else {
+                window.location.href = '/'
+            }
+        })
     }
 </script>
 <!-- Create a basic dashbaord -->
