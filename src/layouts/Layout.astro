@@ -4,8 +4,10 @@ export interface Props {
 }
 
 const { title } = Astro.props;
+import { supabase } from '../lib/backend.js';
+const { user } = Astro.props;
+const authed = user !== null;
 ---
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -16,6 +18,12 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
+		<nav class="bg-black place-items-center gap-6 pt-3">
+			{authed && <a href="/dashboard">Dashboard</a>}
+			{authed && <a href="/logout">Logout</a>}
+			{!authed && <a href="/login">Login</a>}
+			{!authed && <a href="/signup">Signup</a>}
+		</nav>
 		<slot />
 	</body>
 </html>
