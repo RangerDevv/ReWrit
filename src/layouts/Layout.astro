@@ -7,6 +7,8 @@ const { title } = Astro.props;
 import { supabase } from '../lib/backend.js';
 
 const { data: { user } } = await supabase.auth.getUser()
+const loggedIn = !!user
+
 
 import Logout from '../components/logout.svelte';
 import Login from '../components/login.svelte';
@@ -23,10 +25,16 @@ import Login from '../components/login.svelte';
 	<body>
 		<nav class="bg-black w-screen gap-6 m-6 flex flex-row text-xl font-semibold justify-center">
 			<a href="/" class="text-white text-2xl pt-2">Home</a>
-			{!user && (
+			<!-- {!user && (
 				<a href="/login" class="text-white text-2xl pt-2">Login</a>
 			)}
 			{user && (
+				<Logout client:only="svelte" />
+			)} -->
+			{!loggedIn && (
+				<Login client:only="svelte" />
+			)}
+			{loggedIn && (
 				<Logout client:only="svelte" />
 			)}
 		</nav>
