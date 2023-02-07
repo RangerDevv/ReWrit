@@ -11,10 +11,11 @@ import { supabase } from "../lib/backend"
             if (event === 'SIGNED_IN') {
                 console.log('signed in')
             } else {
-                window.location.href = '/'
+                window.location.href = '/login'
             }
         })
     }
+    checkLogin();
 </script>
 <!-- Create a basic dashbaord -->
 <div>
