@@ -3,7 +3,13 @@ import Layout from '../layouts/Layout.astro';
 import NavHome from '../components/navHome.svelte';
 import Login from '../components/login.svelte';
 ---
-
+<script>
+    import { supabase } from "../lib/backend";
+    const { data: { user } } = await supabase.auth.getUser()
+	if (user) {
+		window.location.href = "/dashboard"
+	}
+</script>
 <Layout title="Welcome to Astro.">
 	<NavHome  client:only="svelte"/>
 	<div class=" w-screen h-screen" id="Header">
