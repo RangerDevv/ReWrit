@@ -1,6 +1,13 @@
 ---
  import { supabase } from "../lib/backend";
  import Logout from "../components/logout.svelte";
+
+ 
+const { data: { user } } = await supabase.auth.getUser()
+
+if (!user) {
+    window.location.href = "/"
+}
 ---
 
 <!-- Create a basic dashbaord -->
