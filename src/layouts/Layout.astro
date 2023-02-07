@@ -1,13 +1,24 @@
 ---
 export interface Props {
 	title: string;
+	loggedIn?: boolean
 }
 
-const { title } = Astro.props;
+const { title, loggedIn = false } = Astro.props;
 import { supabase } from '../lib/backend.js';
+const refreshToken = Astro.cookies.get("my-refresh-token").value
+const accessToken = Astro.cookies.get("my-access-token").value
+if (refreshToken && accessToken) {
+	await supabase.auth.setSession({
+		refresh_token: refreshToken,
+		access_token: accessToken,
+	})
+}
+	
+	
+const currentUser = (await supabase.auth.getUser(accessToken)).data.user
+var authed = currentUser !== null
 
-const { data: { user } } = await supabase.auth.getUser()
-const loggedIn = !!user
 
 
 import Logout from '../components/logout.svelte';
@@ -31,10 +42,10 @@ import Login from '../components/login.svelte';
 			{user && (
 				<Logout client:only="svelte" />
 			)} -->
-			{!loggedIn && (
+			<!-- {!authed && (
 				<Login client:only="svelte" />
-			)}
-			{loggedIn && (
+			)} -->
+			{authed && (
 				<Logout client:only="svelte" />
 			)}
 		</nav>
