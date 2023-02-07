@@ -8,5 +8,5 @@ async function signInWithGitHub() {
 }
 </script>
 <div>
-    <button on:click={signInWithGitHub}>Sign in with GitHub</button>
+    <button on:click={signInWithGitHub} class="bg-white text-black px-4 py-2 rounded-lg">Sign in with GitHub</button>
 </div>
