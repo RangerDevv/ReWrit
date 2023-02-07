@@ -2,7 +2,8 @@
     import { supabase } from "../lib/backend";
     import { onMount } from "svelte";
 async function signout() {
-        const { error } = await supabase.auth.signOut()
+    const { error } = await supabase.auth.signOut()
+    location.replace('/')
 }
 </script>
 <div>
