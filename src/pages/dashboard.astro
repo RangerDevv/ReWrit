@@ -1,11 +1,6 @@
 ---
  import { supabase } from "../lib/backend";
  import Logout from "../components/logout.svelte";
-
- let user = (await supabase.auth.getUser(Astro.cookies.get("my-access-token").value)).data.user
-if(user == null) {
-    location.replace("/")
-}
 ---
 
 <!-- Create a basic dashbaord -->
