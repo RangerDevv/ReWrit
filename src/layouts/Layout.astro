@@ -8,6 +8,7 @@ import { supabase } from '../lib/backend.js';
 
 const { data: { user } } = await supabase.auth.getUser()
 
+import Logout from '../components/logout.svelte';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -19,14 +20,19 @@ const { data: { user } } = await supabase.auth.getUser()
 		<title>{title}</title>
 	</head>
 	<body>
-		<!-- <nav class="bg-black place-items-center gap-6 pt-3">
+		<nav class="bg-black w-screen gap-6 m-6 flex flex-row text-xl font-semibold justify-center">
+			<a href="/" class="text-white">Home</a>
 			{!user && (
 				<a href="/login" class="text-white">Login</a>
 			)}
 			{user && (
 				<a href="/logout" class="text-white">Logout</a>
 			)}
-		</nav> -->
+			{user && (
+				<Logout client:only="svelte" />
+			)
+			}
+		</nav>
 		<slot />
 	</body>
 </html>
@@ -42,5 +48,9 @@ const { data: { user } } = await supabase.auth.getUser()
 	code {
 		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
 			Bitstream Vera Sans Mono, Courier New, monospace;
+	}
+	/* hide the side scroll */
+	body {
+		overflow-x: hidden;
 	}
 </style>

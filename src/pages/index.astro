@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import NavHome from '../components/navHome.svelte';
 import Login from '../components/login.svelte';
 ---
 <script>
@@ -11,7 +10,6 @@ import Login from '../components/login.svelte';
 	}
 </script>
 <Layout title="ReWritDocs">
-	<NavHome  client:only="svelte"/>
 	<div class=" w-screen h-screen" id="Header">
 		<div class="flex flex-col justify-center items-center h-full">
 			<h1 class="text-5xl font-extrabold text-center text-blue-600">Welcome to ReWriteDoc</h1>
