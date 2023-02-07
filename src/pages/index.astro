@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import NavHome from '../components/navHome.svelte';
+import Login from '../components/login.svelte';
 ---
 
 <Layout title="Welcome to Astro.">
@@ -10,7 +11,7 @@ import NavHome from '../components/navHome.svelte';
 			<h1 class="text-5xl font-extrabold text-center text-blue-600">Welcome to Dbate Practice.</h1>
 			<p class="text-xl w-96 text-center text-white pt-3">A way to practice LD debate against friends, and other people.</p>
 			<div class="flex flex-row justify-center items-center mt-10">
-				<a href="/" class="bg-white text-black px-4 py-2 rounded-lg mr-4">Get Started</a>
+				<Login client:only="svelte"/>
 				<a href="/" class="bg-white text-black px-4 py-2 rounded-lg">Learn More</a>
 			</div>
 		</div>
