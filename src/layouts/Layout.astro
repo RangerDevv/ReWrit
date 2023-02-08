@@ -25,6 +25,10 @@ const currentUser = (await supabase.auth.getUser(accessToken)).data.user
 var authed = currentUser !== null
 
 const { data: { user } } = await supabase.auth.getUser()
+
+if (user) {
+	authed = true
+}
 ---
 <!DOCTYPE html>
 <html lang="en">
