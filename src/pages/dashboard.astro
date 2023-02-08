@@ -3,6 +3,14 @@
  import type { Documentation } from "../lib/db";
  import Logout from "../components/logout.svelte";
  import Layout from "../layouts/Layout.astro";
+
+ const { data, error } = await supabase
+    .from("Documentation")
+    .select("*")
+    .order("id", { ascending: false });
+
+    const docs: Documentation[]=data as Documentation[];
+---
  
 <script>
     import { supabase } from "../lib/backend";
@@ -15,7 +23,13 @@
     // }
 }
 </script>
-<!-- Create a basic dashbaord -->
+// <!-- Create a basic dashbaord -->
 <Layout title="Dashbaord" loggedIn={true}>
-    
+    <!-- map the values of docs to a div container -->
+    {docs.map((docs) => {
+    <div>
+        <h1>{docs.title}</h1>
+        <p>{docs.description}</p>
+    </div>
+    })}
 </Layout>
