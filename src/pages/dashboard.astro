@@ -1,8 +1,9 @@
 ---
  import { supabase } from "../lib/backend";
+ import type { Documentation } from "../lib/db";
  import Logout from "../components/logout.svelte";
  import Layout from "../layouts/Layout.astro";
----
+ 
 <script>
     import { supabase } from "../lib/backend";
     const { data: { user } } = await supabase.auth.getUser()
