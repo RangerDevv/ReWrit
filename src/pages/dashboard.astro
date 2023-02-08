@@ -8,10 +8,10 @@
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) {
         window.location.href = "/"
-    }else {
-    if(user.id== '345f3cdf-6041-4924-be7f-5cee3b9e2534') {
-        window.location.href = "/admin"
-    }
+    // }else {
+    // if(user.id== '345f3cdf-6041-4924-be7f-5cee3b9e2534') {
+    //     window.location.href = "/admin"
+    // }
 }
 </script>
 <!-- Create a basic dashbaord -->
