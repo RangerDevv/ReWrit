@@ -5,3 +5,10 @@ export interface Documentation {
     description:string,
     user_id?:string,
 }
+
+export interface Language {
+    id?:number,
+    created_at?:string,
+    language_name:string,
+    description:string,
+}
