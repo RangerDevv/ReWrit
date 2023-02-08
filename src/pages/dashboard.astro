@@ -7,7 +7,7 @@
  const { data, error } = await supabase
     .from("Documentation")
     .select("*")
-    .order("id", { ascending: false });
+    // .order("id", { ascending: false });
 
     const docs: Documentation[]=data as Documentation[];
 ---
