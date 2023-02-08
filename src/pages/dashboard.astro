@@ -26,10 +26,10 @@
 // <!-- Create a basic dashbaord -->
 <Layout title="Dashbaord" loggedIn={true}>
     <!-- map the values of docs to a div container -->
-    {docs.map((docs) => {
+    {docs?.map(docs => (
     <div class="text-white text-xl">
         <h1>{docs.title}</h1>
         <p>{docs.description}</p>
     </div>
-    })}
+    ))}
 </Layout>
