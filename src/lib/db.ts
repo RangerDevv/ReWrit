@@ -4,7 +4,7 @@ export interface Documentation {
     title:string,
     description:string,
     user_id?:string,
-    lang:string,
+    lang:number,
 }
 
 export interface Language {
@@ -12,4 +12,12 @@ export interface Language {
     created_at?:string,
     language_name:string,
     description:string,
+}
+
+
+export interface Contents {
+    id?:number,
+    created_at?:string,
+    text:string,
+    connect:number,
 }

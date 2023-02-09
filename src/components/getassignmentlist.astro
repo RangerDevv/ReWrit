@@ -9,20 +9,31 @@ import type { Documentation } from "../lib/db";
 
 const { pid } = Astro.props
 
-const { data, error } = await supabase.from('Documentation').select().eq('pid', pid)
+const { data, error } = await supabase
+    .from("Documentation")
+    .select("*")
+    // .order("id", { ascending: false });
 
-const getassignments = async () => {
-    const { data, error } = await supabase.from('Documentation').select().eq('pid', pid)
-    return data
-}
+    const docs: Documentation[]=data as Documentation[];
+    // filter by pid
+    const filteredDocs = docs.filter((doc) => doc.lang === pid);
+    const lang = filteredDocs[0];
 
 ---
 
 <Layout title="LangPlace">
-    {data && data.map((doc: Documentation) => (
-        <div>
+    <!-- {data && data.map((doc: Documentation) => (
+        <div class="text-white">
             <h1>{doc.title}</h1>
             <p>{doc.description}</p>
         </div>
+    ))} -->
+    <div class=" flex flex-col sm:flex-row">
+    {filteredDocs && filteredDocs.map((doc: Documentation) => (
+        <div class="flex flex-col justify-items-center text-white w-96 h-auto bg-slate-900 rounded-xl outline-dashed outline-gray-400" onclick={`window.location = "/docs/${lang.id}"`}>
+            <h1 class="text-center text-2xl pt-2 pb-7 font-bold">{doc.title}</h1>
+            <p class="text-center text-lg pt-2 pb-2">{doc.description}</p>
+        </div>
     ))}
+    </div>
 </Layout>
