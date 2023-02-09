@@ -39,12 +39,12 @@
     function Push (newAssignment: NewAssignment) {
         supabase.from('Documentation').insert([
             {title: newAssignment.title, description: newAssignment.description, lang: newAssignment.lang, id: newAssignment.id, created_at: newAssignment.created_at, user_id: newAssignment.user_id},
-        supabase.from('Contents').insert([
-            {id: Contents.id, created_at: Contents.created_at, text: Contents.text, connect: Contents.connect},
-        ]).then(({ data, error }) => {
+            ]).then(({ data, error }) => {
             console.log(data)
             console.log(error)
         })
+        supabase.from('Contents').insert([
+            {id: Contents.id, created_at: Contents.created_at, text: Contents.text, connect: Contents.connect},
         ]).then(({ data, error }) => {
             console.log(data)
             console.log(error)
