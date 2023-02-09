@@ -3,8 +3,6 @@
     import { onMount } from "svelte";
     import type { Documentation } from "../../lib/db";
 
-    const docsid = Math.random(1,200)
-
     interface NewAssignment {
         // title and description of documentation
         title: string;
@@ -32,7 +30,7 @@
     }
 
     let Contents: Contents = {
-        id: docsid,
+        id: 3004,
         created_at: "2021-09-01T00:00:00.000Z",
         text: "",
         connect: 2003,
