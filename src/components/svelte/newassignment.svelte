@@ -30,6 +30,8 @@
     }
 
     let Content: Content = {
+        id: Math.random(),
+        created_at: "2021-09-01T00:00:00.000Z",
         text: "",
         connect: 2003,
     }
@@ -38,7 +40,7 @@
         supabase.from('Documentation').insert([
             {title: newAssignment.title, description: newAssignment.description, lang: newAssignment.lang, id: newAssignment.id, created_at: newAssignment.created_at, user_id: newAssignment.user_id},
         supabase.from('Content').insert([
-            {text: "Hello World", connect: newAssignment.id}
+            {id: Content.id, created_at: Content.created_at, text: Content.text, connect: Content.connect},
         ]).then(({ data, error }) => {
             console.log(data)
             console.log(error)
