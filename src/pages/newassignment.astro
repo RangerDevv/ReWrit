@@ -1,0 +1,15 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { supabase } from "../lib/backend";
+import type { Documentation,Language,Contents } from "../lib/db";
+import Newassignment from "../components/svelte/newassignment.svelte";
+
+const { data: docs, error } = await supabase
+  .from("Documentation")
+  .select("*")
+  .eq("id", 1);
+---
+
+<Layout title="New Docs">
+    <Newassignment client:only="svelte" />
+</Layout>
