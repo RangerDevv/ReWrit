@@ -24,7 +24,7 @@
         title: "",
         description: "",
         lang: 666,
-        id: 2003,
+        id: 1996,
         created_at: "2021-09-01T00:00:00.000Z",
         user_id: "345f3cdf-6041-4924-be7f-5cee3b9e2534",
     }
@@ -33,7 +33,7 @@
         id: 3004,
         created_at: "2021-09-01T00:00:00.000Z",
         text: "",
-        connect: 2003,
+        connect: 1996,
     }
 
     function Push (newAssignment: NewAssignment) {
