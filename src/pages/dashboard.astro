@@ -28,7 +28,7 @@
     <div class=" grid grid-cols-1 sm:grid-cols-3 place-items-center gap-y-6">
     {lang?.map(lang => (
     <div class="flex flex-col justify-items-center text-white w-96 h-auto bg-slate-900 rounded-xl outline-dashed outline-gray-400">
-        <a href={/language/${lang.id}}>
+        <a onclick={`window.location = "/language/${lang.id}"`}>
             <p class="text-center text-2xl pt-2 pb-7 font-bold">{lang.language_name}</p>
             <p class="text-center text-sm pt-2 pb-7">{lang.description}</p>
         </a>
