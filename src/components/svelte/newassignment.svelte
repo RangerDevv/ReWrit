@@ -13,6 +13,13 @@
         user_id?:string,
     }
 
+    interface Content{
+        id?:number,
+        created_at?:string,
+        text:string,
+        connect:number,
+    }
+
     let NewAssignment: NewAssignment = {
         title: "",
         description: "",
@@ -22,14 +29,24 @@
         user_id: "345f3cdf-6041-4924-be7f-5cee3b9e2534",
     }
 
+    let Content: Content = {
+        text: "",
+        connect: 2003,
+    }
+
     function Push (newAssignment: NewAssignment) {
         supabase.from('Documentation').insert([
-            {title: newAssignment.title, description: newAssignment.description, lang: newAssignment.lang, id: newAssignment.id, created_at: newAssignment.created_at, user_id: newAssignment.user_id}
+            {title: newAssignment.title, description: newAssignment.description, lang: newAssignment.lang, id: newAssignment.id, created_at: newAssignment.created_at, user_id: newAssignment.user_id},
+        supabase.from('Content').insert([
+            {text: "Hello World", connect: newAssignment.id}
         ]).then(({ data, error }) => {
             console.log(data)
             console.log(error)
         })
-        console.log(newAssignment)
+        ]).then(({ data, error }) => {
+            console.log(data)
+            console.log(error)
+        })
     }
 </script>
 
@@ -37,5 +54,7 @@
     <h1>New Assignment</h1>
     <input type="text" bind:value={NewAssignment.title} placeholder="Title" />
     <input type="text" bind:value={NewAssignment.description} placeholder="Description" />
+    <input type="text" bind:value={Content.text} placeholder="Content" />
+
     <button on:click={() => Push(NewAssignment)}>Submit</button>
 </main>
