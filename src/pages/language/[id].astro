@@ -1,1 +1,9 @@
-<p>YO</p>
+---
+
+import Getassignmentlist from "../../components/getassignmentlist.astro";
+
+let pid = parseInt(Astro.params.id!)
+
+---
+
+<Getassignmentlist pid={pid}/>

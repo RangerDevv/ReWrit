@@ -1,0 +1,28 @@
+---
+export interface Props {
+	pid: number;
+}
+
+import Layout from "../layouts/Layout.astro";
+import { supabase } from "../lib/backend";
+import type { Documentation } from "../lib/db";
+
+const { pid } = Astro.props
+
+const { data, error } = await supabase.from('Documentation').select().eq('pid', pid)
+
+const getassignments = async () => {
+    const { data, error } = await supabase.from('Documentation').select().eq('pid', pid)
+    return data
+}
+
+---
+
+<Layout title="LangPlace">
+    {data && data.map((doc: Documentation) => (
+        <div>
+            <h1>{doc.title}</h1>
+            <p>{doc.description}</p>
+        </div>
+    ))}
+</Layout>

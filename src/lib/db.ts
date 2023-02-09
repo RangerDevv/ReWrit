@@ -4,6 +4,7 @@ export interface Documentation {
     title:string,
     description:string,
     user_id?:string,
+    lang:string,
 }
 
 export interface Language {
