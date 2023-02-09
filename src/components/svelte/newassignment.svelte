@@ -22,7 +22,7 @@
         id?:number,
         created_at?:string,
         text:string,
-        connect:number,
+        connect?:number,
     }
 
     let NewAssignment: NewAssignment = {
@@ -38,7 +38,8 @@
         id: getRandomInt(10000),
         created_at: "2021-09-01T00:00:00.000Z",
         text: "",
-        connect: 1996,
+        // connect to the id of the documentation
+        connect: NewAssignment.id,
     }
 
     function Push (newAssignment: NewAssignment, contents: Contents ) {
@@ -63,5 +64,5 @@
     <input type="text" bind:value={NewAssignment.description} placeholder="Description" />
     <input type="text" bind:value={Contents.text} placeholder="Contents" />
 
-    <button on:click={() => Push(NewAssignment, Contents)}>Submit</button>
+    <button on:click={() => Push(NewAssignment, Contents)}>Push</button>
 </main>
