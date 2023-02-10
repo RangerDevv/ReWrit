@@ -15,7 +15,7 @@ const { pid } = Astro.props
 
 const { data, error } = await supabase
 // get both contents and documentation table
-    .from('Contents'&&'Documentation')
+    .from('Contents')
     .select('*')
 
 
@@ -24,17 +24,18 @@ const { data, error } = await supabase
     // filter by pid
     const content = contentText.filter((con: Contents) => con.connect === pid);
 
-    const doc: { [key: string]: Documentation } = {};
+    const doc: Documentation[] = (await supabase.from('Documentation').select('*').eq('id', pid)).data as Documentation[]
+    const { title, description } = doc[0];
 
 
     console.log(content);
     console.log(doc);
 ---
 
-<Layout title="LangPlace">
+<Layout title="Docs">
     <div class="flex text-white flex-col gap-2">
-        <p>{doc.title}</p>
-        <p>{doc.description}</p>
+        <p>{title}</p>
+        <p>{description}</p>
     </div>
     <div>
         <div class="flex flex-col p-10">
