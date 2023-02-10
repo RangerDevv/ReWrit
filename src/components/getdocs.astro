@@ -36,14 +36,14 @@ const { data, error } = await supabase
         </div>
     ))} -->
     <div>
-        <div class="flex flex-col p-10">
+        <!-- <div class="flex flex-col p-10">
             {docu && docu.map((d: Documentation) => (
                 <div class="text-white">
                     <h1 class="text-2xl text-center font-bold">{d.title}</h1>
                     <p class="text-xl text-center font-semibold">{d.description}</p>
                 </div>
             ))
-            }
+            } -->
         {content && content.map((con: Contents) => (
             <div class="text-white">
                 <p>{con.text}</p>
