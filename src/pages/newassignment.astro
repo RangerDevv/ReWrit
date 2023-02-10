@@ -3,20 +3,6 @@ import Layout from "../layouts/Layout.astro";
 import { supabase } from "../lib/backend";
 import type { Documentation,Language,Contents } from "../lib/db";
 import Newassignment from "../components/svelte/newassignment.svelte";
-
-  const { data: { user } } = await supabase.auth.getUser()
-  let userisloggedin = false;
-
-  if (!user) {
-    userisloggedin = false;
-  } else {
-    userisloggedin = true;
-  }
-
-const { data: docs, error } = await supabase
-  .from("Documentation")
-  .select("*")
-  .eq("id", 1);
 ---
 
 <script>
@@ -28,6 +14,6 @@ if (!user) {
 
 </script>
 
-<Layout title="New Docs" loggedIn={userisloggedin}>
+<Layout title="New Docs">
     <Newassignment client:only="svelte" />
 </Layout>
