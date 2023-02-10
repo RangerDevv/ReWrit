@@ -9,6 +9,7 @@ import type { Session } from "@supabase/supabase-js";
 
 import type { Contents, Documentation } from "../lib/db";
 import { bind } from "svelte/internal";
+import type { SupabaseAuthClient } from "@supabase/supabase-js/dist/module/lib/SupabaseAuthClient";
 
 const { pid } = Astro.props
 
@@ -17,26 +18,24 @@ const { data, error } = await supabase
     .from('Contents'&&'Documentation')
     .select('*')
 
+
+
     const contentText: Contents[]=data as Contents[];
     // filter by pid
     const content = contentText.filter((con: Contents) => con.connect === pid);
 
-    const doc: Documentation[]=data as Documentation[];
-    // get the title and description from the Documentation table
-    const docu = doc.filter((d: Documentation) => d.id === pid);
+    const doc: { [key: string]: Documentation } = {};
 
 
     console.log(content);
-    console.log(docu);
+    console.log(doc);
 ---
 
 <Layout title="LangPlace">
-    {docu && docu.map((doc: Documentation) => (
-        <div class="text-white">
-            <h1>{doc.title}</h1>
-            <p>{doc.description}</p>
-        </div>
-    ))}
+    <div class="flex text-white flex-col gap-2">
+        <p>{doc.title}</p>
+        <p>{doc.description}</p>
+    </div>
     <div>
         <div class="flex flex-col p-10">
         {content && content.map((con: Contents) => (
