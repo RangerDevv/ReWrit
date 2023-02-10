@@ -19,17 +19,9 @@ const { data, error } = await supabase
     const filteredDocs = docs.filter((doc) => doc.lang === pid);
     
     const { data: { user } } = await supabase.auth.getUser()
-
-    let logged = true;
-
-    if (!user) {
-        logged = false;
-    }
-
-    console.log(logged);
 ---
 
-<Layout title="LangPlace" loggedIn={logged}>
+<Layout title="LangPlace">
     <!-- {data && data.map((doc: Documentation) => (
         <div class="text-white">
             <h1>{doc.title}</h1>
