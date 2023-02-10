@@ -29,7 +29,7 @@
     let NewAssignment: NewAssignment = {
         title: "",
         description: "",
-        lang: 666,
+        lang: 0,
         id: getRandomInt(10000),
         created_at: "2021-09-01T00:00:00.000Z",
         user_id: "345f3cdf-6041-4924-be7f-5cee3b9e2534",
@@ -59,7 +59,7 @@
     // $: disabled = !(assignmentname != ""
     //     && questions.length > 0 
     //     && questions.every(x => x.question.trim() != "" && x.answer.trim() != ""))
-    $: disabled = (NewAssignment.title == "" || NewAssignment.description == "" || Contents.text == "")
+    $: disabled = (NewAssignment.title == "" || NewAssignment.description == "" || Contents.text == "" || NewAssignment.lang == 0)
 
     function Push (newAssignment: NewAssignment, contents: Contents ) {
         supabase.from('Documentation').insert([
