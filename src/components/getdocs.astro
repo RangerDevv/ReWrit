@@ -5,6 +5,8 @@ export interface Props {
 
 import Layout from "../layouts/Layout.astro";
 import { supabase } from "../lib/backend";
+import type { Session } from "@supabase/supabase-js";
+
 import type { Contents } from "../lib/db";
 
 const { pid } = Astro.props
@@ -20,9 +22,13 @@ const { data, error } = await supabase
 
     console.log(content);
 
+    // check if user is logged in and set the boolean
+    const { data: { user } } = await supabase.auth.getUser()
+    let loggedIn = user ? true : false;
+
 ---
 
-<Layout title="LangPlace">
+<Layout title="LangPlace" loggedIn={loggedIn}>
     <!-- {data && data.map((doc: Documentation) => (
         <div class="text-white">
             <h1>{doc.title}</h1>
