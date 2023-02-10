@@ -69,7 +69,7 @@
             console.log(error)
         }),
         supabase.from('Contents').insert([
-            {id: Contents.id, created_at: Contents.created_at, text: Contents.text, connect: Contents.connect},
+            {id: contents.id, created_at: contents.created_at, text: contents.text, connect: contents.connect},
         ]).then(({ data, error }) => {
             console.log(data)
             console.log(error)
