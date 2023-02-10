@@ -21,17 +21,9 @@ const { data, error } = await supabase
     const content = contentText.filter((con: Contents) => con.connect === pid);
 
     console.log(content);
-
-    // check if user is logged in and set the boolean
-    let logged = false;
-    const { data: { user } } = await supabase.auth.getUser()
-    if (user !== null) {
-        logged = true;
-    }
-
 ---
 
-<Layout title="LangPlace" loggedIn={logged}>
+<Layout title="LangPlace">
     <!-- {data && data.map((doc: Documentation) => (
         <div class="text-white">
             <h1>{doc.title}</h1>
