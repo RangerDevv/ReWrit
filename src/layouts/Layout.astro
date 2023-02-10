@@ -35,6 +35,7 @@ var authed = currentUser !== null
 			<a href="/" class="text-white text-xl pt-2 font-semibold">Home</a>
 			{!authed && <Login client:only="svelte"/>}
 			{authed && <Logout client:only="svelte"/>}
+			{authed && <a href="/newassignment" class="bg-white text-black px-4 py-2 rounded-lg">Create <span class="font-extrabold text-2xl">+</span></a>}
 		</nav>
 		<slot />
 	</body>
