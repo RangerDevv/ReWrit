@@ -7,18 +7,23 @@ import Layout from "../layouts/Layout.astro";
 import { supabase } from "../lib/backend";
 import type { Session } from "@supabase/supabase-js";
 
-import type { Contents } from "../lib/db";
+import type { Contents,Documentation } from "../lib/db";
 
 const { pid } = Astro.props
 
 const { data, error } = await supabase
-    .from("Contents")
+    .from("Contents,Documentation")
     .select("*")
     // .order("id", { ascending: false });
 
     const contentText: Contents[]=data as Contents[];
     // filter by pid
     const content = contentText.filter((con: Contents) => con.connect === pid);
+
+    const doc: Documentation[]=data as Documentation[];
+    // filter by pid
+    const docu = doc.filter((d: Documentation) => d.id === pid);
+
 
     console.log(content);
 ---
@@ -32,6 +37,13 @@ const { data, error } = await supabase
     ))} -->
     <div>
         <div class="flex flex-col p-10">
+            {docu && docu.map((d: Documentation) => (
+                <div class="text-white">
+                    <h1 class="text-2xl text-center font-bold">{d.title}</h1>
+                    <p class="text-xl text-center font-semibold">{d.description}</p>
+                </div>
+            ))
+            }
         {content && content.map((con: Contents) => (
             <div class="text-white">
                 <p>{con.text}</p>
