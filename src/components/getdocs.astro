@@ -1,0 +1,41 @@
+---
+export interface Props {
+	pid: number;
+}
+
+import Layout from "../layouts/Layout.astro";
+import { supabase } from "../lib/backend";
+import type { Contents } from "../lib/db";
+
+const { pid } = Astro.props
+
+const { data, error } = await supabase
+    .from("Contents")
+    .select("*")
+    // .order("id", { ascending: false });
+
+    const contentText: Contents[]=data as Contents[];
+    // filter by pid
+    const content = contentText.filter((con: Contents) => con.connect === pid);
+
+    console.log(content);
+
+---
+
+<Layout title="LangPlace">
+    <!-- {data && data.map((doc: Documentation) => (
+        <div class="text-white">
+            <h1>{doc.title}</h1>
+            <p>{doc.description}</p>
+        </div>
+    ))} -->
+    <div>
+        <div class="flex flex-col p-10">
+        {content && content.map((con: Contents) => (
+            <div class="text-white">
+                <p>{con.text}</p>
+            </div>
+        ))}
+        </div>
+    </div>
+</Layout>
