@@ -30,7 +30,7 @@ const { data, error } = await supabase
         </div>
     ))} -->
     <div>
-        <div class="flex flex-col p-10">
+        <div class="flex flex-row sm:columns-2 sm:flex-col p-10 place-items-center">
         {content && content.map((con: Contents) => (
             <div class="text-white">
                 <p>{con.text}</p>
