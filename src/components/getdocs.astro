@@ -7,48 +7,43 @@ import Layout from "../layouts/Layout.astro";
 import { supabase } from "../lib/backend";
 import type { Session } from "@supabase/supabase-js";
 
-import type { Contents,Documentation } from "../lib/db";
+import type { Contents, Documentation } from "../lib/db";
+import { bind } from "svelte/internal";
 
 const { pid } = Astro.props
 
 const { data, error } = await supabase
-    .from("Contents,Documentation")
-    .select("*")
-    // .order("id", { ascending: false });
+// get both contents and documentation table
+    .from('Contents'&&'Documentation')
+    .select('*')
 
     const contentText: Contents[]=data as Contents[];
     // filter by pid
     const content = contentText.filter((con: Contents) => con.connect === pid);
 
     const doc: Documentation[]=data as Documentation[];
-    // filter by pid
+    // get the title and description from the Documentation table
     const docu = doc.filter((d: Documentation) => d.id === pid);
 
 
     console.log(content);
+    console.log(docu);
 ---
 
 <Layout title="LangPlace">
-    <!-- {data && data.map((doc: Documentation) => (
+    {docu && docu.map((doc: Documentation) => (
         <div class="text-white">
             <h1>{doc.title}</h1>
             <p>{doc.description}</p>
         </div>
-    ))} -->
+    ))}
     <div>
-        <!-- <div class="flex flex-col p-10">
-            {docu && docu.map((d: Documentation) => (
-                <div class="text-white">
-                    <h1 class="text-2xl text-center font-bold">{d.title}</h1>
-                    <p class="text-xl text-center font-semibold">{d.description}</p>
-                </div>
-            ))
-            } -->
+        <div class="flex flex-col p-10">
         {content && content.map((con: Contents) => (
             <div class="text-white">
                 <p>{con.text}</p>
             </div>
         ))}
         </div>
-    <!-- </div> -->
+    </div>
 </Layout>
