@@ -24,11 +24,7 @@ if (refreshToken && accessToken) {
 const currentUser = (await supabase.auth.getUser(accessToken)).data.user
 var authed = currentUser !== null
 
-if (authed) {
-	Astro.props.loggedIn = true
-} else {
-	Astro.props.loggedIn = false
-}
+
 ---
 <!DOCTYPE html>
 <html lang="en">
