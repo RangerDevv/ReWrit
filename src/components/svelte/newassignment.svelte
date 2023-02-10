@@ -73,11 +73,11 @@
         ]).then(({ data, error }) => {
             console.log(data)
             console.log(error)
-        })
         setTimeout(() => {
             // go to the docs/newAssignment.id
             window.location.href = "/docs/" + newAssignment.id;
         }, 1500);
+        })
     }
 </script>
 
