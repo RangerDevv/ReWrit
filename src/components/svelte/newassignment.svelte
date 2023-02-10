@@ -75,7 +75,8 @@
             console.log(error)
         })
         setTimeout(() => {
-            window.location.href = "/docs/${newAssignment.id}";
+            // go to the docs/newAssignment.id
+            window.location.href = "/docs/" + newAssignment.id;
         }, 1500);
     }
 </script>
