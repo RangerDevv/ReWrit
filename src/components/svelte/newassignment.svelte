@@ -74,6 +74,9 @@
             console.log(data)
             console.log(error)
         })
+        setTimeout(() => {
+            window.location.href = "/docs/${newAssignment.id}";
+        }, 1500);
     }
 </script>
 
