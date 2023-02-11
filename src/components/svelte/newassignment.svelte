@@ -70,7 +70,7 @@
             await supabase.from('Contents').insert([
                 {
                     text: content.text, 
-                    connect: content.connect, 
+                    connect: NewAssignment.id, 
                     id: content.id, 
                     created_at: content.created_at,
                 },
