@@ -18,6 +18,7 @@ export interface Language {
 export interface Contents {
     id?:number,
     created_at?:string,
+    number:number,
     text:string,
     connect:number,
 }

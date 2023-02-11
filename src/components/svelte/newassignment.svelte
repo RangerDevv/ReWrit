@@ -9,6 +9,8 @@
         return Math.floor(Math.random() * Math.floor(max));
     }
 
+    let contnumber = 0;
+
     let current_time = new Date().toISOString(); 
 
     interface NewAssignment {
@@ -24,6 +26,7 @@
     interface Contents{
         id?:number,
         created_at?:string,
+        number?:number,
         text:string,
         connect?:number,
     }
@@ -41,6 +44,7 @@
     let Contents: Contents = {
         id:getRandomInt(10000),
         created_at: current_time,
+        number: contnumber,
         text: "",
         connect: NewAssignment.id,
     }
@@ -60,16 +64,22 @@
     // make the items in the array equal to the content of Contents
     let contenttext: Contents[] = []
     const addContent = () => contenttext = [...contenttext, {text: "", id: getRandomInt(10000), created_at: current_time}]
+    function removeContent(index: number) {
+        contenttext.splice(index, 1)
+        contenttext = [...contenttext]
+    }
 
     console.log(contenttext)
 
-    $: disabled = (NewAssignment.title == "" || NewAssignment.description == "" || Contents.text == "" || NewAssignment.lang == 0)
+    $: disabled = NewAssignment.title === "" || NewAssignment.description === "" || NewAssignment.lang === 0 || contenttext.length === 0
 
     async function pushcontent() {
         await Promise.all(contenttext.map(async (content) => {
+            contnumber = contnumber + 1
             await supabase.from('Contents').insert([
                 {
                     text: content.text, 
+                    number: content.number,
                     connect: NewAssignment.id, 
                     id: content.id, 
                     created_at: content.created_at,
@@ -107,7 +117,6 @@
         <h1>New Assignment</h1>
         <textarea rows="1"  bind:value={NewAssignment.title} placeholder="Title" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         <textarea rows="1"  bind:value={NewAssignment.description} placeholder="Description" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
-        <!-- <textarea rows="6" bind:value={Contents.text} placeholder="Contents" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/> -->
         {#each contenttext as content}
             <textarea rows="6" bind:value={content.text} placeholder="Contents" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         {/each}

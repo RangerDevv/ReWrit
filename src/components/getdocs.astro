@@ -18,7 +18,7 @@ const { data, error } = await supabase
     .from('Contents')
     .select('*')
     // order by when it was created
-    .order('created_at', { ascending: true })
+    .order('number', { ascending: true })
 
 
 
