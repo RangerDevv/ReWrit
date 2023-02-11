@@ -42,7 +42,6 @@
         id:getRandomInt(10000),
         created_at: current_time,
         text: "",
-        // connect to the id of the documentation
         connect: NewAssignment.id,
     }
 
@@ -58,15 +57,11 @@
         }
     });
 
-    // make an arry of contents
-    let newcontents: Contents[] = [];
+    // make the items in the array equal to the content of Contents
+    let contenttext: Contents[] = [Contents]
+    const addContent = () => contenttext = [...contenttext, {text: "", connect: NewAssignment.id, id: getRandomInt(10000), created_at: current_time}]
 
-    const addContent = () => newcontents = [...newcontents, {id: getRandomInt(10000), created_at: current_time, text: "", connect: NewAssignment.id}]
-    // remove the content from the array using splice
-    // const removeContent = (id: number) => newcontents.splice(id, 1)
-    const removeContent = (id: number) => newcontents = newcontents.filter((content) => content.id !== id)
-
-
+    console.log(contenttext)
 
     $: disabled = (NewAssignment.title == "" || NewAssignment.description == "" || Contents.text == "" || NewAssignment.lang == 0)
 
@@ -78,20 +73,15 @@
             console.log(error)
         }),
         supabase.from('Contents').insert([
-        // insert the contents into the database
-        await Promise.all(newcontents.map(async (content) => {
-            await supabase.from('Contents').insert([
-                {text: content.text, connect: content.connect, id: content.id, created_at: content.created_at},
-            ])
-        }))
+            {text: contents.text, connect: contents.connect, id: contents.id, created_at: contents.created_at},
         ]).then(({ data, error }) => {
             console.log(data)
             console.log(error)
+        })
         setTimeout(() => {
             // go to the docs/newAssignment.id
             window.location.href = "/docs/" + newAssignment.id;
         }, 1500);
-        })
     }
 
 </script>
@@ -103,9 +93,8 @@
         <textarea rows="1"  bind:value={NewAssignment.title} placeholder="Title" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         <textarea rows="1"  bind:value={NewAssignment.description} placeholder="Description" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         <!-- <textarea rows="6" bind:value={Contents.text} placeholder="Contents" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/> -->
-        {#each newcontents as Contents}
-            <textarea rows="6" bind:value={Contents.text} placeholder="Contents" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
-            <!-- <button on:click={() => removeContent(Contents.id)} class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">Remove</button> -->
+        {#each contenttext as content}
+            <textarea rows="6" bind:value={content.text} placeholder="Contents" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         {/each}
         <div class="flex flex-row gap-6">
             <select bind:value={NewAssignment.lang} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -121,7 +110,7 @@
                 <option value="2">Text</option>
                 <option value="3">Image</option>
             </select> -->
-            <button on:click={addContent} class="block p-2.5 w-auto text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700">Add Content</button>
+            <button on:click={addContent} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700">Add</button>
         </div>
             <button on:click={() => Push(NewAssignment, Contents)} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700">Push</button>
     </div>
