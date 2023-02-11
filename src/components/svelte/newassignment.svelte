@@ -75,6 +75,8 @@
                     created_at: content.created_at,
                 },
             ]).then(({ data, error }) => {
+                console.log(NewAssignment.id)
+                console.log(content.connect)
                 console.log(contenttext)
                 console.log(error)
             })
