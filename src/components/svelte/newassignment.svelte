@@ -90,8 +90,8 @@
         ]).then(({ data, error }) => {
             console.log(data)
             console.log(error)
+            pushcontent()
         }),
-        await pushcontent()
             // loop through the array and insert the contents
             setTimeout(() => {
             // go to the docs/newAssignment.id
