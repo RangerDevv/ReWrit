@@ -33,13 +33,13 @@
         description: "",
         lang: 0,
         created_at: current_time,
-        id: getRandomInt(10000),
+        id:getRandomInt(10000),
         user_id: "345f3cdf-6041-4924-be7f-5cee3b9e2534",
 
     }
 
     let Contents: Contents = {
-        id: getRandomInt(10000),
+        id:getRandomInt(10000),
         created_at: current_time,
         text: "",
         // connect to the id of the documentation
@@ -62,7 +62,9 @@
     let newcontents: Contents[] = [];
 
     const addContent = () => newcontents = [...newcontents, {id: getRandomInt(10000), created_at: current_time, text: "", connect: NewAssignment.id}]
-    let removeContent = (index: number) => newcontents = newcontents.filter((_, i) => i !== index)
+    // remove the content from the array using splice
+    // const removeContent = (id: number) => newcontents.splice(id, 1)
+    const removeContent = (id: number) => newcontents = newcontents.filter((content) => content.id !== id)
 
 
 
@@ -101,10 +103,9 @@
         <textarea rows="1"  bind:value={NewAssignment.title} placeholder="Title" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         <textarea rows="1"  bind:value={NewAssignment.description} placeholder="Description" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         <!-- <textarea rows="6" bind:value={Contents.text} placeholder="Contents" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/> -->
-        {#each newcontents as content}
-            <textarea rows="6" bind:value={content.text} placeholder="Contents" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
-            <!-- <button on:click={() => removeContent(content.id)} class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">Remove</button> -->
-
+        {#each newcontents as Contents}
+            <textarea rows="6" bind:value={Contents.text} placeholder="Contents" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+            <button on:click={() => removeContent(Contents.id)} class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">Remove</button>
         {/each}
         <div class="flex flex-row gap-6">
             <select bind:value={NewAssignment.lang} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
