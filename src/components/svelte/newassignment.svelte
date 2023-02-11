@@ -59,7 +59,7 @@
 
     // make the items in the array equal to the content of Contents
     let contenttext: Contents[] = []
-    const addContent = () => contenttext = [...contenttext, {text: "", connect: NewAssignment.id, id: getRandomInt(10000), created_at: current_time}]
+    const addContent = () => contenttext = [...contenttext, {text: "", id: getRandomInt(10000), created_at: current_time}]
 
     console.log(contenttext)
 
@@ -70,7 +70,7 @@
             await supabase.from('Contents').insert([
                 {
                     text: content.text, 
-                    connect: NewAssignment.id, 
+                    connect: content.connect, 
                     id: content.id, 
                     created_at: content.created_at,
                 },
