@@ -78,7 +78,8 @@
             await supabase.from('Contents').insert([
                 {
                     text: content.text, 
-                    number: contnumber + 1,
+                    // set the content.number to the index of the array
+                    number: contenttext.indexOf(content),
                     connect: NewAssignment.id, 
                     id: content.id, 
                     created_at: content.created_at,
@@ -100,6 +101,7 @@
             console.log(data)
             console.log(error)
             pushcontent()
+            console.log(contenttext)
         }),
             // loop through the array and insert the contents
             setTimeout(() => {
