@@ -58,15 +58,15 @@
     });
 
     // make an arry of contents
-    let contents: Contents[] = [];
+    let newcontents: Contents[] = [];
 
-    const addContent = () => contents = [...contents, {id: getRandomInt(10000), created_at: current_time, text: "", connect: NewAssignment.id}]
+    const addContent = () => newcontents = [...newcontents, {id: getRandomInt(10000), created_at: current_time, text: "", connect: NewAssignment.id}]
 
 
 
     $: disabled = (NewAssignment.title == "" || NewAssignment.description == "" || Contents.text == "" || NewAssignment.lang == 0)
 
-    function Push (newAssignment: NewAssignment, contents: Contents ) {
+    async function Push (newAssignment: NewAssignment, contents: Contents ) {
         supabase.from('Documentation').insert([
             {title: newAssignment.title, description: newAssignment.description, lang: newAssignment.lang, id: newAssignment.id, created_at: newAssignment.created_at, user_id: newAssignment.user_id},
         ]).then(({ data, error }) => {
@@ -74,8 +74,12 @@
             console.log(error)
         }),
         supabase.from('Contents').insert([
-            // push all of the contents to the database
-            {text: Contents.text, connect: Contents.connect, id: Contents.id, created_at: Contents.created_at},
+        // insert the contents into the database
+        await Promise.all(newcontents.map(async (content) => {
+            await supabase.from('Contents').insert([
+                {text: content.text, connect: content.connect, id: content.id, created_at: content.created_at},
+            ])
+        }))
         ]).then(({ data, error }) => {
             console.log(data)
             console.log(error)
@@ -95,7 +99,7 @@
         <textarea rows="1"  bind:value={NewAssignment.title} placeholder="Title" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         <textarea rows="1"  bind:value={NewAssignment.description} placeholder="Description" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         <textarea rows="6" bind:value={Contents.text} placeholder="Contents" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
-        {#each contents as content}
+        {#each newcontents as content}
             <textarea rows="6" bind:value={content.text} placeholder="Contents" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         {/each}
         <div class="flex flex-row">
