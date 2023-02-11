@@ -74,7 +74,8 @@
             console.log(error)
         }),
         supabase.from('Contents').insert([
-            {id: contents.id, created_at: contents.created_at, text: contents.text, connect: contents.connect},
+            // push all of the contents to the database
+            {text: Contents.text, connect: Contents.connect, id: Contents.id, created_at: Contents.created_at},
         ]).then(({ data, error }) => {
             console.log(data)
             console.log(error)
