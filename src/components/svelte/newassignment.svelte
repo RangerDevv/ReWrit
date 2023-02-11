@@ -33,7 +33,8 @@
         description: "",
         lang: 0,
         created_at: current_time,
-        // make it connect to the currently logged in user
+        id: getRandomInt(10000),
+        user_id: "345f3cdf-6041-4924-be7f-5cee3b9e2534",
 
     }
 
