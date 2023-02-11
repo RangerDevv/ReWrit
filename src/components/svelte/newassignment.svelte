@@ -57,6 +57,14 @@
         }
     });
 
+    // make the items in the array equal to the content of Contents
+    let contenttext: Contents[] = []
+    const addContent = () => contenttext = [...contenttext, {text: "", connect: NewAssignment.id, id: getRandomInt(10000), created_at: current_time}]
+
+    console.log(contenttext)
+
+    $: disabled = (NewAssignment.title == "" || NewAssignment.description == "" || Contents.text == "" || NewAssignment.lang == 0)
+
     async function pushcontent() {
         await Promise.all(contenttext.map(async (content) => {
             await supabase.from('Contents').insert([
@@ -73,14 +81,6 @@
         }),
         )
     }
-
-    // make the items in the array equal to the content of Contents
-    let contenttext: Contents[] = [Contents]
-    const addContent = () => contenttext = [...contenttext, {text: "", connect: NewAssignment.id, id: getRandomInt(10000), created_at: current_time}]
-
-    console.log(contenttext)
-
-    $: disabled = (NewAssignment.title == "" || NewAssignment.description == "" || Contents.text == "" || NewAssignment.lang == 0)
 
     async function Push (newAssignment: NewAssignment, contents: Contents ) {
         supabase.from('Documentation').insert([
