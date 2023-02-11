@@ -75,11 +75,10 @@
 
     async function pushcontent() {
         await Promise.all(contenttext.map(async (content) => {
-            contnumber = contnumber + 1
             await supabase.from('Contents').insert([
                 {
                     text: content.text, 
-                    number: content.number,
+                    number: contnumber + 1,
                     connect: NewAssignment.id, 
                     id: content.id, 
                     created_at: content.created_at,
