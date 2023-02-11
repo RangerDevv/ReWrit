@@ -9,6 +9,8 @@
         return Math.floor(Math.random() * Math.floor(max));
     }
 
+    let current_time = new Date().toISOString(); 
+
     interface NewAssignment {
         // title and description of documentation
         title: string;
@@ -30,14 +32,13 @@
         title: "",
         description: "",
         lang: 0,
-        id: getRandomInt(10000),
-        created_at: "2021-09-01T00:00:00.000Z",
-        user_id: "345f3cdf-6041-4924-be7f-5cee3b9e2534",
+        created_at: current_time,
+        // make it connect to the currently logged in user
+
     }
 
     let Contents: Contents = {
-        id: getRandomInt(10000),
-        created_at: "2021-09-01T00:00:00.000Z",
+        created_at: current_time,
         text: "",
         // connect to the id of the documentation
         connect: NewAssignment.id,
@@ -55,10 +56,13 @@
         }
     });
 
-    // if the forms are empty, the button is disabled
-    // $: disabled = !(assignmentname != ""
-    //     && questions.length > 0 
-    //     && questions.every(x => x.question.trim() != "" && x.answer.trim() != ""))
+    // make an arry of contents
+    let contents: Contents[] = [];
+
+    const addContent = () => contents = [...contents, {id: getRandomInt(10000), created_at: current_time, text: "", connect: NewAssignment.id}]
+
+
+
     $: disabled = (NewAssignment.title == "" || NewAssignment.description == "" || Contents.text == "" || NewAssignment.lang == 0)
 
     function Push (newAssignment: NewAssignment, contents: Contents ) {
@@ -79,6 +83,7 @@
         }, 1500);
         })
     }
+
 </script>
 
 <main>
@@ -88,6 +93,9 @@
         <textarea rows="1"  bind:value={NewAssignment.title} placeholder="Title" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         <textarea rows="1"  bind:value={NewAssignment.description} placeholder="Description" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         <textarea rows="6" bind:value={Contents.text} placeholder="Contents" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+        {#each contents as content}
+            <textarea rows="6" bind:value={content.text} placeholder="Contents" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+        {/each}
         <div class="flex flex-row">
             <select bind:value={NewAssignment.lang} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value="0">Select Language</option>
@@ -95,7 +103,15 @@
                     <option value={lang.id}>{lang.language_name}</option>
                 {/each}
             </select>
+            <!-- Make a select button a new content -->
+            <!-- <select class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option value="0"><button on:click={addContent}>Select Content</button></option>
+                <option value="1">Code</option>
+                <option value="2">Text</option>
+                <option value="3">Image</option>
+            </select> -->
+            <button on:click={addContent} class="block p-2.5 w-auto text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700">Add Content</button>
         </div>
-            <button on:click={() => Push(NewAssignment, Contents)} {disabled} class="block p-2.5 w-20 text-sm rounded-xl bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700">Push</button>
+            <button on:click={() => Push(NewAssignment, Contents)} {disabled} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700">Push</button>
     </div>
 </main>

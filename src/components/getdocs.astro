@@ -17,6 +17,8 @@ const { data, error } = await supabase
 // get both contents and documentation table
     .from('Contents')
     .select('*')
+    // order by when it was created
+    .order('created_at', { ascending: true })
 
 
 
