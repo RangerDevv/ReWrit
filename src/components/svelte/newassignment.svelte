@@ -73,15 +73,18 @@
             console.log(error)
         }),
         supabase.from('Contents').insert([
-            {text: contents.text, connect: contents.connect, id: contents.id, created_at: contents.created_at},
+            // loop through the array and insert the contents
+        contenttext.map((content) => {
+            return {text: content.text, connect: content.connect, id: content.id, created_at: content.created_at}
+        })
         ]).then(({ data, error }) => {
             console.log(data)
             console.log(error)
-        })
-        setTimeout(() => {
+            setTimeout(() => {
             // go to the docs/newAssignment.id
             window.location.href = "/docs/" + newAssignment.id;
         }, 1500);
+        })
     }
 
 </script>
