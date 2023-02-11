@@ -57,6 +57,23 @@
         }
     });
 
+    async function pushcontent() {
+        await Promise.all(contenttext.map(async (content) => {
+            await supabase.from('Contents').insert([
+                {
+                    text: content.text, 
+                    connect: content.connect, 
+                    id: content.id, created_at: 
+                    content.created_at,
+                },
+            ]).then(({ data, error }) => {
+                console.log(data),
+                console.log(error)
+            })
+        }),
+        )
+    }
+
     // make the items in the array equal to the content of Contents
     let contenttext: Contents[] = [Contents]
     const addContent = () => contenttext = [...contenttext, {text: "", connect: NewAssignment.id, id: getRandomInt(10000), created_at: current_time}]
@@ -72,20 +89,13 @@
             console.log(data)
             console.log(error)
         }),
-        supabase.from('Contents').insert([
+        await pushcontent()
             // loop through the array and insert the contents
-        contenttext.map((content) => {
-            return {text: content.text, connect: content.connect, id: content.id, created_at: content.created_at}
-        })
-        ]).then(({ data, error }) => {
-            console.log(data)
-            console.log(error)
             setTimeout(() => {
             // go to the docs/newAssignment.id
             window.location.href = "/docs/" + newAssignment.id;
         }, 1500);
-        })
-    }
+        }
 
 </script>
 
