@@ -32,8 +32,8 @@
         title: "",
         description: "",
         lang: 0,
-        created_at: current_time,
         id:getRandomInt(10000),
+        created_at: current_time,
         user_id: "345f3cdf-6041-4924-be7f-5cee3b9e2534",
 
     }
@@ -70,9 +70,9 @@
             await supabase.from('Contents').insert([
                 {
                     text: content.text, 
-                    connect: content.connect, 
-                    id: content.id, created_at: 
-                    content.created_at,
+                    connect: NewAssignment.id, 
+                    id: content.id, 
+                    created_at: content.created_at,
                 },
             ]).then(({ data, error }) => {
                 console.log(data),
