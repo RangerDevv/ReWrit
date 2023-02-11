@@ -75,7 +75,7 @@
                     created_at: content.created_at,
                 },
             ]).then(({ data, error }) => {
-                console.log(data),
+                console.log(contenttext)
                 console.log(error)
             })
         }),
