@@ -6,6 +6,9 @@ export interface Props {
 import Layout from "../layouts/Layout.astro";
 import { supabase } from "../lib/backend";
 import type { Session } from "@supabase/supabase-js";
+import hljs from 'highlight.js';
+
+
 
 import type { Contents, Documentation } from "../lib/db";
 import { bind } from "svelte/internal";
@@ -35,6 +38,24 @@ const { data, error } = await supabase
 ---
 
 <Layout title="Docs">
+    <script >
+    import hljs from 'highlight.js';
+    //  use a dark theme for highlight.js
+    import code from 'highlight.js/lib/languages/javascript';
+
+    // dont use github theme because it doesnt work
+    import 'highlight.js/styles/github-dark.css';
+    // select all the elements that have the id of Code
+    const Code = document.querySelectorAll('#Code');
+
+
+    hljs.registerLanguage('javascript', code);
+    // loop through all the elements and highlight them
+    Code.forEach((block) => {
+        return hljs.highlightBlock(block as HTMLElement);
+    });
+
+    </script>
     <div class="flex text-white flex-col gap-2">
         <p class=" text-center text-2xl">{title}</p>
         <p class=" text-center text-xl">{description}</p>
@@ -42,9 +63,13 @@ const { data, error } = await supabase
     <div>
         <div class="flex flex-col p-10">
         {content && content.map((con: Contents) => (
-            <div class="text-white flex w-screen flex-col justify-center">
-                {con.is_code && <p class="text-red-600">{con.text}</p>}
-                {!con.is_code && <p>{con.text}</p>}
+            <div class="text-white flex w-screen flex-col justify-center pl-10">
+                {con.is_code && 
+                    <div class="w-96 sm:w-1/2 h-72 mt-6 rounded-lg place-self-center">
+                    <pre class="p-5 overflow-auto w-full h-full  whitespace-pre-wrap" id="Code"><code>{con.text}</code></pre>
+                    </div>
+                }
+                {!con.is_code && <p class="text-lg">{con.text}</p>}
             </div>
         ))}
         </div>
