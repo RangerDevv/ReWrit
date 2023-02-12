@@ -29,6 +29,7 @@
         number?:number,
         text:string,
         connect?:number,
+        is_code?:boolean,
     }
 
     let NewAssignment: NewAssignment = {
@@ -47,6 +48,7 @@
         number: contnumber,
         text: "",
         connect: NewAssignment.id,
+        is_code: false,
     }
 
     // get the language lost of id and the language name from the database
@@ -63,9 +65,14 @@
 
     // make the items in the array equal to the content of Contents
     let contenttext: Contents[] = []
-    const addContent = () => contenttext = [...contenttext, {text: "", id: getRandomInt(10000), created_at: current_time , number: contnumber,}]
+    const addContent = () => contenttext = [...contenttext, {text: "", id: getRandomInt(10000), created_at: current_time , number: contnumber, is_code: false,}]
     function removeContent(index: number) {
         contenttext.splice(index, 1)
+        contenttext = [...contenttext]
+    }
+
+    function addCode(index: number) {
+        contenttext[index].is_code = true
         contenttext = [...contenttext]
     }
 
@@ -135,7 +142,9 @@
                 <option value="2">Text</option>
                 <option value="3">Image</option>
             </select> -->
-            <button on:click={addContent} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700">Add</button>
+            <button on:click={addContent} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700">Text</button>
+            <!-- <button on:click={ () =>} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700">Code</button> -->
+            <button on:click={ () => addCode(contenttext.indexOf(Contents))} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700">Code</button>
         </div>
             <button on:click={() => Push(NewAssignment, Contents)} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700">Push</button>
     </div>

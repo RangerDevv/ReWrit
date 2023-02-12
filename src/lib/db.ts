@@ -21,4 +21,5 @@ export interface Contents {
     number:number,
     text:string,
     connect:number,
+    is_code:boolean,
 }
