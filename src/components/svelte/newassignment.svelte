@@ -70,7 +70,7 @@
         contenttext.splice(index, 1)
         contenttext = [...contenttext]
     }
-    const addCode = () => contenttext = [...contenttext, {text: "", id: getRandomInt(10000), created_at: current_time , number: contnumber, is_code: true,}]
+    const addCode = () => {contenttext = [...contenttext, {text: "", id: getRandomInt(10000), created_at: current_time , number: contnumber, is_code: true,}]}
 
     console.log(contenttext)
 
@@ -86,6 +86,7 @@
                     connect: NewAssignment.id, 
                     id: content.id, 
                     created_at: content.created_at,
+                    is_code: content.is_code,
                 },
             ]).then(({ data, error }) => {
                 console.log(NewAssignment.id)
