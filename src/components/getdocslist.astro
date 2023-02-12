@@ -28,12 +28,21 @@ const { data, error } = await supabase
             <p>{doc.description}</p>
         </div>
     ))} -->
-    <div class=" flex flex-col sm:flex-row sm:row-2 gap-10 place-items-center sm:justify-center">
+    <div class=" flex flex-col sm:row-2 gap-10 place-items-center sm:justify-center">
     {filteredDocs && filteredDocs.map((doc: Documentation) => (
-        <div class="flex flex-col text-white w-80 h-auto bg-slate-900 rounded-xl outline-dashed outline-gray-400" onclick={`window.location = "/docs/${doc.id}"`}>
-            <h1 class="text-center text-2xl pt-2 pb-7 font-bold">{doc.title}</h1>
-            <p class="text-center text-lg pt-2 pb-2">{doc.description}</p>
-        </div>
+        <div class="flex flex-row text-white w-7/12 h-auto bg-slate-900 rounded-xl outline-dashed outline-gray-400 justify-between">
+            <div class="flex flex-col">
+                <h1 class="text-left pl-3 text-2xl pt-2 pb-4 font-bold">{doc.title}</h1>
+                <p class="text-left pl-3 text-lg pt-2 pb-2 truncate">{doc.description}</p>
+            </div>
+            <div class="flex flex-row justify-end">
+            <button class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-xl"  onclick={`window.location = "/docs/${doc.id}"`}>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+            </div>
+            </div>
     ))}
     </div>
 </Layout>
