@@ -74,7 +74,7 @@
 
     console.log(contenttext)
 
-    $: disabled = !NewAssignment.title || !NewAssignment.description || !NewAssignment.lang || !contenttext.length;
+    $: disabled = !NewAssignment.title || !NewAssignment.description || !NewAssignment.lang || !contenttext.length || contenttext.some((content) => !content.text);
 
     async function pushcontent() {
         await Promise.all(contenttext.map(async (content) => {
