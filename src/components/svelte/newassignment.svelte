@@ -74,7 +74,7 @@
 
     console.log(contenttext)
 
-    $: disabled = NewAssignment.title === "" || NewAssignment.description === "" || NewAssignment.lang === 0 || contenttext.length === 0
+    $: disabled = !NewAssignment.title || !NewAssignment.description || !NewAssignment.lang || !contenttext.length;
 
     async function pushcontent() {
         await Promise.all(contenttext.map(async (content) => {
@@ -144,6 +144,6 @@
             <!-- <button on:click={ () =>} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700">Code</button> -->
             <button on:click={addCode} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700">Code</button>
         </div>
-            <button on:click={() => Push(NewAssignment, Contents)} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700">Push</button>
+            <button on:click={() => Push(NewAssignment, Contents)} {disabled} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700">Push</button>
     </div>
 </main>
