@@ -63,7 +63,7 @@ const { data, error } = await supabase
     <div>
         <div class="flex flex-col p-10">
         {content && content.map((con: Contents) => (
-            <div class="text-white flex w-screen flex-col justify-center pl-10">
+            <div class="text-white flex w-screen flex-col justify-center">
                 {con.is_code && 
                     <div class="w-96 sm:w-1/2 h-72 mt-6 rounded-lg place-self-center">
                     <pre class="p-5 overflow-auto w-full h-full  whitespace-pre-wrap" id="Code"><code>{con.text}</code></pre>
