@@ -65,7 +65,7 @@ const { data, error } = await supabase
     <div class="flex text-white flex-col gap-2">
         <p class=" text-center text-2xl">{title}</p>
         <p class=" text-center text-xl">{description}</p>
-        {authed && <Comnt client:only="svelte" id={pid} />}
+         <Comnt client:only="svelte" id={pid} />
     </div>
 <div class=" place-items-center">
         <div>

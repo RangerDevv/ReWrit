@@ -50,6 +50,14 @@
         let modal = document.getElementById('modal')!;
         modal.style.display = "none";
     }
+
+    // generate a random character
+    const randomChar = () => {
+        const n = Math.floor(Math.random() * 62);
+        if (n < 10) return n; //1-10
+        if (n < 36) return String.fromCharCode(n + 55); //A-Z
+        return String.fromCharCode(n + 61); //a-z
+    };
 </script>
 
 <button class="btn btn-error btn-sm btn-square btn-outline text-white font-bold place-self-center w-20 h-12 text-xl bg-blue-700 rounded-lg" id="btn" on:click={showComments}>
@@ -81,7 +89,13 @@
     </div>
     <div>
         {#each comments as coment}
-            <div class="w-96 h-auto gap-3">
+            <div class="w-96 h-auto gap-3 flex flex-row">
+                <div class="w-10 h-10 rounded-full mt-2">
+                    <!-- get a random image from avaaatars -->
+                    <!-- <img src={`https://avatars.dicebear.com/api/avataaars/${randomChar()}.svg`} alt="avatar" class="w-10 h-10 rounded-full" /> -->
+                    <!-- make the avatars smiling -->
+                    <img src={`https://avatars.dicebear.com/api/avataaars/${randomChar()}.svg?options[mood][]=happy`} alt="avatar" class="w-10 h-10 rounded-full" />
+                </div>
                 <p class="pt-4">{coment.text}</p>
             </div>
         {/each}
