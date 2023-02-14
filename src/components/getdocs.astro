@@ -54,26 +54,30 @@ const { data, error } = await supabase
         return hljs.highlightBlock(block as HTMLElement);
     });
 
+
+
     </script>
+<main class="flex flex-row">
+<div>
     <div class="flex text-white flex-col gap-2">
         <p class=" text-center text-2xl">{title}</p>
         <p class=" text-center text-xl">{description}</p>
+        <Comnt client:only="svelte" id={pid} />
     </div>
-    <div class="flex flex-row gap-4">
-        <div class="flex flex-col p-10">
+<div class="flex flex-row">
+        <div class="">
         {content && content.map((con: Contents) => (
             <div class="text-white flex w-screen flex-col justify-center">
                 {con.is_code && 
                     <div class="w-96 sm:w-1/2 h-72 mt-6 rounded-lg place-self-center">
-                    <pre class="p-5 overflow-auto w-full h-full  whitespace-pre-wrap" id="Code"><code>{con.text}</code></pre>
+                    <pre class="overflow-auto whitespace-pre-wrap" id="Code"><code>{con.text}</code></pre>
                     </div>
                 }
                 {!con.is_code && <p class="text-lg">{con.text}</p>}
             </div>
-        ))}
-        <div>
-            <Comnt client:only="svelte" id={pid} />
-        </div>
-        </div>
+        ))}  
     </div>
+</div>
+</div>
+</main>
 </Layout>

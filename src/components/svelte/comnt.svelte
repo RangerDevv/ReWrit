@@ -39,19 +39,59 @@
             comments = [...comments];
         }
     }
+
+    function showComments() {
+        let modal = document.getElementById('modal')!;
+        modal.style.display = "block";
+        // close the modal when the user clicks outside of it
+    }
+
+    function hideComments() {
+        let modal = document.getElementById('modal')!;
+        modal.style.display = "none";
+    }
 </script>
 
-<main class="text-white">
-    <h1>Comments</h1>
+<button class="btn btn-error btn-sm btn-square btn-outline text-white font-extrabold float-end " id="btn" on:click={showComments}>
+    Chat
+</button>
+
+<main class="w-7/12 h-96 place-self-center bg-slate-900 fixed p-10 overflow-auto rounded-2xl" id='modal'>
+    <div class=" flex flex-row justify-between">
+    <h1 class="text-white text-xl">Comments</h1>
+    <!-- make a svg X button -->
+    <button class="btn btn-error btn-sm btn-square btn-outline text-red-700 font-extrabold" on:click={hideComments}>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+    </button>
+    </div>
     <div>
-        <input type="text" bind:value={comment.text} />
-        <button on:click={addComment}>Add Comment</button>    
+        <form>
+   <div class="w-full mb-4 rounded-lg  mt-6">
+       <div class="px-4 py-2 bg-transparent rounded-t-lg">
+           <label for="comment" class="sr-only">Your comment</label>
+           <textarea bind:value={comment.text} id="comment" rows="2" class="w-full px-0 text-sm focus:ring-0 bg-transparent outline-none" placeholder="Write a comment..." required></textarea>
+       </div>
+       <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+           <button on:click={addComment} type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+               Post comment
+           </button>
+       </div>
+   </div>
+</form>
     </div>
     <div>
         {#each comments as coment}
-            <div>
-                <p>{coment.text}</p>
+            <div class="w-72 h-auto gap-3">
+                <p class="pt-4">{coment.text}</p>
             </div>
         {/each}
     </div>
 </main>
+
+<style>
+
+    #modal {
+        display: none;
+    }
+
+</style>
