@@ -12,6 +12,11 @@ import Comnt from "./svelte/comnt.svelte";
 
 import type { Contents, Documentation, Comments } from "../lib/db";
 
+const refreshToken = Astro.cookies.get("my-refresh-token").value
+const accessToken = Astro.cookies.get("my-access-token").value
+
+const currentUser = (await supabase.auth.getUser(accessToken)).data.user
+var authed = currentUser !== null
 
 const { pid } = Astro.props
 
@@ -54,20 +59,18 @@ const { data, error } = await supabase
         return hljs.highlightBlock(block as HTMLElement);
     });
 
-
-
     </script>
-<main class="flex flex-row">
+<main>
 <div>
     <div class="flex text-white flex-col gap-2">
         <p class=" text-center text-2xl">{title}</p>
         <p class=" text-center text-xl">{description}</p>
-        <Comnt client:only="svelte" id={pid} />
+        {authed && <Comnt client:only="svelte" id={pid} />}
     </div>
-<div class="flex flex-row">
-        <div class="">
+<div class=" place-items-center">
+        <div>
         {content && content.map((con: Contents) => (
-            <div class="text-white flex w-screen flex-col justify-center">
+            <div class="text-white flex flex-col justify-center pl-6 sm:pl-12">
                 {con.is_code && 
                     <div class="w-96 sm:w-1/2 h-72 mt-6 rounded-lg place-self-center">
                     <pre class="overflow-auto h-96 whitespace-pre-wrap" id="Code"><code>{con.text}</code></pre>

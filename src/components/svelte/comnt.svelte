@@ -52,7 +52,7 @@
     }
 </script>
 
-<button class="btn btn-error btn-sm btn-square btn-outline text-white font-extrabold float-end " id="btn" on:click={showComments}>
+<button class="btn btn-error btn-sm btn-square btn-outline text-white font-bold place-self-center w-20 h-12 text-xl bg-blue-700 rounded-lg" id="btn" on:click={showComments}>
     Chat
 </button>
 
@@ -81,7 +81,7 @@
     </div>
     <div>
         {#each comments as coment}
-            <div class="w-72 h-auto gap-3">
+            <div class="w-96 h-auto gap-3">
                 <p class="pt-4">{coment.text}</p>
             </div>
         {/each}
