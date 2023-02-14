@@ -1,9 +1,7 @@
 <script lang="ts">
-
     import { supabase } from "../../lib/backend";
     import { onMount } from "svelte";
-
-    export let currId: number;
+    import type { Comments } from "../../lib/db";
 
     interface Comments {
         id?:number,
@@ -14,44 +12,41 @@
     }
 
 
-    let Comments: Comments = {
-        id:0,
+    let comment: Comments = {
         created_at: "",
         number: 0,
         text: "",
-        cmntof: currId,
+        cmntof: 0,
     }    
 
     let comments: Comments[] = [];
 
     onMount(async () => {
-        let { data, error } = await supabase
-            .from("Comments")
-            .select("*")
-            .eq("cmntof", currId);
+        const { data, error } = await supabase.from("Comments").select("*");
         if (error) {
             console.log(error);
+        } else {
+            comments = data;
         }
-        console.log(data);
     });
 
-    async function addComment() {
-        let { data: comment, error } = await supabase
-            .from("Comments")
-            .insert([Comments]);
-        if (error) {
-            console.log(error);
+    function addComment() {
+        comments = [...comments, comment];
+        comment = {
+            id:0,
+            created_at: "",
+            number: 0,
+            text: "",
+            cmntof: 0,
         }
-        console.log(comment);
     }
-
 
 </script>
 
 <main class="text-white">
     <h1>Comments</h1>
     <div>
-        <input type="text" bind:value={Comments.text} />
+        <input type="text" bind:value={comment.text} />
         <button on:click={addComment}>Add Comment</button>
     <div>
         {#each comments as comment}
