@@ -23,7 +23,7 @@
     }
 
     onMount(async () => {
-        const { data, error } = await supabase.from("Comments").select("*");
+        const { data, error } = await supabase.from("Comments").select("*").eq("cmntof", id);
         if (error) {
             console.log(error);
         } else {
