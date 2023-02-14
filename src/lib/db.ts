@@ -14,7 +14,6 @@ export interface Language {
     description:string,
 }
 
-
 export interface Contents {
     id?:number,
     created_at?:string,
@@ -22,4 +21,12 @@ export interface Contents {
     text:string,
     connect:number,
     is_code:boolean,
+}
+
+export interface Comments {
+    id?:number,
+    created_at?:string,
+    number:number,
+    text:string,
+    cmntof:number,
 }

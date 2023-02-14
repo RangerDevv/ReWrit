@@ -2,7 +2,6 @@
     import { supabase } from "../../lib/backend";
     import { onMount } from "svelte";
     import type { Language } from "../../lib/db";
-    
 
     // Generate a random 4 digit number
     function getRandomInt(max: number) {

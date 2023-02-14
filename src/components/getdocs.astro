@@ -1,4 +1,6 @@
 ---
+
+
 export interface Props {
 	pid: number;
 }
@@ -7,12 +9,12 @@ import Layout from "../layouts/Layout.astro";
 import { supabase } from "../lib/backend";
 import type { Session } from "@supabase/supabase-js";
 import hljs from 'highlight.js';
+import { onMount } from "svelte/internal";
 
 
 
-import type { Contents, Documentation } from "../lib/db";
-import { bind } from "svelte/internal";
-import type { SupabaseAuthClient } from "@supabase/supabase-js/dist/module/lib/SupabaseAuthClient";
+import type { Contents, Documentation, Comments } from "../lib/db";
+
 
 const { pid } = Astro.props
 
@@ -60,7 +62,7 @@ const { data, error } = await supabase
         <p class=" text-center text-2xl">{title}</p>
         <p class=" text-center text-xl">{description}</p>
     </div>
-    <div>
+    <div class="flex flex-row gap-4">
         <div class="flex flex-col p-10">
         {content && content.map((con: Contents) => (
             <div class="text-white flex w-screen flex-col justify-center">
@@ -73,6 +75,5 @@ const { data, error } = await supabase
             </div>
         ))}
         </div>
-        
     </div>
 </Layout>
