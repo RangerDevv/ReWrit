@@ -8,8 +8,7 @@ import { supabase } from "../lib/backend";
 import type { Session } from "@supabase/supabase-js";
 import hljs from 'highlight.js';
 import { onMount } from "svelte/internal";
-
-
+import Comnt from "./svelte/comnt.svelte";
 
 import type { Contents, Documentation, Comments } from "../lib/db";
 
@@ -72,6 +71,9 @@ const { data, error } = await supabase
                 {!con.is_code && <p class="text-lg">{con.text}</p>}
             </div>
         ))}
+        </div>
+        <div class="flex flex-col p-10">
+            <!-- <Comnt id={pid}  client:only="svelte"/> -->
         </div>
     </div>
 </Layout>
