@@ -60,7 +60,7 @@
     };
 </script>
 
-<button class="btn btn-error btn-sm btn-square btn-outline text-white font-bold place-self-center w-20 h-12 text-xl bg-blue-700 rounded-lg" id="btn" on:click={showComments}>
+<button class="btn btn-error btn-sm btn-square btn-outline text-white font-bold place-self-center w-20 h-12 text-xl bg-blue-700 rounded-lg mt-5" id="btn" on:click={showComments}>
     Chat
 </button>
 
@@ -74,7 +74,7 @@
     </div>
     <div>
         <form>
-   <div class="w-full mb-4 rounded-lg  mt-6">
+   <div class="w-full mb-4 rounded-lg mt-6">
        <div class="px-4 py-2 bg-transparent rounded-t-lg">
            <label for="comment" class="sr-only">Your comment</label>
            <textarea bind:value={comment.text} id="comment" rows="2" class="w-full px-0 text-sm focus:ring-0 bg-transparent outline-none" placeholder="Write a comment..." required></textarea>
@@ -89,14 +89,9 @@
     </div>
     <div>
         {#each comments as coment}
-            <div class="w-96 h-auto gap-3 flex flex-row">
-                <div class="w-10 h-10 rounded-full mt-2">
-                    <!-- get a random image from avaaatars -->
-                    <!-- <img src={`https://avatars.dicebear.com/api/avataaars/${randomChar()}.svg`} alt="avatar" class="w-10 h-10 rounded-full" /> -->
-                    <!-- make the avatars smiling -->
-                    <img src={`https://avatars.dicebear.com/api/avataaars/${randomChar()}.svg?options[mood][]=happy`} alt="avatar" class="w-10 h-10 rounded-full" />
-                </div>
-                <p class="pt-4">{coment.text}</p>
+            <div class="gap-3 flex flex-row">
+                    <img src={`https://avatars.dicebear.com/api/avataaars/${randomChar()}.svg?options[mood][]=happy`} alt="avatar" class="w-10 h-10 rounded-full mt-2" />
+                <p class="pt-4 whitespace-pre-wrap w-full">{coment.text}</p>
             </div>
         {/each}
     </div>
@@ -106,6 +101,11 @@
 
     #modal {
         display: none;
+    }
+
+    /* change the styling of scroll bar */
+    ::-webkit-scrollbar {
+        width: 10px;
     }
 
 </style>
