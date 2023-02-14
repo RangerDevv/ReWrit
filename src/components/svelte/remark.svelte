@@ -3,6 +3,8 @@
     import { onMount } from "svelte";
     import type { Comments } from "../../lib/db";
 
+    export let id: number;
+
     interface Comments {
         id?:number,
         created_at?:string,
@@ -11,12 +13,11 @@
         cmntof:number,
     }
 
-
     let comment: Comments = {
         created_at: "",
         number: 0,
         text: "",
-        cmntof: 0,
+        cmntof: id,
     }    
 
     let comments: Comments[] = [];
@@ -30,19 +31,15 @@
         }
     });
 
-    function addComment() {
-        comments = [...comments, comment];
-        comment = {
-            id:0,
-            created_at: "",
-            number: 0,
-            text: "",
-            cmntof: 0,
+    async function addComment() {
+        const { data, error } = await supabase.from("Comments").insert(comment);
+        if (error) {
+            console.log(error);
+        } else {
+            comments = [...comments];
         }
     }
-
 </script>
-
 <main class="text-white">
     <h1>Comments</h1>
     <div>
