@@ -45,11 +45,12 @@
     <h1>Comments</h1>
     <div>
         <input type="text" bind:value={comment.text} />
-        <button on:click={addComment}>Add Comment</button>
+        <button on:click={addComment}>Add Comment</button>    
+    </div>
     <div>
-        {#each comments as comen}
+        {#each comments as coment}
             <div>
-                <p>{comen.text}</p>
+                <p>{coment.text}</p>
             </div>
         {/each}
     </div>
