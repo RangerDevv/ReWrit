@@ -56,7 +56,7 @@
     Chat
 </button>
 
-<main class="w-7/12 h-96 place-self-center bg-slate-900 fixed p-10 overflow-auto rounded-2xl" id='modal'>
+<main class=" w-96 sm:w-7/12 h-96 place-self-center bg-slate-900 fixed p-10 overflow-auto rounded-2xl" id='modal'>
     <div class=" flex flex-row justify-between">
     <h1 class="text-white text-xl">Comments</h1>
     <!-- make a svg X button -->
