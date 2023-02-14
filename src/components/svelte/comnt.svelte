@@ -16,7 +16,7 @@
     let comments: Comments[] = [];
 
     let comment: Comments = {
-        created_at: "",
+        created_at: new Date().toISOString(),
         number: 0,
         text: "",
         cmntof: id,
