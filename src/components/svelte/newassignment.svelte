@@ -36,9 +36,7 @@
         description: "",
         lang: 0,
         id:getRandomInt(10000),
-        created_at: current_time,
-        user_id: "345f3cdf-6041-4924-be7f-5cee3b9e2534",
-
+        created_at: current_time
     }
 
     let Contents: Contents = {
