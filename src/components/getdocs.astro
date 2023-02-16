@@ -15,7 +15,9 @@ import type { Contents, Documentation, Comments } from "../lib/db";
 const refreshToken = Astro.cookies.get("my-refresh-token").value
 const accessToken = Astro.cookies.get("my-access-token").value
 
-const currentUser = (await supabase.auth.getUser(accessToken)).data.user
+const currentUser = (await supabase.auth.getUser(Astro.cookies.get("my-access-token").value)).data.user
+let owner = false
+
 var authed = currentUser !== null
 
 const { pid } = Astro.props
@@ -39,6 +41,10 @@ const { data, error } = await supabase
 
     console.log(content);
     console.log(doc);
+
+    if(currentUser && (currentUser.id == doc[0].user_id! || currentUser.id == "0c3ae789-1eb4-4dbd-b76d-a18d87dbc0d3")) {
+    owner = true
+}
 ---
 
 <Layout title="Docs">
