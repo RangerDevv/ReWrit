@@ -7,6 +7,10 @@ import Newassignment from "../components/svelte/newassignment.svelte";
 const refreshToken = Astro.cookies.get("my-refresh-token").value
 const accessToken = Astro.cookies.get("my-access-token").value
 
+
+const currentUser = (await supabase.auth.getUser(Astro.cookies.get("my-access-token").value)).data.user;
+
+
 ---
 
 <script>
@@ -16,8 +20,9 @@ if (!user) {
   window.location.href = "/login";
 } 
 
+
 </script>
 
 <Layout title="New Docs">
-    <Newassignment client:only="svelte"/>
+  <Newassignment client:only="svelte" user={currentUser} />
 </Layout>
