@@ -97,7 +97,7 @@
 
     async function Push (newAssignment: NewAssignment, contents: Contents ) {
         supabase.from('Documentation').insert([
-            {title: newAssignment.title, description: newAssignment.description, lang: newAssignment.lang, id: newAssignment.id, created_at: newAssignment.created_at, user_id: newAssignment.user_id},
+            {title: newAssignment.title, description: newAssignment.description, lang: newAssignment.lang, id: newAssignment.id, created_at: newAssignment.created_at},
         ]).then(({ data, error }) => {
             console.log(data)
             console.log(error)
