@@ -1,5 +1,11 @@
 ---
+import Edit from "../../components/svelte/edit.svelte";
+import Layout from "../../layouts/Layout.astro";
 
 let pid = parseInt(Astro.params.id!)
 
 ---
+
+<Layout title="Edit">
+    <Edit client:only="svelte" pid={pid} />
+</Layout>
