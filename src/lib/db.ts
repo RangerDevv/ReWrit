@@ -10,7 +10,7 @@ export interface Documentation {
 export interface Language {
     id?:number,
     created_at?:string,
-    language_name:string,
+    title:string,
     description:string,
 }
 
