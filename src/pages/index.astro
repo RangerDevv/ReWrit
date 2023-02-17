@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Lottie from '../components/lottie.svelte';
+import Lottie from '../components/svelte/lottie.svelte';
 ---
 <script>
     import { supabase } from "../lib/backend";
@@ -20,21 +20,39 @@ import Lottie from '../components/lottie.svelte';
 			</div>
 		</div>
 	</div>
-	<div class="w-screen h-screen" id="Features">
+	<div class="" id="Features">
 		<div class="flex flex-col place-items-center">
 			<h1 class="text-5xl font-extrabold text-center text-blue-600">Features</h1>
-			<div class="flex flex-col sm:flex-row justify-center items-center mt-10 gap-8">
+			<div class="flex flex-col sm:flex-row justify-center items-center gap-8">
 				<div class="flex flex-col place-items-center">
-					<img src="/assets/feature1.svg" class="w-96 h-96" />
+					<Lottie client:only="svelte" src={"https://assets8.lottiefiles.com/packages/lf20_3rwasyjy.json"} />
 					<h1 class="text-3xl font-extrabold text-center text-blue-600">Read</h1>
 					<p class="text-xl w-96 text-center text-white">Read documentation in a better way.</p>
 				</div>
 				<div class="flex flex-col place-items-center">
-					<img src="/assets/feature2.svg" class="w-96 h-96" />
+					<Lottie client:only="svelte" src={"https://assets8.lottiefiles.com/private_files/lf30_wqypnpu5.json"} />
 					<h1 class="text-3xl font-extrabold text-center text-blue-600">Write</h1>
-					<p class="text-xl w-96 text-center text-white">Write documentation in a better way.</p>
+					<p class="text-xl w-96 text-center text-white">Write documentation on undocumentaed topics.</p>
 				</div>
 			</div>
+		</div>
+	</div>
+	<div class="w-screen h-screen" id="Footer">
+		<div class="flex flex-col sm:flex-row justify-center w-screen sm:justify-evenly pt-32">
+			<div class=" flex flex-col gap-4">
+				<h1 class="text-5xl font-extrabold text-left text-blue-600">Easy to use</h1>
+				<p class="text-xl w-96 text-left text-white">ReWriteDoc is easy to use and easy to understand. 0 code required to post a documentation. No HTML, CSS, or JS. We handle it all for you!</p>
+			</div>	
+			<Lottie client:only="svelte" src={"https://assets4.lottiefiles.com/packages/lf20_r3y35yp1.json"} />
+		</div>
+	</div>
+	<div class="w-screen h-screen" id="Footer">
+		<div class="flex flex-col sm:flex-row justify-center w-screen sm:justify-evenly pt-32">
+			<div class=" flex flex-col gap-4">
+				<h1 class="text-5xl font-extrabold text-left text-blue-600 w-[32rem]">Search documentation for everything</h1>
+				<p class="text-xl w-96 text-left text-white">Explore 1000+ user made content to help you better understand topics that you do not understand.</p>
+			</div>	
+			<Lottie client:only="svelte" src={"https://assets8.lottiefiles.com/packages/lf20_jjsrh4we.json"} />
 		</div>
 	</div>
 </Layout>
