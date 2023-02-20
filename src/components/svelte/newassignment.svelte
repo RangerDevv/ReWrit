@@ -40,6 +40,7 @@
         lang: 0,
         id:getRandomInt(10000),
         created_at: current_time,
+        user_id: user.id,
     }
 
     let Contents: Contents = {
