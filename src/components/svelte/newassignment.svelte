@@ -40,7 +40,6 @@
         lang: 0,
         id:getRandomInt(10000),
         created_at: current_time,
-        user_id: user.id,
     }
 
     let Contents: Contents = {
@@ -66,7 +65,7 @@
 
     // make the items in the array equal to the content of Contents
     let contenttext: Contents[] = []
-    const addContent = () => contenttext = [...contenttext, {text: "", id: getRandomInt(10000), created_at: current_time , number: contnumber,}]
+    const addContent = () => contenttext = [...contenttext, {text: "", id: getRandomInt(10000), created_at: current_time , number: contnumber, is_code: false,}]
     function removeContent(index: number) {
         contenttext.splice(index, 1)
         contenttext = [...contenttext]
@@ -115,6 +114,24 @@
         }, 1500);
         }
 
+        function insertBold() {
+            let text = document.getElementById("text") as HTMLTextAreaElement;
+            let start = text.selectionStart;
+            let end = text.selectionEnd;
+            let selectedText = text.value.substring(start, end);
+            let replacement = "<strong>" + selectedText + "</strong>";
+            text.value = text.value.substring(0, start) + replacement + text.value.substring(end) + " ";
+        }
+
+        function insertItalic() {
+            let text = document.getElementById("text") as HTMLTextAreaElement;
+            let start = text.selectionStart;
+            let end = text.selectionEnd;
+            let selectedText = text.value.substring(start, end);
+            let replacement = "<em>" + selectedText + "</em>";
+            text.value = text.value.substring(0, start) + replacement + text.value.substring(end) + " ";
+        }
+
 </script>
 
 <main>
@@ -124,7 +141,15 @@
         <textarea rows="1"  bind:value={NewAssignment.title} placeholder="Title" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         <textarea rows="1"  bind:value={NewAssignment.description} placeholder="Description" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         {#each contenttext as content}
-            <textarea rows="6" bind:value={content.text} placeholder="Contents" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+            <!-- make a button that is connected to inserBold() -->
+            {#if content.is_code == false}
+            <div class="flex flex-row">
+                <button on:click={insertBold} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><strong>B</strong></button>
+                <!-- make a button that is connected to inserItalic() -->
+                <button on:click={insertItalic} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><em>i</em></button>
+            </div>
+            {/if}
+            <textarea rows="6" bind:value={content.text} placeholder="Contents" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="text"/>
             <button on:click={() => removeContent(contenttext.indexOf(content))} class="block p-2.5 w-24 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">Remove</button>
         {/each}
         <div class="flex flex-row gap-6">
