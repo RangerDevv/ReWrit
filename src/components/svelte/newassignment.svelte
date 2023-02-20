@@ -133,6 +133,15 @@
             text.value = text.value.substring(0, start) + replacement + text.value.substring(end) + " ";
         }
 
+        function insertUnderline() {
+            let text = document.getElementById("text") as HTMLTextAreaElement;
+            let start = text.selectionStart;
+            let end = text.selectionEnd;
+            let selectedText = text.value.substring(start, end);
+            let replacement = "<u>" + selectedText + "</u>";
+            text.value = text.value.substring(0, start) + replacement + text.value.substring(end) + " ";
+        }
+
 </script>
 
 <main>
@@ -148,6 +157,8 @@
                 <button on:click={insertBold} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><strong>B</strong></button>
                 <!-- make a button that is connected to inserItalic() -->
                 <button on:click={insertItalic} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><em>i</em></button>
+                <!-- make a button that is connected to inserUnderline() -->
+                <button on:click={insertUnderline} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><u>U</u></button>
             </div>
             {/if}
             <textarea rows="6" bind:value={content.text} placeholder="Contents" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="text"/>
