@@ -49,7 +49,7 @@
 
     function updateContent() {
         // update the documentation
-        supabase.from("Documentation").update(Documentation).eq("id",pid);
+        // supabase.from("Documentation").update(Documentation).eq("id",pid);
         // update the content
         supabase.from("Contents").update(Content).eq("connect",pid);
 
