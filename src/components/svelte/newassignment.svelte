@@ -9,7 +9,7 @@
         return Math.floor(Math.random() * Math.floor(max));
     }
 
-    // export let user : any;
+    export let user : any;
 
     let contnumber = 0;
 
@@ -40,7 +40,7 @@
         lang: 0,
         id:getRandomInt(10000),
         created_at: current_time,
-        // user_id: user.id,
+        user_id: user.id,
     }
 
     let Contents: Contents = {
