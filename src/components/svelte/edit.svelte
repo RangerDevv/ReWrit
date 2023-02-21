@@ -48,7 +48,7 @@
     });
 
     function updateContent() {
-        supabase.from("Contents").insert([
+        supabase.from("Contents").update([
             {
                 created_at: current_time,
                 number: contnumber,
