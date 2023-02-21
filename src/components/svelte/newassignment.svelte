@@ -9,7 +9,7 @@
         return Math.floor(Math.random() * Math.floor(max));
     }
 
-    export let user : any;
+    // export let user : any;
 
     let contnumber = 0;
 
@@ -40,7 +40,7 @@
         lang: 0,
         id:getRandomInt(10000),
         created_at: current_time,
-        user_id: user.id,
+        // user_id: user.id,
     }
 
     let Contents: Contents = {
@@ -115,51 +115,6 @@
         }, 1500);
         }
 
-        function insertBold() {
-            let text = document.getElementById("text") as HTMLTextAreaElement;
-            let start = text.selectionStart;
-            let end = text.selectionEnd;
-            let selectedText = text.value.substring(start, end);
-            let replacement = "<strong>" + selectedText + "</strong>";
-            text.value = text.value.substring(0, start) + replacement + text.value.substring(end) + " ";
-        }
-
-        function insertItalic() {
-            let text = document.getElementById("text") as HTMLTextAreaElement;
-            let start = text.selectionStart;
-            let end = text.selectionEnd;
-            let selectedText = text.value.substring(start, end);
-            let replacement = "<em>" + selectedText + "</em>";
-            text.value = text.value.substring(0, start) + replacement + text.value.substring(end) + " ";
-        }
-
-        function insertUnderline() {
-            let text = document.getElementById("text") as HTMLTextAreaElement;
-            let start = text.selectionStart;
-            let end = text.selectionEnd;
-            let selectedText = text.value.substring(start, end);
-            let replacement = "<u>" + selectedText + "</u>";
-            text.value = text.value.substring(0, start) + replacement + text.value.substring(end) + " ";
-        }
-
-        function insertStrikethrough() {
-            let text = document.getElementById("text") as HTMLTextAreaElement;
-            let start = text.selectionStart;
-            let end = text.selectionEnd;
-            let selectedText = text.value.substring(start, end);
-            let replacement = "<s>" + selectedText + "</s>";
-            text.value = text.value.substring(0, start) + replacement + text.value.substring(end) + " ";
-        }
-
-        function insertLink() {
-            let text = document.getElementById("text") as HTMLTextAreaElement;
-            let start = text.selectionStart;
-            let end = text.selectionEnd;
-            let selectedText = text.value.substring(start, end);
-            let replacement = "<a href='YourLinkHere'>" + selectedText + "</a>";
-            text.value = text.value.substring(0, start) + replacement + text.value.substring(end) + " ";
-        }
-
 </script>
 
 <main>
@@ -174,27 +129,27 @@
             <!-- make a button that is connected to inserBold() -->
             <div class="flex flex-col pt-7 w-full place-items-center">
             {#if content.is_code == false}
-            <div class="flex flex-row w-96 sm:w-1/2 bg-gray-700 rounded-t-lg items-center">
-                <button on:click={insertBold} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-tl-lg"><strong>B</strong></button>
+            <div class="flex flex-row w-96 sm:w-1/2 bg-gray-700 rounded-t-lg items-center h-10">
+                <!-- <button on:click={insertBold} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-tl-lg" id="bold"><strong>B</strong></button> -->
                 <!-- make a button that is connected to inserItalic() -->
-                <button on:click={insertItalic} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><em>i</em></button>
+                <!-- <button on:click={insertItalic} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><em>i</em></button> -->
                 <!-- make a button that is connected to inserUnderline() -->
-                <button on:click={insertUnderline} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><u>U</u></button>
+                <!-- <button on:click={insertUnderline} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><u>U</u></button> -->
                 <!-- make a button that is connected to inserStrikethrough() -->
-                <button on:click={insertStrikethrough} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><s>S</s></button>
+                <!-- <button on:click={insertStrikethrough} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><s>S</s></button> -->
                 <!-- make a button that is connected to inserLink() -->
-                <button on:click={insertLink} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">Link</button>
+                <!-- <button on:click={insertLink} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">Link</button> -->
             </div>
             {/if}
             {#if content.is_code == true}
             <div class="w-96 sm:w-1/2 bg-gray-700 rounded-t-lg items-center h-10">
             </div>
             {/if}
-            <textarea rows="6" bind:value={content.text} placeholder="Contents" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-b-lg" id="text"/>
+            <textarea rows="6" bind:value={content.text} placeholder="Contents (You may use HTML elements to emphasize, underline, and strikethrough text.)" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white rounded-b-lg outline-none" id="text"/>
             </div>
             <button on:click={() => removeContent(contenttext.indexOf(content))} class="block p-2.5 w-24 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-7">Remove</button>
         {/each}
-        <div class="flex flex-row gap-6">
+        <div class="flex flex-row gap-6 pt-6">
             <select bind:value={NewAssignment.lang} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 {#each language as lang}
                     <option value={lang.id}>{lang.title}</option>
@@ -211,6 +166,6 @@
             <!-- <button on:click={ () =>} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700">Code</button> -->
             <button on:click={addCode} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700">Code</button>
         </div>
-            <button on:click={() => Push(NewAssignment, Contents)} {disabled} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700">Push</button>
+            <button on:click={() => Push(NewAssignment, Contents)} {disabled} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700 mt-7">Push</button>
     </div>
 </main>
