@@ -130,7 +130,7 @@
             <div class="flex flex-col pt-7 w-full place-items-center">
             {#if content.is_code == false}
             <div class="flex flex-row w-96 sm:w-1/2 bg-gray-700 rounded-t-lg items-center h-10">
-                <!-- <button on:click={insertBold} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-tl-lg" id="bold"><strong>B</strong></button> -->
+                <!-- <button class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-tl-lg" id={"bold" + content.number}><strong>B</strong></button> -->
                 <!-- make a button that is connected to inserItalic() -->
                 <!-- <button on:click={insertItalic} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><em>i</em></button> -->
                 <!-- make a button that is connected to inserUnderline() -->
@@ -145,7 +145,7 @@
             <div class="w-96 sm:w-1/2 bg-gray-700 rounded-t-lg items-center h-10">
             </div>
             {/if}
-            <textarea rows="6" bind:value={content.text} placeholder="Contents (You may use HTML elements to emphasize, underline, and strikethrough text.)" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white rounded-b-lg outline-none" id="text"/>
+            <textarea rows="6" bind:value={content.text} placeholder="Contents (You may use HTML elements to emphasize, underline, and strikethrough text.)" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white rounded-b-lg outline-none" id={"content" + content.number}/>
             </div>
             <button on:click={() => removeContent(contenttext.indexOf(content))} class="block p-2.5 w-24 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-7">Remove</button>
         {/each}
