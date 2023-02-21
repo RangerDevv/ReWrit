@@ -5,6 +5,7 @@
     import 'highlight.js/styles/github-dark.css';
     import hljs from 'highlight.js';
     import code from 'highlight.js/lib/languages/javascript';
+    import SvelteMarkdown from 'svelte-markdown';
 
     export let pid: any;
     let contentText: Contents[] = [];
@@ -41,7 +42,10 @@
                 <pre class="overflow-auto h-72 whitespace-pre-wrap rounded-lg"><code id="Code">{content.text}</code></pre>
                 </div>
               {:else}
-              <p class="text-left text-lg text-white">{@html content.text}</p>
+              <!-- <p class="text-left text-lg text-white">{@html content.text}</p> -->
+              <div class="text-white">
+              <SvelteMarkdown source={content.text} />
+            </div>
               {/if}
             </div>
   {/each}
