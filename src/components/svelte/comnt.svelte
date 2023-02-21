@@ -58,10 +58,12 @@
         if (n < 36) return String.fromCharCode(n + 55); //A-Z
         return String.fromCharCode(n + 61); //a-z
     };
+
+    $: disabled = comment.text.length < 1;
 </script>
 
-<button class="btn btn-error btn-sm btn-square btn-outline text-white font-bold place-self-center w-20 h-12 text-xl bg-blue-700 rounded-lg mt-5" id="btn" on:click={showComments}>
-    Chat
+<button class="btn btn-error btn-sm btn-square btn-outline text-white font-bold place-self-center w-auto pl-2 pr-2 h-12 text-xl bg-blue-700 rounded-lg mt-5" id="btn" on:click={showComments}>
+    Comments <span class="text-red-400 text-xl">{comments.length}</span>
 </button>
 
 <main class=" w-96 sm:w-7/12 h-96 place-self-center bg-slate-900 fixed p-10 overflow-auto rounded-2xl drop-shadow-2xl shadow-slate-900 mt-40" id='modal'>
@@ -80,7 +82,7 @@
            <textarea bind:value={comment.text} id="comment" rows="2" class="w-full px-0 text-sm focus:ring-0 bg-transparent outline-none" placeholder="Write a comment..." required></textarea>
        </div>
        <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
-           <button on:click={addComment} type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+           <button on:click={addComment} type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800 disabled:bg-gray-400" {disabled}>
                Post comment
            </button>
        </div>
