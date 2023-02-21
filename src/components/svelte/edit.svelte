@@ -48,17 +48,13 @@
     });
 
     function updateContent() {
-        supabase.from("Contents").update([
-            {
-                created_at: current_time,
-                number: contnumber,
-                text: Contents.text,
-                connect: pid,
-                is_code: Contents.is_code,
-            }
-        ]).then((data) => {
-            console.log(data);
-        })
+        // update the documentation
+        supabase.from("Documentation").update(Documentation).eq("id",pid);
+        // update the content
+        supabase.from("Contents").update(Content).eq("connect",pid);
+
+        console.log(Content);
+        console.log(Documentation);
     }
 
 </script>
