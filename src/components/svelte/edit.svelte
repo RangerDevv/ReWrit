@@ -56,7 +56,7 @@
         // console.log(Content);
         // console.log(Documentation);
 
-        supabase.from("Contents").update(Content).eq("connect",pid).then((res) => {
+        supabase.from("Contents").upsert(Content).eq("connect",pid).then((res) => {
             console.log(res);
         });
     }
