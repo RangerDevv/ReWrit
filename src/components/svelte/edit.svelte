@@ -29,11 +29,11 @@
     let Content: Contents[] = [];
     let Newcontent: Contents[] = [];
 
-    let newId = Content.length + 1;
+    let newId = Content.length;
 
     // const addContent = () => contenttext = [...contenttext, {text: "", id: getRandomInt(10000), created_at: current_time , number: contnumber, is_code: false, user_id: user.id,}]
 
-    const addContent = () => Newcontent = [...Newcontent, {text: "", created_at: current_time , number: newId, connect: pid, is_code: false}]
+    const addContent = () => Newcontent = [...Newcontent, {text: "", created_at: current_time , number: newId + 1, connect: pid, is_code: false}]
     const removeContent = (index: number) => Newcontent.splice(index, 1);
 
     onMount(async () => {
@@ -42,6 +42,7 @@
             console.log(error);
         } else {
             Content = data;
+            console.log(Content.length);
         }
     });
 
@@ -55,6 +56,8 @@
             Documentation = data;
         }
     });
+
+
 
     function updateContent() {
         // update the documentation
