@@ -5,27 +5,27 @@ module.exports = {
 		extend: {
 			h1: {
 				fontSize: '2.5rem',
-				lineHeight: '1.2',
+				// lineHeight: '1.2',
 			},
 			h2: {
 				fontSize: '2rem',
-				lineHeight: '1.2',
+				// lineHeight: '1.2',
 			},
 			h3: {
 				fontSize: '1.75rem',
-				lineHeight: '1.2',
+				// lineHeight: '1.2',
 			},
 			h4: {
 				fontSize: '1.5rem',
-				lineHeight: '1.2',
+				// lineHeight: '1.2',
 			},
 			h5: {
 				fontSize: '1.25rem',
-				lineHeight: '1.2',
+				// lineHeight: '1.2',
 			},
 			h6: {
 				fontSize: '1rem',
-				lineHeight: '1.2',
+				// lineHeight: '1.2',
 			},
 		},
 	},
