@@ -21,6 +21,7 @@ export interface Contents {
     text:string,
     connect:number,
     is_code:boolean,
+    user_id?:string,
 }
 
 export interface Comments {

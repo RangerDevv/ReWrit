@@ -32,6 +32,7 @@
         text:string,
         connect?:number,
         is_code?:boolean,
+        user_id?:string,
     }
 
     let NewAssignment: NewAssignment = {
@@ -50,6 +51,7 @@
         text: "",
         connect: NewAssignment.id,
         is_code: false,
+        user_id: user.id,
     }
 
     // get the language lost of id and the language name from the database
@@ -66,12 +68,12 @@
 
     // make the items in the array equal to the content of Contents
     let contenttext: Contents[] = []
-    const addContent = () => contenttext = [...contenttext, {text: "", id: getRandomInt(10000), created_at: current_time , number: contnumber, is_code: false,}]
+    const addContent = () => contenttext = [...contenttext, {text: "", id: getRandomInt(10000), created_at: current_time , number: contnumber, is_code: false, user_id: user.id,}]
     function removeContent(index: number) {
         contenttext.splice(index, 1)
         contenttext = [...contenttext]
     }
-    const addCode = () => {contenttext = [...contenttext, {text: "", id: getRandomInt(10000), created_at: current_time , number: contnumber, is_code: true,}]}
+    const addCode = () => {contenttext = [...contenttext, {text: "", id: getRandomInt(10000), created_at: current_time , number: contnumber, is_code: true, user_id: user.id,}]}
 
     console.log(contenttext)
 
@@ -88,6 +90,7 @@
                     id: content.id, 
                     created_at: content.created_at,
                     is_code: content.is_code,
+                    user_id: content.user_id,
                 },
             ]).then(({ data, error }) => {
                 console.log(NewAssignment.id)
