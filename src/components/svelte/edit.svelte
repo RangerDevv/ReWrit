@@ -31,7 +31,7 @@
 
     console.log(Newcontent);
 
-    let newId = Content.length;
+    let newId = 0;
 
     // const addContent = () => contenttext = [...contenttext, {text: "", id: getRandomInt(10000), created_at: current_time , number: contnumber, is_code: false, user_id: user.id,}]
 
@@ -43,6 +43,8 @@
         } else {
             Content = data;
             console.log(Content.length);
+            // set the length of the content to the newId
+            newId = Content.length;
         }
     });
 
