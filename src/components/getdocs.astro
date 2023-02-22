@@ -37,7 +37,7 @@ const { pid } = Astro.props
         <p class=" text-center text-2xl">{title}</p>
         <p class=" text-center text-xl">{description}</p>
         <div class="flex justify-center">
-            <!-- {owner && <a onclick={`window.location = "/edit/${pid}"`} class="text-white text-center text-xl">Edit</a>} -->
+             {owner && <a onclick={`window.location = "/edit/${pid}"`} class="text-white text-center text-xl">Edit</a>} 
          <Comnt client:only="svelte" id={pid} />
          </div>
     </div>
