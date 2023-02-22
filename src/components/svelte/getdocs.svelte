@@ -43,7 +43,7 @@
                 </div>
               {:else}
               <!-- <p class="text-left text-lg text-white">{@html content.text}</p> -->
-              <div class="text-white">
+              <div class=" text-white">
               <SvelteMarkdown source={content.text} />
             </div>
               {/if}
