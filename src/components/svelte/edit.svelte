@@ -78,7 +78,11 @@
                 Content.pop();
             }
         }
+        setInterval(()=> {
+        window.location.href = "/docs/${pid}"
+        }) , 1000;
 
+        
     }
 
 </script>
