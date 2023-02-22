@@ -51,10 +51,14 @@
         // update the documentation
         // supabase.from("Documentation").update(Documentation).eq("id",pid);
         // update the content
-        supabase.from("Contents").update(Content).eq("connect",pid);
+        // supabase.from("Contents").update(Content).eq("connect",pid);
 
-        console.log(Content);
-        console.log(Documentation);
+        // console.log(Content);
+        // console.log(Documentation);
+
+        supabase.from("Contents").update(Content).eq("connect",pid).then((res) => {
+            console.log(res);
+        });
     }
 
 </script>
