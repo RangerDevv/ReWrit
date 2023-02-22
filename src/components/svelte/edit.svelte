@@ -27,13 +27,12 @@
     
 
     let Content: Contents[] = [];
+    let Newcontent: Contents[] = [];
 
     // const addContent = () => contenttext = [...contenttext, {text: "", id: getRandomInt(10000), created_at: current_time , number: contnumber, is_code: false, user_id: user.id,}]
 
-    let addContent = () => {
-        Content = [...Content, {text: "", created_at: current_time , number: contnumber, is_code: false, connect: pid,}];
-        contnumber++;
-    }
+    const addContent = () => Newcontent = [...Newcontent, {text: "", created_at: current_time , number: contnumber, connect: pid, is_code: false}]
+    const removeContent = (index: number) => Newcontent.splice(index, 1);
 
     onMount(async () => {
         const { data, error } = await supabase.from("Contents").select("*").eq("connect",pid).order("number", { ascending: true });
