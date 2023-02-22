@@ -1,0 +1,11 @@
+---
+
+import Layout from "../../layouts/Layout.astro";
+import Getdocs from "../../components/getdocs.astro";
+
+// import Getassignmentlist from "../../components/getassignmentlist.astro";
+
+let pid = parseInt(Astro.params.id!)
+---
+
+ <Getdocs pid={pid} />

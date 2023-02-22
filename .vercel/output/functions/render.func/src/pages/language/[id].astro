@@ -1,0 +1,10 @@
+---
+
+import Getdocslist from "../../components/getdocslist.astro";
+
+let pid = parseInt(Astro.params.id!)
+
+console.log(pid)
+---
+
+<Getdocslist pid={pid}/>
