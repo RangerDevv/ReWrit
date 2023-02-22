@@ -29,9 +29,11 @@
     let Content: Contents[] = [];
     let Newcontent: Contents[] = [];
 
+    let newId = Content.length + 1;
+
     // const addContent = () => contenttext = [...contenttext, {text: "", id: getRandomInt(10000), created_at: current_time , number: contnumber, is_code: false, user_id: user.id,}]
 
-    const addContent = () => Newcontent = [...Newcontent, {text: "", created_at: current_time , number: contnumber, connect: pid, is_code: false}]
+    const addContent = () => Newcontent = [...Newcontent, {text: "", created_at: current_time , number: newId, connect: pid, is_code: false}]
     const removeContent = (index: number) => Newcontent.splice(index, 1);
 
     onMount(async () => {
@@ -69,6 +71,13 @@
             console.log(res);
         });
 
+        // check if there are any new content then add it to the database
+        if (Newcontent.length > 0) {
+            supabase.from("Contents").insert(Newcontent).then((res) => {
+                console.log(res);
+            });
+        }
+
         // check if thee are any new content
         if (Content.length > 0) {
             // check if the last content is empty
@@ -102,8 +111,14 @@
 
     </div>
     {/each}
-    <div class="flex flex-row justify-center">
-        <!-- <button on:click={addContent} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700 mt-7">Add</button> -->
+    {#each Newcontent as newcont}
+    <div class="text-black flex flex-col pt-7 w-full place-items-center">
+        <!-- <input type="text" bind:value={cont.text} /> -->
+        <textarea rows="6" bind:value={newcont.text} placeholder="Contents (This text editor uses Markdown. Please use the markdown syntax.) If content is left empty, it will be automatically be deleted" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white rounded-lg outline-none" id={"content" + newcont.number}/>
+    </div>
+    {/each}
+    <div class="flex flex-row justify-center gap-4">
+        <button on:click={addContent} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700 mt-7">Add</button>
     <button on:click={updateContent} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700 mt-7">Update</button>
     </div>
 </main>
