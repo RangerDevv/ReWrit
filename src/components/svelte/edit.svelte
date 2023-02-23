@@ -78,6 +78,7 @@
     const removeDeletedContent = (id: any) => Deletedcontent = Deletedcontent.filter((item) => item.number !== id, newId--)
 
     function updateContent() {
+        Content.forEach((item, index) => item.number = index);
         // update the documentation
         supabase.from("Documentation").upsert(Documentation).eq("id",pid).then((res) => {
             console.log(res);
