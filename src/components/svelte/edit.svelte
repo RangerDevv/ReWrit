@@ -1,5 +1,6 @@
 <script lang="ts">
 
+    export let user : any;
     export let pid = 0;
     import { supabase } from "../../lib/backend";
     import type { Documentation,Contents } from "../../lib/db";
@@ -15,6 +16,7 @@
         text:string,
         connect?:number,
         is_code?:boolean,
+        user_id?:string,
     }
 
     let Contents: Contents = {
@@ -23,6 +25,7 @@
         text: "",
         connect: pid,
         is_code: false,
+        user_id: user.id,
     }
     
 
@@ -68,9 +71,9 @@
     }
 
 
-    const addContent = () => Newcontent = [...Newcontent, {text: "", created_at: current_time , number: newId++, connect: pid, is_code: false}]
-    const addCode = () => Newcontent = [...Newcontent, {text: "", created_at: current_time , number: newId++, connect: pid, is_code: true}]
-    const removeDeletedContent = (id: any) => Deletedcontent = Deletedcontent.filter((item) => item.number !== id)
+    const addContent = () => Newcontent = [...Newcontent, {text: "", created_at: current_time , number: newId++, connect: pid, is_code: false, user_id: user.id}]
+    const addCode = () => Newcontent = [...Newcontent, {text: "", created_at: current_time , number: newId++, connect: pid, is_code: true, user_id: user.id}]
+    const removeDeletedContent = (id: any) => Deletedcontent = Deletedcontent.filter((item) => item.number !== id, newId--)
 
     function updateContent() {
         // update the documentation
