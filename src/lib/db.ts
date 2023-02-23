@@ -31,3 +31,11 @@ export interface Comments {
     text:string,
     cmntof:number,
 }
+
+export interface Users {
+    id?:number,
+    created_at?:string,
+    user_name:string,
+    user_id:string,
+    points:number,
+}
