@@ -47,7 +47,7 @@
             Content = data;
             console.log(Content.length);
             // set the length of the content to the newId
-            newId = Content.length += 1;
+            newId = Content.length;
         }
     });
 
