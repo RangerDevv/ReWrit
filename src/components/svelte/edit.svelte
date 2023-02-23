@@ -79,6 +79,9 @@
 
     function updateContent() {
         Content.forEach((item, index) => item.number = index);
+
+        Newcontent.forEach((item, index) => item.number = index + Content.length);
+
         // update the documentation
         supabase.from("Documentation").upsert(Documentation).eq("id",pid).then((res) => {
             console.log(res);
