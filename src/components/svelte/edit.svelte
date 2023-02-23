@@ -114,15 +114,8 @@
         }
 
         // check if thee are any new content
-        if (Content.length > 0) {
-            // check if the last content is empty
-            if (Content[Content.length-1].text == "") {
-                // remove the last content
-                Content.pop();
-            }
-        }
         setInterval(()=> {
-            window.location.href = "/docs/" + pid;
+            // window.location.href = "/docs/" + pid;
         }) , 1000;
 
         
