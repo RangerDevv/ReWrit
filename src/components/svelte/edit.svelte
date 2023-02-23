@@ -119,7 +119,7 @@
             }
         }
         setInterval(()=> {
-            // window.location.href = "/docs/" + pid;
+            window.location.href = "/docs/" + pid;
         }) , 1000;
 
         
