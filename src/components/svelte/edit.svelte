@@ -68,11 +68,13 @@
         Deletedcontent = [...Deletedcontent, Content.filter((item) => item.number == id)[0]];
         // remove the content from the content array
         Content = Content.filter((item) => item.number !== id);
+        // set the Content.number to the index of the array
+        Content.forEach((item, index) => item.number = index);
     }
 
 
-    const addContent = () => Newcontent = [...Newcontent, {text: "", created_at: current_time , number: newId++, connect: pid, is_code: false, user_id: user.id}]
-    const addCode = () => Newcontent = [...Newcontent, {text: "", created_at: current_time , number: newId++, connect: pid, is_code: true, user_id: user.id}]
+    const addContent = () => Newcontent = [...Newcontent, {text: "", created_at: current_time , number: newId++, connect: pid, is_code: false, user_id:user.id}]
+    const addCode = () => Newcontent = [...Newcontent, {text: "", created_at: current_time , number: newId++, connect: pid, is_code: true, user_id:user.id}]
     const removeDeletedContent = (id: any) => Deletedcontent = Deletedcontent.filter((item) => item.number !== id, newId--)
 
     function updateContent() {
