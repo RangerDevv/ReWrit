@@ -27,13 +27,13 @@
     
 
     let Content: Contents[] = [];
+    let Deletedcontent: Contents[] = [];
     let Newcontent: Contents[] = [];
 
     console.log(Newcontent);
 
     let newId = 0;
 
-    // const addContent = () => contenttext = [...contenttext, {text: "", id: getRandomInt(10000), created_at: current_time , number: contnumber, is_code: false, user_id: user.id,}]
 
 
     onMount(async () => {
@@ -59,10 +59,19 @@
         }
     });
 
+    // make a function that deletes the content from the database when the user clicks the delete button it removes the appropriate content from the array and adds it to the deleted content array
+    const deleteContent = (id: any) => {
+        // remove the content from the array
+        Content = Content.filter((item) => item.number !== id);
+        // add the content to the deleted content array
+        Deletedcontent = [...Deletedcontent, {text: "", created_at: current_time , number: newId++, connect: pid, is_code: false}]
+    }
+
 
     const addContent = () => Newcontent = [...Newcontent, {text: "", created_at: current_time , number: newId++, connect: pid, is_code: false}]
     const addCode = () => Newcontent = [...Newcontent, {text: "", created_at: current_time , number: newId++, connect: pid, is_code: true}]
     const removeContent = (id: any) => Newcontent = Newcontent.filter((item) => item.number !== id)
+    const removeDeletedContent = (id: any) => Deletedcontent = Deletedcontent.filter((item) => item.number !== id)
 
     function updateContent() {
         // update the documentation
@@ -74,6 +83,14 @@
 
         // console.log(Content);
         // console.log(Documentation);
+
+        // delete the content that is in the deleted content array
+        if (Deletedcontent.length > 0) {
+            supabase.from("Contents").delete().in("number", Deletedcontent.map((item) => item.number)).then((res) => {
+                console.log(res);
+            });
+        }
+
 
         supabase.from("Contents").upsert(Content).eq("connect",pid).then((res) => {
             console.log(res);
@@ -116,14 +133,14 @@
     <div class="text-black flex flex-col pt-7 w-full place-items-center">
         <!-- <input type="text" bind:value={cont.text} /> -->
         <textarea rows="6" bind:value={cont.text} placeholder="Contents (This text editor uses Markdown. Please use the markdown syntax.) If content is left empty, it will be automatically be deleted" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white rounded-lg outline-none" id={"content" + cont.number}/>
-
+        <button on:click={() => deleteContent(cont.number)} class="block p-2.5 w-20 text-sm rounded-lg bg-red-700 border-red-600 placeholder-gray-400 text-white">Delete</button>
     </div>
     {/each}
     {#each Newcontent as newcont}
     <div class="text-black flex flex-col pt-7 w-full place-items-center">
         <!-- <input type="text" bind:value={cont.text} /> -->
         <textarea rows="6" bind:value={newcont.text} placeholder="Contents (This text editor uses Markdown. Please use the markdown syntax.) If content is left empty, it will be automatically be deleted" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white rounded-lg outline-none" id={"content" + newcont.number}/>
-        <button on:click={() => removeContent(newcont.number)} class="block p-2.5 w-20 text-sm rounded-lg bg-red-700 border-red-600 placeholder-gray-400 text-white focus:ring-red-500 focus:border-red-500 disabled:bg-gray-800 disabled:hover:bg-gray-700 mt-7">Remove</button>
+        <button on:click={removeDeletedContent} class="block p-2.5 w-20 text-sm rounded-lg bg-red-700 border-red-600 placeholder-gray-400 text-white focus:ring-red-500 focus:border-red-500 disabled:bg-gray-800 disabled:hover:bg-gray-700 mt-7">Remove</button>
     </div>
     {/each}
     <div class="flex flex-row justify-center gap-4">
