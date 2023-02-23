@@ -38,8 +38,8 @@
   {#each contentText as content}
             <div class="flex flex-col gap-2 pl-6 sm:pl-12 pt-2">
               {#if content.is_code}
-              <div class="w-96 sm:w-1/2 h-72 mt-6 rounded-lg place-self-center">
-                <pre class="overflow-auto h-72 whitespace-pre-wrap rounded-lg"><code id="Code">{content.text}</code></pre>
+              <div class="w-96 sm:w-1/2 h-auto mt-6 rounded-lg place-self-center">
+                <pre class="overflow-auto whitespace-pre-wrap rounded-lg h-72" id="Code"><code>{content.text}</code></pre>
                 </div>
               {:else}
               <!-- <p class="text-left text-lg text-white">{@html content.text}</p> -->
