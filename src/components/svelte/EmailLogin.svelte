@@ -7,7 +7,7 @@
     let password: string;
 
     async function signInWithEmail() {
-        const { data, error } = await supabase.auth.signInWithPassword({
+        const { data, error } = await supabase.auth.signUp({
             email,
             password,
 
