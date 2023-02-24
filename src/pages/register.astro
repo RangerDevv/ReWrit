@@ -1,0 +1,13 @@
+---
+import Login from "../components/login.svelte";
+import Layout from "../layouts/Layout.astro";
+import EmailLogin from "../components/svelte/EmailSignUp.svelte";
+import EmailSignUp from "../components/svelte/EmailSignUp.svelte";
+---
+
+<Layout title="Login/Register">
+    <p class="text-center text-2xl font-bold text-white pt-12">Register</p>
+    <div class="flex flex-row justify-center pt-2">
+        <EmailSignUp client:only="svelte" />
+    </div>
+</Layout>
