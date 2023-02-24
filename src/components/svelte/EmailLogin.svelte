@@ -14,8 +14,11 @@
         })
         if (error) {
             console.log(error)
+            window.location.href = "/login"
+            window.alert("Incorrect username or password")
         } else {
             console.log(data)
+            window.location.href = "/dashboard"
         }
     }
 

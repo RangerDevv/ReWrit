@@ -14,8 +14,10 @@
         })
         if (error) {
             console.log(error)
+            window.location.href = "/login";
         } else {
             console.log(data)
+            window.location.href = "/dashboard";
         }
     }
 
