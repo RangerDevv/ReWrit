@@ -44,9 +44,10 @@
 </button>
 </div> -->
 
-<div class=" flex justify-center" id="Search_Modal">
+<div class=" flex justify-center mt-4 pb-4" id="Search_Modal">
     <input type="text" bind:value={search} on:input={searchReq}  class="text-black w-56 h-8 bg-gray-300 outline-none rounded-md pl-2" placeholder="Search 🔎"/>
-    <div class=" w-96 h-auto overflow-y-scroll fixed mt-11 bg-zinc-700 rounded-md">
+    {#if results.length > 0}
+    <div class=" w-96 h-60 overflow-y-scroll fixed mt-11 bg-zinc-700 rounded-md">
     {#each results as result}
             <div class="flex flex-row text-white w-full h-auto bg-zinc-700 justify-between mt-1 mb-1">
                 <div class="flex flex-col">
@@ -62,8 +63,9 @@
                 </button>
                 </div>
             </div>
-    {/each}
+    {/each}  
 </div>
+    {/if}
 </div>
 
 <style>

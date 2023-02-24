@@ -11,7 +11,7 @@ import Search from '../components/svelte/search.svelte';
 	}
 </script>
 <Layout title="ReWritDocs">
-	<div class=" h-screen" id="Header">
+	<div class=" items-center w-full h-screen" id="Header">
 		<div class="flex flex-col place-items-center pt-24">
 			<h1 class="text-5xl font-extrabold text-center text-blue-600">Welcome to ReWriteDoc</h1>
 			<p class="text-xl w-96 text-center text-white">A better way to read documentation.</p>
@@ -21,7 +21,7 @@ import Search from '../components/svelte/search.svelte';
 			</div>
 		</div>
 	</div>
-	<div class="" id="Features">
+	<div class="items-center w-full" id="Features">
 		<div class="flex flex-col place-items-center">
 			<h1 class="text-5xl font-extrabold text-center text-blue-600">Features</h1>
 			<div class="flex flex-col sm:flex-row justify-center items-center gap-8">
@@ -38,26 +38,26 @@ import Search from '../components/svelte/search.svelte';
 			</div>
 		</div>
 	</div>
-	<div class="h-screen" id="Footer">
+	<div class="h-screen items-center w-full" id="Footer">
 		<div class="flex flex-col sm:flex-row justify-center w-screen sm:justify-evenly pt-32">
 			<div class=" flex flex-col gap-4">
-				<h1 class="text-5xl font-extrabold text-left text-blue-600">Easy to use</h1>
-				<p class="text-xl w-96 text-left text-white">ReWriteDoc is easy to use and easy to understand. 0 code required to post a documentation. No HTML, CSS, or JS. We handle it all for you!</p>
+				<h1 class="text-5xl font-extrabold text-center md:text-left text-blue-600">Easy to use</h1>
+				<p class="text-xl w-96 text-center md:text-left text-white">ReWriteDoc is easy to use and easy to understand. 0 code required to post a documentation. No HTML, CSS, or JS. We handle it all for you!</p>
 			</div>	
 			<Lottie client:only="svelte" src={"https://assets4.lottiefiles.com/packages/lf20_r3y35yp1.json"} />
 		</div>
 	</div>
-	<div class=" h-screen" id="Footer">
+	<div class=" h-screen items-center w-full" id="Footer">
 		<div class="flex flex-col sm:flex-row justify-center w-screen sm:justify-evenly pt-32">
 			<div class=" flex flex-col gap-4">
-				<h1 class="text-5xl font-extrabold text-left text-blue-600 w-[32rem]">Search documentation for everything</h1>
-				<p class="text-xl w-96 text-left text-white">Explore 1000+ user made content to help you better understand topics that you do not understand.</p>
+				<h1 class="text-5xl font-extrabold text-center sm:text-center md:text-left text-blue-600 w-[32rem]">Search documentation for everything</h1>
+				<p class="text-xl w-96 text-center sm:text-center md:text-left text-white">Explore 1000+ user made content to help you better understand topics that you do not understand.</p>
 			</div>	
 			<Lottie client:only="svelte" src={"https://assets8.lottiefiles.com/packages/lf20_jjsrh4we.json"} />
 		</div>
 	</div>
 	<!-- Get started -->
-	<div class="" id="Footer">
+	<div class="items-center w-full" id="Footer">
 		<div class="flex flex-col justify-center w-screen">
 			<div class=" flex flex-col gap-4 place-items-center">
 				<h1 class="text-5xl font-extrabold text-center text-green-600 w-[32rem]">Login</h1>
@@ -66,7 +66,6 @@ import Search from '../components/svelte/search.svelte';
 			</div>	
 		</div>
 	</div>
-	<!-- Make a footer that says made with 💖 by Rangerdevv -->
 	<p class="text-center text-white">Made with 💖 by Rangerdevv</p>
 </Layout>
 

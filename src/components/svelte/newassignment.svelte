@@ -129,7 +129,6 @@
         <textarea rows="1"  bind:value={NewAssignment.description} placeholder="Description" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         </div>
         {#each contenttext as content}
-            <!-- make a button that is connected to inserBold() -->
             <div class="flex flex-col pt-7 w-full place-items-center">
             {#if content.is_code == false}
             <div class="flex flex-row w-96 sm:w-1/2 bg-gray-700 rounded-t-lg items-center h-10">
