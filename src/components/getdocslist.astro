@@ -50,9 +50,9 @@ const { data, error } = await supabase
 ---
 
 <Layout title="LangPlace">
-    <p class="text-2xl sm:text-2xl text-white text-center font-bold w-96">Documentation for {language[0]?.title}</p>
+    <p class="text-2xl sm:text-2xl text-white text-center font-bold"><span class="w-96">Documentation for {language[0]?.title}</span></p>
     <!-- description -->
-    <p class="text-sm sm:text-lg text-white text-center w-72">{language[0]?.description}</p>
+    <p class="text-sm sm:text-lg text-white text-center">{language[0]?.description}</p>
     
     <Search client:only="svelte" currLocation={"Documentation"} path={"docs"} />
     <div class=" flex flex-col sm:row-2 gap-10 place-items-center sm:justify-center">
