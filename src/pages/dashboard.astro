@@ -14,9 +14,6 @@
 
     const lang: Language[]=data as Language[];
 
-    const { data: user, error: userError } = await supabase
-        .from("Users")
-        .select("*")
         // .eq("user_id", currentUser.id)
 
 
@@ -27,7 +24,7 @@
     import { supabase } from "../lib/backend";
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) {
-        window.location.href = "/"
+        // window.location.href = "/"
     }else {
     // if(user.id== '345f3cdf-6041-4924-be7f-5cee3b9e2534') {
     //     window.location.href = "/admin"
@@ -39,8 +36,13 @@
     <!-- map the values of lang to a div container -->
     <!-- get the user values -->
     <!-- <p class="text-white text-center text-2xl font-bold">Welcome {users[0].user_name}</p> -->
-    <p class="text-white text-center text-2xl font-bold">Welcome {currentUser.email}</p>
-    <div class=" grid grid-cols-1 h-96 w-auto sm:overflow-y-scroll place-items-end gap-y-6 pt-4">
+    <div class="flex flex-col sm:flex-row">
+    <div class="w-96 h-96 bg-gray-700 rounded-lg">
+    <p class="text-white text-center text-2xl font-bold">Welcome JohnDoe</p>
+    <!-- create an avatar from Dicebear. The avarat corresponds to the ID of the user -->
+    <img src={`https://avatars.dicebear.com/api/avataaars/${currentUser.id}.svg`} class="w-32 h-32 rounded-full mx-auto mt-4" />
+    </div>
+    <div class=" grid grid-cols-1 h-96 w-96 sm:overflow-y-scroll place-items-end gap-y-6 pt-4">
     {lang?.map(lang => (
     <div class="flex flex-col justify-items-center text-white w-80 h-auto bg-gray-800 rounded-xl outline-dashed outline-gray-400">
         <div onclick={`window.location = "/language/${lang.id}"`}>
@@ -50,4 +52,5 @@
     </div>
     ))}
     </div>
+</div>
 </Layout>
