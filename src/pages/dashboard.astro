@@ -50,7 +50,7 @@
     <!-- get the latest docs -->
     <div class="w-96 h-96 rounded-lg self-center sm:pt-0 pt-6">
     <p class="text-white text-center text-2xl font-bold">Latest Docs</p>
-    <div class="flex flex-col justify-items-center h-96 pt-3 w-full items-center sm:overflow-y-scroll gap-6">
+    <div class="flex flex-col justify-items-center h-96 pt-3 w-full items-center overflow-y-scroll gap-6">
     {docs?.map(doc => (
     <div class="flex flex-col justify-items-center text-white w-80 h-32 bg-gray-800 rounded-xl outline-dashed outline-gray-400">
         <div onclick={`window.location = "/docs/${doc.id}"`}>
