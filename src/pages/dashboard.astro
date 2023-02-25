@@ -42,7 +42,7 @@
     <!-- <p class="text-white text-center text-2xl font-bold">Welcome {users[0].user_name}</p> -->
     <div class="flex flex-col sm:flex-row sm:pt-16 justify-around">
     <div class="w-96 h-auto sm:h-96 bg-gray-700 rounded-lg self-center">
-    {currentUser && <p class="text-white text-center text-2xl mt-6 font-bold">Welcome {currentUser.user_name}</p>}
+    {currentUser && <p class="text-white text-center text-2xl mt-6 font-bold">Welcome {currentUser.email}</p>}
     {!currentUser && <p class="text-white text-center text-2xl mt-6 font-bold">Welcome</p>}
     {currentUser && <img src={`https://avatars.dicebear.com/api/bottts/${currentUser.id}.svg`} class="w-32 h-32 rounded-full mx-auto mt-10" />}
     {!currentUser && <img src={`https://avatars.dicebear.com/api/bottts/${Math.random()}.svg`} class="w-32 h-32 rounded-full mx-auto mt-10" />}
