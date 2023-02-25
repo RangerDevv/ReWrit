@@ -5,8 +5,9 @@ export interface Props {
 
 import Layout from "../layouts/Layout.astro";
 import { supabase } from "../lib/backend";
-import type { Documentation } from "../lib/db";
+import type { Documentation, Language } from "../lib/db";
 import Search from "./svelte/search.svelte";
+import { onMount } from "svelte";
 
 const { pid } = Astro.props
 
@@ -27,6 +28,16 @@ const { data, error } = await supabase
         search = (document.getElementById("inp") as HTMLInputElement).value;
         console.log(search);
     }
+
+    let language: Language[] = data as Language[];
+        const { data:d, error:e } = await supabase.from("Language").select("*").eq("id", pid);
+        if (error) {
+            console.log(error);
+        } else {
+            language = d as Language[];
+            console.log(d);
+        }
+
     const { data: searchResults, error: er} = await supabase
         .from("Documentation")
         .select("*")
@@ -35,15 +46,14 @@ const { data, error } = await supabase
         .limit(10)
         
         let searchResultsDocs: Documentation[]=searchResults as Documentation[];
+
 ---
 
 <Layout title="LangPlace">
-    <!-- {data && data.map((doc: Documentation) => (
-        <div class="text-white">
-            <h1>{doc.title}</h1>
-            <p>{doc.description}</p>
-        </div>
-    ))} -->
+    <p class="text-2xl sm:text-2xl text-white text-center font-bold">Documentation for {language[0]?.title}</p>
+    <!-- description -->
+    <p class="text-sm sm:text-lg text-white text-center">{language[0]?.description}</p>
+    
     <Search client:only="svelte" currLocation={"Documentation"} path={"docs"} />
     <div class=" flex flex-col sm:row-2 gap-10 place-items-center sm:justify-center">
     {filteredDocs && filteredDocs.map((doc: Documentation) => (

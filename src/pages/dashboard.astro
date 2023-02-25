@@ -17,7 +17,7 @@
     const { data: user, error: userError } = await supabase
         .from("Users")
         .select("*")
-        .eq("user_id", currentUser.id)
+        // .eq("user_id", currentUser.id)
 
     const users: Users[]=user as Users[];
 
@@ -29,7 +29,7 @@
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) {
         window.location.href = "/"
-    // }else {
+    }else {
     // if(user.id== '345f3cdf-6041-4924-be7f-5cee3b9e2534') {
     //     window.location.href = "/admin"
     // }
@@ -42,7 +42,7 @@
     <!-- <p class="text-white text-center text-2xl font-bold">Welcome {users[0].user_name}</p> -->
     <div class=" grid grid-cols-1 sm:grid-cols-3 place-items-center gap-y-6 pt-4">
     {lang?.map(lang => (
-    <div class="flex flex-col justify-items-center text-white w-80 h-auto bg-slate-900 rounded-xl outline-dashed outline-gray-400">
+    <div class="flex flex-col justify-items-center text-white w-80 h-auto bg-gray-800 rounded-xl outline-dashed outline-gray-400">
         <div onclick={`window.location = "/language/${lang.id}"`}>
             <p class="text-center text-2xl pt-2 pb-7 font-bold">{lang.title}</p>
             <p class="text-center text-sm pt-2 pb-7" id="desc">{lang.description}</p>

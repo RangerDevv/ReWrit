@@ -9,7 +9,7 @@ import { onMount } from "svelte/internal";
 import Comnt from "./svelte/comnt.svelte";
 import Getdocs from "./svelte/getdocs.svelte";
 
-import type { Contents, Documentation, Comments } from "../lib/db";
+import type { Contents, Documentation, Comments, Language } from "../lib/db";
 
 
 const currentUser = (await supabase.auth.getUser(Astro.cookies.get("my-access-token").value)).data.user
