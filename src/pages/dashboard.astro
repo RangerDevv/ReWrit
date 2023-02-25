@@ -1,6 +1,6 @@
 ---
  import { supabase } from "../lib/backend";
- import type { Language , Users } from "../lib/db";
+ import type { Language , Documentation } from "../lib/db";
  import Logout from "../components/logout.svelte";
  import Layout from "../layouts/Layout.astro";
  import Search from "../components/svelte/search.svelte";
@@ -14,8 +14,12 @@
 
     const lang: Language[]=data as Language[];
 
-        // .eq("user_id", currentUser.id)
-
+    const { data: d, error: docsError } = await supabase
+        .from("Documentation")
+        .select("*")
+        // order by the time created
+        .order("created_at", { ascending: false })
+    const docs: Documentation[]=d as Documentation[];
 
 
 ---
@@ -36,21 +40,39 @@
     <!-- map the values of lang to a div container -->
     <!-- get the user values -->
     <!-- <p class="text-white text-center text-2xl font-bold">Welcome {users[0].user_name}</p> -->
-    <div class="flex flex-col sm:flex-row">
-    <div class="w-96 h-96 bg-gray-700 rounded-lg">
-    <p class="text-white text-center text-2xl font-bold">Welcome JohnDoe</p>
-    <!-- create an avatar from Dicebear. The avarat corresponds to the ID of the user using the robot style -->
-    <img src={`https://avatars.dicebear.com/api/bottts/${currentUser.id}.svg`} class="w-32 h-32 rounded-full mx-auto mt-4" />
+    <div class="flex flex-col sm:flex-row sm:pt-16 justify-around">
+    <div class="w-96 h-auto sm:h-96 bg-gray-700 rounded-lg self-center">
+    {currentUser && <p class="text-white text-center text-2xl mt-6 font-bold">Welcome {currentUser.user_name}</p>}
+    {!currentUser && <p class="text-white text-center text-2xl mt-6 font-bold">Welcome</p>}
+    {currentUser && <img src={`https://avatars.dicebear.com/api/bottts/${currentUser.id}.svg`} class="w-32 h-32 rounded-full mx-auto mt-10" />}
+    {!currentUser && <img src={`https://avatars.dicebear.com/api/bottts/${Math.random()}.svg`} class="w-32 h-32 rounded-full mx-auto mt-10" />}
     </div>
-    <div class=" grid grid-cols-1 h-96 w-96 sm:overflow-y-scroll place-items-end gap-y-6 pt-4">
-    {lang?.map(lang => (
-    <div class="flex flex-col justify-items-center text-white w-80 h-auto bg-gray-800 rounded-xl outline-dashed outline-gray-400">
-        <div onclick={`window.location = "/language/${lang.id}"`}>
-            <p class="text-center text-2xl pt-2 pb-7 font-bold">{lang.title}</p>
-            <p class="text-center text-sm pt-2 pb-7" id="desc">{lang.description}</p>
+    <!-- get the latest docs -->
+    <div class="w-96 h-96 rounded-lg self-center sm:pt-0 pt-6">
+    <p class="text-white text-center text-2xl font-bold">Latest Docs</p>
+    <div class="flex flex-col justify-items-center h-96 pt-3 w-full items-center sm:overflow-y-scroll gap-6">
+    {docs?.map(doc => (
+    <div class="flex flex-col justify-items-center text-white w-80 h-32 bg-gray-800 rounded-xl outline-dashed outline-gray-400">
+        <div onclick={`window.location = "/docs/${doc.id}"`}>
+            <p class="text-center text-2xl pt-2 pb-7 font-bold">{doc.title}</p>
+            <p class="text-center text-sm pt-2 pb-7" id="desc">{doc.description}</p>
         </div>
     </div>
     ))}
     </div>
+    </div>
+    <div class="w-96 h-96 rounded-lg self-center sm:pt-0 pt-6">
+    <p class="text-white text-center text-2xl font-bold">Languages</p>
+    <div class="flex flex-col justify-items-center h-96 pt-3 w-full items-center sm:overflow-y-scroll gap-6">
+    {lang?.map(l => (
+    <div class="flex flex-col justify-items-center text-white w-80 h-32 bg-gray-800 rounded-xl outline-dashed outline-gray-400">
+        <div onclick={`window.location = "/language/${l.id}"`}>
+            <p class="text-center text-2xl pt-2 pb-7 font-bold">{l.title}</p>
+            <p class="text-center text-sm pt-2 pb-7" id="desc">{l.description}</p>
+        </div>
+        </div>
+    ))}
+    </div>
+</div>
 </div>
 </Layout>
