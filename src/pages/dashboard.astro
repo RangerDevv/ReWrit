@@ -44,8 +44,8 @@
     <div class="w-96 h-auto sm:h-96 bg-gray-700 rounded-lg self-center">
     {currentUser && <p class="text-white text-center text-2xl mt-6 font-bold">Welcome {currentUser.email}</p>}
     {!currentUser && <p class="text-white text-center text-2xl mt-6 font-bold">Welcome</p>}
-    {currentUser && <img src={`https://avatars.dicebear.com/api/bottts/${currentUser.id}.svg`} class="w-32 h-32 rounded-full mx-auto mt-10" />}
-    {!currentUser && <img src={`https://avatars.dicebear.com/api/bottts/${Math.random()}.svg`} class="w-32 h-32 rounded-full mx-auto mt-10" />}
+    {currentUser && <img src={`https://avatars.dicebear.com/api/bottts/${currentUser.id}.svg`} id="Avatar" class="w-32 h-32 rounded-full mx-auto mt-10" />}
+    {!currentUser && <img src={`https://avatars.dicebear.com/api/bottts/${Math.random()}.svg`} id="Avatar" class="w-32 h-32 rounded-full mx-auto mt-10" />}
     </div>
     <!-- get the latest docs -->
     <div class="w-96 h-96 rounded-lg self-center sm:pt-0 pt-6">
@@ -76,3 +76,21 @@
 </div>
 </div>
 </Layout>
+
+<style>
+    /* slight avatar floating effect */
+    #Avatar {
+        animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+</style>
