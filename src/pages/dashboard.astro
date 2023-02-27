@@ -4,8 +4,11 @@
  import Logout from "../components/logout.svelte";
  import Layout from "../layouts/Layout.astro";
  import Search from "../components/svelte/search.svelte";
+ import Ldocs from "../components/svelte/latestdocs.svelte";
 
  const currentUser = (await supabase.auth.getUser(Astro.cookies.get("my-access-token").value)).data.user as any;
+
+    let langsort = "";
 
     const { data, error } = await supabase
         .from("Language")
@@ -17,6 +20,10 @@
     const { data: d, error: docsError } = await supabase
         .from("Documentation")
         .select("*")
+        // check if the langsort is empty
+        // if it is empty then return all the docs
+        // if it is not empty then return the docs with the langsort
+        .eq("language", langsort)
         // order by the time created
         .order("created_at", { ascending: false })
     const docs: Documentation[]=d as Documentation[];
@@ -61,8 +68,10 @@
     ))}
     </div>
     </div>
+    <!-- <Ldocs client:only="svelte"/> -->
     <div class="w-96 h-96 rounded-lg self-center sm:pt-0 pt-6">
     <p class="text-white text-center text-2xl font-bold">Languages</p>
+    <!--  -->
     <div class="flex flex-col justify-items-center h-96 pt-3 w-full items-center sm:overflow-y-scroll gap-6">
     {lang?.map(l => (
     <div class="flex flex-col justify-items-center text-white w-80 h-32 bg-gray-800 rounded-xl outline-dashed outline-gray-400">
