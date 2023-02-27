@@ -20,10 +20,6 @@
     const { data: d, error: docsError } = await supabase
         .from("Documentation")
         .select("*")
-        // check if the langsort is empty
-        // if it is empty then return all the docs
-        // if it is not empty then return the docs with the langsort
-        .eq("language", langsort)
         // order by the time created
         .order("created_at", { ascending: false })
     const docs: Documentation[]=d as Documentation[];
