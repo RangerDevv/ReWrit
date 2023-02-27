@@ -14,14 +14,8 @@ onMount(async () => {
     const { data: d, error: docsError } = await supabase
         .from("Documentation")
         .select("*")
-        // check if the langsort is empty
-        // if it is empty then return all the docs
-        // if it is not empty then return the docs with the langsort
-        .eq("connect", langsort)
-        // order by the time created
         .order("created_at", { ascending: false })
 
-    // if there is an error then log it
     if (docsError) {
         console.log(docsError)
     }
@@ -31,6 +25,33 @@ onMount(async () => {
         docs = d
     }
 })
+
+// make a function that sorts the docs based on the language selected
+const sortDocs = async () => {
+    // get the docs from the database
+    const { data: d, error: docsError } = await supabase
+        .from("Documentation")
+        .select("*")
+        // check if the langsort is empty
+        // if it is empty then return all the docs
+        // order by the time created
+        .order("created_at", { ascending: false })
+
+    if (langsort != 0) {
+        // if the langsort is not empty then filter the docs based on the language
+        if (d) {
+            docs = d.filter((doc) => doc.lang == langsort)
+        }
+    } else {
+        // if the langsort is empty then set the docs to the data
+        docs = d as any[]
+    }
+
+    // if there is an error then log it
+    if (docsError) {
+        console.log(docsError)
+    }
+}
 
 const getLanguages = async () => {
     // get the languages from the database
@@ -57,21 +78,22 @@ getLanguages()
     <div class="w-96 h-96 rounded-lg self-center sm:pt-0 pt-6">
         <p class="text-white text-center text-2xl font-bold">Latest Docs</p>
         <div class="flex flex-col justify-items-center h-96 pt-3 w-full items-center overflow-y-scroll gap-6">
-            <!--  make a select sort for the docs based on the language -->
-            <select bind:value={langsort} class="w-80 h-10 rounded-lg bg-gray-800 text-white">
-                <option value="">All</option>
-                {#each languages as language}
-                    <option value={language.id}>{language.title}</option>
-                {/each}
-            </select>
-            {#each docs as doc}
-            <div class="flex flex-col justify-items-center text-white w-80 h-32 bg-gray-800 rounded-xl outline-dashed outline-gray-400">
-                <!-- svelte-ignore a11y-click-events-have-key-events -->
-                <div on:click={() => window.location.href = `/docs/${doc.id}`}>
-                    <p class="text-center text-2xl pt-2 pb-7 font-bold">{doc.title}</p>
-                    <p class="text-center text-sm pt-2 pb-7" id="desc">{doc.description}</p>
-                </div>
+            <div class="flex flex-row justify-between w-80 h-10 rounded-lg bg-gray-800 text-white outline-none">
+                <!--  select sort for the docs based on the language -->
+                <select bind:value={langsort} class="w-80 h-10 rounded-lg bg-gray-800 text-white outline-none pl-2">
+                    <option value="">All</option>
+                    {#each languages as language}
+                        <option value={language.id}>{language.title}</option>
+                    {/each}
+                </select>
+                <button on:click={sortDocs} class="w-10 h-10 rounded-lg bg-gray-800 text-white outline-none">Sort</button>
             </div>
+            {#each docs as doc}
+                <!-- svelte-ignore a11y-click-events-have-key-events -->
+                <div class="w-80 h-32 rounded-lg bg-gray-800 text-white flex flex-col justify-center gap-5 outline-dashed outline-gray-400 hover:outline-gray-700 cursor-pointer" on:click={() => window.location.href = `/docs/${doc.id}`}>
+                    <p class="text-center">{doc.title}</p>
+                    <p class="text-center w-full truncate">{doc.description}</p>
+                </div>
             {/each}
         </div>
     </div>

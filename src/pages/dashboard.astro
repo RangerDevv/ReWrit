@@ -8,7 +8,6 @@
 
  const currentUser = (await supabase.auth.getUser(Astro.cookies.get("my-access-token").value)).data.user as any;
 
-    let langsort = "";
 
     const { data, error } = await supabase
         .from("Language")
@@ -51,7 +50,7 @@
     {!currentUser && <img src={`https://avatars.dicebear.com/api/bottts/${Math.random()}.svg`} id="Avatar" class="w-32 h-32 rounded-full mx-auto mt-10" />}
     </div>
     <!-- get the latest docs -->
-    <div class="w-96 h-96 rounded-lg self-center sm:pt-0 pt-6">
+    <!-- <div class="w-96 h-96 rounded-lg self-center sm:pt-0 pt-6">
     <p class="text-white text-center text-2xl font-bold">Latest Docs</p>
     <div class="flex flex-col justify-items-center h-96 pt-3 w-full items-center overflow-y-scroll gap-6">
     {docs?.map(doc => (
@@ -63,7 +62,8 @@
     </div>
     ))}
     </div>
-    </div>
+    </div> -->
+    <Ldocs client:only="svelte"/>
     <!-- <Ldocs client:only="svelte"/> -->
     <div class="w-96 h-96 rounded-lg self-center sm:pt-0 pt-6">
     <p class="text-white text-center text-2xl font-bold">Languages</p>
