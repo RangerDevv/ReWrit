@@ -32,9 +32,6 @@ const sortDocs = async () => {
     const { data: d, error: docsError } = await supabase
         .from("Documentation")
         .select("*")
-        // check if the langsort is empty
-        // if it is empty then return all the docs
-        // order by the time created
         .order("created_at", { ascending: false })
 
     if (langsort != 0) {

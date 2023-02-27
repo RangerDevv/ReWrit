@@ -32,16 +32,13 @@
     if (!user) {
         // window.location.href = "/"
     }else {
-    // if(user.id== '345f3cdf-6041-4924-be7f-5cee3b9e2534') {
-    //     window.location.href = "/admin"
-    // }
+        // window.location.href = "/dashboard"
 }
 </script>
 <Layout title="Dashbaord" loggedIn={true}>
     <Search client:only="svelte" currLocation={"Language"} path={"language"}/>
     <!-- map the values of lang to a div container -->
     <!-- get the user values -->
-    <!-- <p class="text-white text-center text-2xl font-bold">Welcome {users[0].user_name}</p> -->
     <div class="flex flex-col sm:flex-row sm:pt-16 justify-around">
     <div class="w-96 h-auto sm:h-96 bg-gray-700 rounded-lg self-center">
     {currentUser && <p class="text-white text-center text-2xl mt-6 font-bold">Welcome {currentUser.email}</p>}
@@ -50,19 +47,6 @@
     {!currentUser && <img src={`https://avatars.dicebear.com/api/bottts/${Math.random()}.svg`} id="Avatar" class="w-32 h-32 rounded-full mx-auto mt-10" />}
     </div>
     <!-- get the latest docs -->
-    <!-- <div class="w-96 h-96 rounded-lg self-center sm:pt-0 pt-6">
-    <p class="text-white text-center text-2xl font-bold">Latest Docs</p>
-    <div class="flex flex-col justify-items-center h-96 pt-3 w-full items-center overflow-y-scroll gap-6">
-    {docs?.map(doc => (
-    <div class="flex flex-col justify-items-center text-white w-80 h-32 bg-gray-800 rounded-xl outline-dashed outline-gray-400">
-        <div onclick={`window.location = "/docs/${doc.id}"`}>
-            <p class="text-center text-2xl pt-2 pb-7 font-bold">{doc.title}</p>
-            <p class="text-center text-sm pt-2 pb-7" id="desc">{doc.description}</p>
-        </div>
-    </div>
-    ))}
-    </div>
-    </div> -->
     <Ldocs client:only="svelte"/>
     <!-- <Ldocs client:only="svelte"/> -->
     <div class="w-96 h-96 rounded-lg self-center sm:pt-0 pt-6">
