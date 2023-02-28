@@ -28,15 +28,36 @@ const { pid } = Astro.props
     owner = true
 }
 
-const handleupvote = async () => {
-    const { data, error } = await supabase
-    .from('Documentation')
-    .update({ upvotes: upvotes + 1 })
-    .eq('id', pid)
-}
+// const handleupvote = async () => {
+//     const { data, error } = await supabase
+//     .from('Documentation')
+//     .update({ upvotes: upvotes + 1 })
+//     .eq('id', pid)
+//     if (error) console.log('error', error)
+//     else console.log('upvoted')
+// }
 
 // document.getElementById("up")?.addEventListener("click", handleupvote)
 ---
+
+<script>
+import { supabase } from "../lib/backend";
+import type { Documentation } from "../lib/db";
+let pid = Astro.props.pid
+const doc: Documentation[] = (await supabase.from('Documentation').select('*').eq('id', pid)).data as Documentation[]
+
+const handleupvote = async () => {
+    const { data, error } = await supabase
+    .from('Documentation')
+    .update({ upvotes: doc[0].upvotes + 1 })
+    .eq('id', pid)
+    if (error) console.log('error', error)
+    else console.log('upvoted')
+}
+
+document.getElementById("up")?.addEventListener("click", handleupvote)
+
+</script>
 
 <Layout title="Docs">
 <main>
@@ -47,7 +68,7 @@ const handleupvote = async () => {
         <div class="flex justify-center gap-2">
              {owner && <button onclick={`window.location = "/edit/${pid}"`} class="btn btn-error btn-sm btn-square btn-outline text-white place-self-center pl-2 pr-2 h-12 text-xl w-24 bg-green-700 rounded-lg mt-5">Edit</button>} 
          <Comnt client:only="svelte" id={pid} />
-        <!-- <button class="btn btn-error btn-sm btn-square btn-outline text-white place-self-center pl-2 pr-2 h-12 text-xl w-24 bg-green-700 rounded-lg mt-5" id="up">Upvote</button> -->
+        <button class="btn btn-error btn-sm btn-square btn-outline text-white place-self-center pl-2 pr-2 h-12 text-xl w-24 bg-green-700 rounded-lg mt-5" id="up">Upvote</button>
          </div>
     </div>
 <Getdocs client:only="svelte" pid={pid} />
