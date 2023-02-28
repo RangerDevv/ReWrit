@@ -115,7 +115,7 @@
 
         // check if thee are any new content
         setInterval(()=> {
-            // window.location.href = "/docs/" + pid;
+             window.location.href = "/docs/" + pid;
         }) , 1000;
 
         
