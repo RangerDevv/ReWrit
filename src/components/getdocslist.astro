@@ -5,19 +5,17 @@ export interface Props {
 
 import Layout from "../layouts/Layout.astro";
 import { supabase } from "../lib/backend";
-import type { Documentation, Language } from "../lib/db";
+import type { Documentation, Language, Comments } from "../lib/db";
 import Search from "./svelte/search.svelte";
-import { onMount } from "svelte";
 
 const { pid } = Astro.props
 
 const { data, error } = await supabase
     .from("Documentation")
     .select("*")
-    // .order("id", { ascending: false });
+    .order("id", { ascending: false });
 
     const docs: Documentation[]=data as Documentation[];
-    // filter by pid
     const filteredDocs = docs.filter((doc) => doc.lang === pid);
     
     const { data: { user } } = await supabase.auth.getUser()
