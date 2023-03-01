@@ -51,16 +51,33 @@
   {/each}
     </div>
 </div>
-</main>
 
 <style>
   /* add padding and make text white */
   main {
-      padding: 1rem;
+      padding: 1.5rem;
       color: white;
   }
   /* make the headings like headings */
   h1 {
       font-size: 2rem;
+      font-weight: bold;
+  }
+  h2 {
+      font-size: 1.5rem;
+  }
+  h3 {
+      font-size: 1.25rem;
+  }
+  h4 {
+      font-size: 1rem;
+  }
+  h5 {
+      font-size: 0.875rem;
+  }
+  h6 {
+      font-size: 0.75rem;
   }
 </style>
+</main>
+
