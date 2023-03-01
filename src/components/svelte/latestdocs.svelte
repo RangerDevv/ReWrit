@@ -72,24 +72,24 @@ getLanguages()
 </script>
 
 <main>
-    <div class="w-96 h-96 rounded-lg self-center sm:pt-0 pt-6">
+    <div class="w-96 h-96 rounded-lg self-center sm:pt-0 pt-6 mb-16 sm:mb-0">
         <p class="text-white text-center text-2xl font-bold">Latest Docs</p>
         <div class="flex flex-col justify-items-center h-96 pt-3 w-full items-center overflow-y-scroll gap-6">
-            <div class="flex flex-row justify-between w-80 h-10 rounded-lg bg-gray-800 text-white outline-none">
+            <div class="flex flex-row justify-between w-80 h-10 rounded-lg bg-[#1A1A40] text-white outline-none">
                 <!--  select sort for the docs based on the language -->
-                <select bind:value={langsort} class="w-80 h-10 rounded-lg bg-gray-800 text-white outline-none pl-2">
+                <select bind:value={langsort} class="w-80 h-10 rounded-lg bg-[#1A1A40] text-white outline-none pl-2">
                     <option value="">All</option>
                     {#each languages as language}
                         <option value={language.id}>{language.title}</option>
                     {/each}
                 </select>
-                <button on:click={sortDocs} class="w-10 h-10 rounded-lg bg-gray-800 text-white outline-none">Sort</button>
+                <button on:click={sortDocs} class="w-10 h-10 rounded-lg bg-[#1A1A40] text-white outline-none">Sort</button>
             </div>
             {#each docs as doc}
                 <!-- svelte-ignore a11y-click-events-have-key-events -->
-                <div class="w-80 h-32 rounded-lg bg-gray-800 text-white flex flex-col justify-center gap-5 outline-dashed outline-gray-400 hover:outline-gray-700 cursor-pointer" on:click={() => window.location.href = `/docs/${doc.id}`}>
-                    <p class="text-center">{doc.title}</p>
-                    <p class="text-center w-full truncate">{doc.description}</p>
+                <div class="w-80 h-32 rounded-lg bg-[#1A1A40] text-white flex flex-col justify-center gap-5 outline-dashed outline-gray-400 cursor-pointer" on:click={() => window.location.href = `/docs/${doc.id}`}>
+                    <p class="text-center text-xl font-semibold pb-2 pt-3">{doc.title}</p>
+                    <p class="text-center w-full truncate pb-4">{doc.description}</p>
                 </div>
             {/each}
         </div>

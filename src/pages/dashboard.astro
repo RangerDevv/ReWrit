@@ -8,7 +8,6 @@
 
  const currentUser = (await supabase.auth.getUser(Astro.cookies.get("my-access-token").value)).data.user as any;
 
-
     const { data, error } = await supabase
         .from("Language")
         .select("*")
@@ -39,22 +38,30 @@
     <Search client:only="svelte" currLocation={"Language"} path={"language"}/>
     <!-- map the values of lang to a div container -->
     <!-- get the user values -->
-    <div class="flex flex-col sm:flex-row sm:pt-16 justify-around">
-    <div class="w-96 h-auto sm:h-96 bg-gray-700 rounded-lg self-center">
+    <div class="flex flex-col sm:flex-row sm:pt-10 justify-around">
+    <div class="w-96 h-96 sm:h-96 bg-gray-700 rounded-lg self-center">
     {currentUser && <p class="text-white text-center text-2xl mt-6 font-bold">Welcome {currentUser.email}</p>}
     {!currentUser && <p class="text-white text-center text-2xl mt-6 font-bold">Welcome</p>}
     {currentUser && <img src={`https://avatars.dicebear.com/api/bottts/${currentUser.id}.svg`} id="Avatar" class="w-32 h-32 rounded-full mx-auto mt-10" />}
     {!currentUser && <img src={`https://avatars.dicebear.com/api/bottts/${Math.random()}.svg`} id="Avatar" class="w-32 h-32 rounded-full mx-auto mt-10" />}
+
+    <div class="flex justify-center">
+        <button class="bg-orange-700 hover:bg-orange-800 text-white font-bold py-2 px-4 rounded-full mt-6">Profile</button>
+    </div>
+    <!-- made with ❤️ by @RangerDevv -->
+    <p class="text-white text-center text-sm mt-6">Made with ❤️ by <a href="https://github.com/RangerDevv" class="text-blue-500">RangerDevv</a></p>
     </div>
     <!-- get the latest docs -->
-    <Ldocs client:only="svelte"/>
+    <div class="flex justify-center">
+        <Ldocs client:only="svelte"/>
+    </div>
     <!-- <Ldocs client:only="svelte"/> -->
     <div class="w-96 h-96 rounded-lg self-center sm:pt-0 pt-6">
     <p class="text-white text-center text-2xl font-bold">Languages</p>
     <!--  -->
     <div class="flex flex-col justify-items-center h-96 pt-3 w-full items-center sm:overflow-y-scroll gap-6">
     {lang?.map(l => (
-    <div class="flex flex-col justify-items-center text-white w-80 h-32 bg-gray-800 rounded-xl outline-dashed outline-gray-400">
+    <div class="flex flex-col justify-items-center text-white w-80 h-32 bg-[#1A1A40] rounded-xl outline-dashed outline-gray-400 cursor-pointer">
         <div onclick={`window.location = "/language/${l.id}"`}>
             <p class="text-center text-2xl pt-2 pb-7 font-bold">{l.title}</p>
             <p class="text-center text-sm pt-2 pb-7" id="desc">{l.description}</p>

@@ -31,7 +31,7 @@ var authed = currentUser !== null
 		<title>{title}</title>
 	</head>
 	<body>
-		<nav class="bg-black w-screen gap-6 mt-6 flex flex-row justify-between">
+		<nav class="bg-[#03001C] w-screen gap-6 mt-6 flex flex-row justify-between">
 			{!authed && <a href="/" class="text-white text-xl pl-4 font-semibold">Home</a>}
 			{authed && <a href="/dashboard" class="text-white pl-4 text-xl pt-2 font-semibold">Home</a>}
 			<div class="flex flex-row gap-3 mr-6">
@@ -50,7 +50,7 @@ var authed = currentUser !== null
 	}
 	html {
 		font-family: system-ui, sans-serif;
-		background-color: rgb(0,0,0);
+		background-color: #03001C;
 	}
 	code {
 		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
