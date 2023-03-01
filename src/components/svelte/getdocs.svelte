@@ -34,21 +34,33 @@
 
 <main>
 <div>
-<div class=" place-items-center">
+<div class="">
   {#each contentText as content}
-            <div class="flex flex-col gap-2 pl-6 sm:pl-12 pt-2">
+            <div class="">
               {#if content.is_code}
-              <div class="w-96 sm:w-1/2 h-auto mt-6 rounded-lg place-self-center">
-                <pre class="overflow-auto whitespace-pre-wrap rounded-lg h-72" id="Code"><code>{content.text}</code></pre>
+              <div class="">
+                <pre class="" id="Code"><code>{content.text}</code></pre>
                 </div>
               {:else}
               <!-- <p class="text-left text-lg text-white">{@html content.text}</p> -->
-              <div class="text-white">
+              <div class="">
               <SvelteMarkdown source={content.text} />
-            </div>
+              </div>
               {/if}
             </div>
   {/each}
     </div>
 </div>
 </main>
+
+<style>
+  /* add padding and make text white */
+  main {
+      padding: 1rem;
+      color: white;
+  }
+  /* make the headings like headings */
+  h1 {
+      font-size: 2rem;
+  }
+</style>
