@@ -39,7 +39,7 @@
     <!-- map the values of lang to a div container -->
     <!-- get the user values -->
     <div class="flex flex-col sm:flex-row sm:pt-10 justify-around">
-    <div class="w-96 h-96 sm:h-96 bg-gray-700 rounded-lg self-center">
+    <div class="w-96 h-96 sm:h-96 bg-gray-900 rounded-lg self-center">
     {currentUser && <p class="text-white text-center text-2xl mt-6 font-bold">Welcome {currentUser.email}</p>}
     {!currentUser && <p class="text-white text-center text-2xl mt-6 font-bold">Welcome</p>}
     {currentUser && <img src={`https://avatars.dicebear.com/api/bottts/${currentUser.id}.svg`} id="Avatar" class="w-32 h-32 rounded-full mx-auto mt-10" />}
