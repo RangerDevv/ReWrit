@@ -62,7 +62,7 @@
         }
     });
 
-    // make a function that deletes the content from the database when the user clicks the delete button it removes the appropriate content from the array and adds it to the deleted content array
+    // a function that deletes the content from the database when the user clicks the delete button it removes the appropriate content from the array and adds it to the deleted content array
     const deleteContent = (id: any) => {
         // move the content to the deleted content array
         Deletedcontent = [...Deletedcontent, Content.filter((item) => item.number == id)[0]];
@@ -86,11 +86,6 @@
         supabase.from("Documentation").upsert(Documentation).eq("id",pid).then((res) => {
             console.log(res);
         });
-        // update the content
-        // supabase.from("Contents").update(Content).eq("connect",pid);
-
-        // console.log(Content);
-        // console.log(Documentation);
 
         // delete the content that is in the deleted content array
         if (Deletedcontent.length > 0) {
@@ -116,7 +111,7 @@
         // check if thee are any new content
         setInterval(()=> {
              window.location.href = "/docs/" + pid;
-        }) , 1000;
+        }) , 600;
 
         
     }
