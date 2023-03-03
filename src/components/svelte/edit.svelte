@@ -62,16 +62,6 @@
         }
     });
 
-    // check the documentation author
-    const checkAuthor = () => {
-        if (Documentation[0].user_id == user.id) {
-            return window.location.href = "/edit/" + pid;
-        } else {
-            return window.location.href = "/docs/" + pid;
-        }
-    }
-
-    checkAuthor()
 
     // a function that deletes the content from the database when the user clicks the delete button it removes the appropriate content from the array and adds it to the deleted content array
     const deleteContent = (id: any) => {
