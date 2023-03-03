@@ -133,14 +133,16 @@
     {#each Content as cont}
     {#if cont.is_toc == true}
     <div class="text-black flex flex-col pt-7 w-full place-items-center">
-        <textarea rows="1" bind:value={cont.text} placeholder="Table of Contents" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white rounded-lg outline-none" id={"content" + cont.number}/>
+        <textarea rows="4" bind:value={cont.text} placeholder="Table of Contents" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white rounded-lg outline-none" id={"content" + cont.number}/>
     </div>
     {/if}
+    {#if cont.is_toc == false}
     <div class="text-black flex flex-col pt-7 w-full place-items-center">
         <!-- <input type="text" bind:value={cont.text} /> -->
         <textarea rows="6" bind:value={cont.text} placeholder="Contents (This text editor uses Markdown. Please use the markdown syntax.) If content is left empty, it will be automatically be deleted" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white rounded-lg outline-none" id={"content" + cont.number}/>
         <button on:click={() => deleteContent(cont.number)} class="block p-2.5 w-20 text-sm rounded-lg bg-red-700 border-red-600 placeholder-gray-400 text-white mt-5">Delete</button>
     </div>
+    {/if}
     {/each}
     {#each Newcontent as newcont}
     <div class="text-black flex flex-col pt-7 w-full place-items-center">
