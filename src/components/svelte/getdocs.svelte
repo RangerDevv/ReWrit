@@ -78,6 +78,17 @@
   h6 {
       font-size: 0.75rem;
   }
+
+  #Code {
+     width: 32rem;
+    height: 20rem;
+    overflow: auto;
+    /* white space pre wrap */
+    white-space: pre-wrap;
+    /* center */
+    margin: 0 auto;
+    
+  }
 </style>
 </main>
 
