@@ -16,6 +16,7 @@ export interface Language {
 }
 
 export interface Contents {
+    is_toc?: boolean;
     id?:number,
     created_at?:string,
     number:number,

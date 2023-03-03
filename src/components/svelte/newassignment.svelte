@@ -33,6 +33,7 @@
         connect?:number,
         is_code?:boolean,
         user_id?:string,
+        is_toc?:boolean,
     }
 
     let NewAssignment: NewAssignment = {
@@ -52,6 +53,7 @@
         connect: NewAssignment.id,
         is_code: false,
         user_id: user.id,
+        is_toc: false,
     }
 
     // get the language lost of id and the language name from the database
@@ -78,6 +80,9 @@
     console.log(contenttext)
 
     $: disabled = !NewAssignment.title || !NewAssignment.description || !NewAssignment.lang || !contenttext.length || contenttext.some((content) => !content.text);
+
+    let tableofcontent: Contents[] = []
+    const addtoc = () => tableofcontent = [...tableofcontent, {text: "", id: getRandomInt(10000), created_at: current_time , number: contnumber, is_code: false, user_id: user.id, is_toc: true,}]
 
     async function pushcontent() {
         await Promise.all(contenttext.map(async (content) => {
@@ -121,13 +126,17 @@
 </script>
 
 <main>
-
     <div class="flex flex-col place-items-center w-screen text-white  pl-0 sm:pl-20 ">
         <div class="flex flex-col gap-7 w-full place-items-center">
         <h1>New Docs</h1>
         <textarea rows="1"  bind:value={NewAssignment.title} placeholder="Title" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         <textarea rows="1"  bind:value={NewAssignment.description} placeholder="Description" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+        {#each tableofcontent as content}
+            <textarea rows="1"  bind:value={content.text} placeholder="Table of Content" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+        {/each}
+            <button class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" on:click={addtoc}>Add Table of Content</button>
         </div>
+        <!-- table of content -->
         {#each contenttext as content}
             <div class="flex flex-col pt-7 w-full place-items-center">
             {#if content.is_code == false}

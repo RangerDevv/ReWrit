@@ -34,6 +34,21 @@
 
 <main>
 <div>
+    <!--  loop through the content and display only is_toc = true as a table of contents -->
+    <div class="" id="Tableofcontents">
+        <h1 class="">Table of Contents</h1>
+        <div class="">
+            <ul class="">
+                {#each contentText as content}
+                    {#if content.is_toc}
+                        <li class="">
+                           <SvelteMarkdown source={content.text} />
+                        </li>
+                    {/if}
+                {/each}
+            </ul>
+        </div>
+    </div>
 <div class="">
   {#each contentText as content}
             <div class="">
@@ -44,7 +59,9 @@
               {:else}
               <!-- <p class="text-left text-lg text-white">{@html content.text}</p> -->
               <div class="">
+                {#if content.is_toc == false}
               <SvelteMarkdown source={content.text} />
+                {/if}
               </div>
               {/if}
             </div>
@@ -55,9 +72,16 @@
 <style>
   /* add padding and make text white */
   main {
-      padding: 1.5rem;
+      padding: 3rem;
       color: white;
   }
+
+  /* make the padding less on mobile */
+    @media (max-width: 600px) {
+        main {
+            padding: 1rem;
+        }
+    }
   /* make the headings like headings */
   h1 {
       font-size: 2rem;
@@ -78,6 +102,9 @@
   h6 {
       font-size: 0.75rem;
   }
+  p {
+      font-size: 1.2rem;
+  }
 
   #Code {
      width: 32rem;
@@ -89,6 +116,19 @@
     margin: 0 auto;
     
   }
+
+  /* make the table of contents to the left of the the body and give it a diff bg color */
+  #Tableofcontents {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 20rem;
+      height: 100vh;
+      background-color: #1e1e1e;
+      padding: 1rem;
+      overflow: auto;
+      display: none;
+    }
 </style>
 </main>
 
