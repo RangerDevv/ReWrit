@@ -17,6 +17,7 @@
         connect?:number,
         is_code?:boolean,
         user_id?:string,
+        is_toc?:boolean,
     }
 
     let Contents: Contents = {
@@ -26,6 +27,7 @@
         connect: pid,
         is_code: false,
         user_id: user.id,
+        is_toc: false,
     }
     
 
@@ -74,8 +76,8 @@
     }
 
 
-    const addContent = () => Newcontent = [...Newcontent, {text: "", created_at: current_time , number: newId++, connect: pid, is_code: false, user_id:user.id}]
-    const addCode = () => Newcontent = [...Newcontent, {text: "", created_at: current_time , number: newId++, connect: pid, is_code: true, user_id:user.id}]
+    const addContent = () => Newcontent = [...Newcontent, {text: "", created_at: current_time , number: newId++, connect: pid, is_code: false, user_id:user.id, is_toc: false}]
+    const addCode = () => Newcontent = [...Newcontent, {text: "", created_at: current_time , number: newId++, connect: pid, is_code: true, user_id:user.id, is_toc: false}]
     const removeDeletedContent = (id: any) => Deletedcontent = Deletedcontent.filter((item) => item.number !== id, newId--)
 
     function updateContent() {
@@ -129,6 +131,11 @@
         </div>
     {/each}
     {#each Content as cont}
+    {#if cont.is_toc == true}
+    <div class="text-black flex flex-col pt-7 w-full place-items-center">
+        <textarea rows="1" bind:value={cont.text} placeholder="Table of Contents" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white rounded-lg outline-none" id={"content" + cont.number}/>
+    </div>
+    {/if}
     <div class="text-black flex flex-col pt-7 w-full place-items-center">
         <!-- <input type="text" bind:value={cont.text} /> -->
         <textarea rows="6" bind:value={cont.text} placeholder="Contents (This text editor uses Markdown. Please use the markdown syntax.) If content is left empty, it will be automatically be deleted" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white rounded-lg outline-none" id={"content" + cont.number}/>
