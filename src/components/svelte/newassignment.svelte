@@ -106,7 +106,6 @@
         }),
         )
     }
-
     async function Push (newAssignment: NewAssignment, contents: Contents ) {
         supabase.from('Documentation').insert([
             {title: newAssignment.title, description: newAssignment.description, lang: newAssignment.lang, id: newAssignment.id, created_at: newAssignment.created_at, user_id: newAssignment.user_id},
@@ -114,6 +113,26 @@
             console.log(data)
             console.log(error)
             pushcontent()
+            tableofcontent.map(async (content) => {
+                await supabase.from('Contents').insert([
+                    {
+                        text: content.text, 
+                        // set the content.number to the index of the array
+                        number: tableofcontent.indexOf(content),
+                        connect: NewAssignment.id, 
+                        id: content.id, 
+                        created_at: content.created_at,
+                        is_code: content.is_code,
+                        user_id: content.user_id,
+                        is_toc: content.is_toc,
+                    },
+                ]).then(({ data, error }) => {
+                    console.log(NewAssignment.id)
+                    console.log(content.connect)
+                    console.log(contenttext)
+                    console.log(error)
+                })
+            }),
             console.log(contenttext)
         }),
             // loop through the array and insert the contents
