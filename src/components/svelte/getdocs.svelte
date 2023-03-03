@@ -36,7 +36,7 @@
 <div>
     <!--  loop through the content and display only is_toc = true as a table of contents -->
     <div class="" id="Tableofcontents">
-        <h1 class="">Table of Contents</h1>
+        <h1 class="">📰 Table of Contents</h1>
         <div class="">
             <ul class="">
                 {#each contentText as content}
