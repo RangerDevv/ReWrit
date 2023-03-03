@@ -49,7 +49,7 @@
             </ul>
         </div>
     </div>
-<div class="">
+<div class="body">
   {#each contentText as content}
             <div class="">
               {#if content.is_code}
@@ -68,7 +68,6 @@
   {/each}
     </div>
 </div>
-
 <style>
   /* add padding and make text white */
   main {
@@ -105,6 +104,13 @@
   p {
       font-size: 1.2rem;
   }
+  a {
+      color: #00b3ff;
+  }
+  a:hover {
+      color: #00b3ff;
+      text-decoration: underline;
+  }
 
   #Code {
      width: 32rem;
@@ -117,18 +123,29 @@
     
   }
 
+  .body {
+    white-space: pre-wrap;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100vh;
+  }
+
   /* make the table of contents to the left of the the main content */
-  /* #Tableofcontents {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 20rem;
-      height: 100vh;
-      background-color: #1e1e1e;
-      padding: 1rem;
-      overflow: auto;
-      display: none;
-    } */
+  #Tableofcontents {
+        width: 20rem;
+        overflow: auto;
+        float: left;
+        height: 100vh;
+        /* increase size of text */
+        font-size: 1.2rem;
+    }
+    /* hide the table of contents on mobile screen */
+    @media (max-width: 600px) {
+        #Tableofcontents {
+            display: none;
+        }
+    }
+
 </style>
 </main>
 
