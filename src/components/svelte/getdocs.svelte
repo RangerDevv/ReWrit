@@ -117,8 +117,8 @@
     
   }
 
-  /* make the table of contents to the left of the the body and give it a diff bg color */
-  #Tableofcontents {
+  /* make the table of contents to the left of the the main content */
+  /* #Tableofcontents {
       position: fixed;
       top: 0;
       left: 0;
@@ -128,7 +128,7 @@
       padding: 1rem;
       overflow: auto;
       display: none;
-    }
+    } */
 </style>
 </main>
 
