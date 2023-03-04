@@ -58,7 +58,7 @@ const { data, error } = await supabase
         <div class="flex flex-row text-white w-96 sm:w-7/12 h-auto bg-slate-900 rounded-xl outline-dashed outline-gray-400 justify-between mt-2">
             <div class="flex flex-col">
                 <h1 class="text-left pl-3 text-lg sm:text-2xl pt-2 pb-4 font-bold">{doc.title}</h1>
-                <p class="text-left pl-3 text-sm sm:text-lg pt-2 pb-2 truncate">{doc.description}</p>
+                <p class="text-left pl-3 text-sm sm:text-lg pt-2 pb-2 truncate whitespace-pre-wrap">{doc.description}</p>
             </div>
             <div class="flex flex-row justify-end">
             <button class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-xl"  onclick={`window.location = "/docs/${doc.id}"`}>
