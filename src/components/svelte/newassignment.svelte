@@ -23,6 +23,7 @@
         id?:number,
         created_at?:string,
         user_id?:string,
+        user_email?:string,
     }
 
     interface Contents{
@@ -43,6 +44,7 @@
         id:getRandomInt(10000),
         created_at: current_time,
         user_id: user.id,
+        user_email: user.email,
     }
 
     let Contents: Contents = {
@@ -108,7 +110,7 @@
     }
     async function Push (newAssignment: NewAssignment, contents: Contents ) {
         supabase.from('Documentation').insert([
-            {title: newAssignment.title, description: newAssignment.description, lang: newAssignment.lang, id: newAssignment.id, created_at: newAssignment.created_at, user_id: newAssignment.user_id},
+            {title: newAssignment.title, description: newAssignment.description, lang: newAssignment.lang, id: newAssignment.id, created_at: newAssignment.created_at, user_id: newAssignment.user_id, user_email: newAssignment.user_email},
         ]).then(({ data, error }) => {
             console.log(data)
             console.log(error)

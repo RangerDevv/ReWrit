@@ -6,6 +6,7 @@ export interface Documentation {
     user_id?:string,
     lang:number,
     upvotes:number,
+    user_email?:string,
 }
 
 export interface Language {
