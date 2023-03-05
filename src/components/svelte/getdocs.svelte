@@ -121,6 +121,12 @@
     
   }
 
+  @media (max-width: 600px) {
+    #Code {
+        width: 100%;
+    }
+  }
+
   .body {
     white-space: pre-wrap;
     overflow-x: hidden;
