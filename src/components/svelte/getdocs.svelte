@@ -7,7 +7,7 @@
     import code from 'highlight.js/lib/languages/javascript';
     import SvelteMarkdown from 'svelte-markdown';
     import Highlight from "svelte-highlight";
-    import typescript from "svelte-highlight/languages/typescript";
+    import typescript from "svelte-highlight/languages/javascript";
 
     export let pid: any;
     let contentText: Contents[] = [];
