@@ -6,6 +6,8 @@
     import hljs from 'highlight.js';
     import code from 'highlight.js/lib/languages/javascript';
     import SvelteMarkdown from 'svelte-markdown';
+    import Highlight from "svelte-highlight";
+    import typescript from "svelte-highlight/languages/typescript";
 
     export let pid: any;
     let contentText: Contents[] = [];
@@ -23,17 +25,10 @@
 
     onMount(async () => {
         await getDoc();
-
-        const Code = document.querySelectorAll("#Code") as NodeListOf<HTMLElement>;
-        hljs.registerLanguage('javascript', code);
-
-// loop through all the elements and highlight them
-Code.forEach((block) => {
-    if (block instanceof HTMLElement) {
-        hljs.highlightBlock(block);
-    }
-});
     });
+
+    // why is highlight.js not working
+    // Answer: https://stackoverflow.com/questions/64857593/svelte-highlight-js-not-working
 </script>
 
 <main>
@@ -58,7 +53,8 @@ Code.forEach((block) => {
             <div class="">
               {#if content.is_code}
                     <div class="">
-                        <pre class="" id="Code"><code>{content.text}</code></pre>
+                        <!-- <pre class="" id="Code"><code class="javascript">{content.text}</code></pre> -->
+                        <Highlight language={typescript} code={content.text} id="Code"/>
                     </div>
               {:else}
               <div class="">
@@ -116,13 +112,12 @@ Code.forEach((block) => {
   }
 
   #Code {
-     width: 32rem;
+     width: 40rem;
     height: 20rem;
     overflow: auto;
     /* white space pre wrap */
     white-space: pre-wrap;
     /* center */
-    margin: 0 auto;
     
   }
 
