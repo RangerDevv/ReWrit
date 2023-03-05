@@ -6,7 +6,7 @@
     import hljs from 'highlight.js';
     import code from 'highlight.js/lib/languages/javascript';
     import SvelteMarkdown from 'svelte-markdown';
-    import Highlight from "svelte-highlight";
+    import { HighlightAuto } from "svelte-highlight";
     import javascript from "svelte-highlight/languages/javascript";
 
     export let pid: any;
@@ -54,7 +54,7 @@
               {#if content.is_code}
                     <div class="">
                         <!-- <pre class="" id="Code"><code class="javascript">{content.text}</code></pre> -->
-                        <Highlight code={content.text} id="Code"/>
+                        <HighlightAuto code={content.text} id="Code"/>
                     </div>
               {:else}
               <div class="">
