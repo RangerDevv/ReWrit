@@ -7,7 +7,7 @@
     import code from 'highlight.js/lib/languages/javascript';
     import SvelteMarkdown from 'svelte-markdown';
     import Highlight from "svelte-highlight";
-    import typescript from "svelte-highlight/languages/javascript";
+    import javascript from "svelte-highlight/languages/javascript";
 
     export let pid: any;
     let contentText: Contents[] = [];
@@ -54,7 +54,7 @@
               {#if content.is_code}
                     <div class="">
                         <!-- <pre class="" id="Code"><code class="javascript">{content.text}</code></pre> -->
-                        <Highlight language={typescript} code={content.text} id="Code"/>
+                        <Highlight language={javascript} code={content.text} id="Code"/>
                     </div>
               {:else}
               <div class="">
