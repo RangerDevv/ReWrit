@@ -53,14 +53,13 @@
   {#each contentText as content}
             <div class="">
               {#if content.is_code}
-              <div class="">
-                <pre class="" id="Code"><code>{content.text}</code></pre>
-                </div>
+                    <div class="">
+                        <pre class="" id="Code"><code>{content.text}</code></pre>
+                    </div>
               {:else}
-              <!-- <p class="text-left text-lg text-white">{@html content.text}</p> -->
               <div class="">
                 {#if content.is_toc == false}
-              <SvelteMarkdown source={content.text} />
+                    <SvelteMarkdown source={content.text} />
                 {/if}
               </div>
               {/if}
