@@ -54,7 +54,7 @@
               {#if content.is_code}
                     <div class="">
                         <!-- <pre class="" id="Code"><code class="javascript">{content.text}</code></pre> -->
-                        <Highlight language={javascript} code={content.text} id="Code"/>
+                        <Highlight code={content.text} id="Code"/>
                     </div>
               {:else}
               <div class="">
