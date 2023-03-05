@@ -23,12 +23,16 @@
 
     onMount(async () => {
         await getDoc();
-        const Code = document.querySelectorAll('#Code');
+
+        const Code = document.querySelectorAll("#Code") as NodeListOf<HTMLElement>;
         hljs.registerLanguage('javascript', code);
-        // loop through all the elements and highlight them
-        Code.forEach((block) => {
-          hljs.highlightBlock(block as HTMLElement);
-        });
+
+// loop through all the elements and highlight them
+Code.forEach((block) => {
+    if (block instanceof HTMLElement) {
+        hljs.highlightBlock(block);
+    }
+});
     });
 </script>
 
