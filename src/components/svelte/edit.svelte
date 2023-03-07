@@ -3,7 +3,7 @@
     export let user : any;
     export let pid = 0;
     import { supabase } from "../../lib/backend";
-    import type { Documentation,Contents } from "../../lib/db";
+    import type { Documentation,Contents,Language } from "../../lib/db";
     import { onMount } from "svelte";
 
     let current_time = new Date().toISOString();
@@ -55,6 +55,7 @@
 
     // get the documentation from the database
     let Documentation: Documentation[] = [];
+    let Language: Language[] = [];
     onMount(async () => {
         const { data, error } = await supabase.from("Documentation").select("*").eq("id",pid);
         if (error) {
@@ -152,6 +153,13 @@
     </div>
     {/each}
     <div class="flex flex-row justify-center gap-4">
+        {#each Documentation as doc}
+        <select bind:value={doc.lang} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            {#each Language as lang}
+                <option value={lang.id}>{lang.title}</option>
+            {/each}
+        </select>
+        {/each}
         <button on:click={addContent} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700 mt-7">Text</button>
         <button on:click={addCode} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700 mt-7">Code</button>
     <button on:click={updateContent} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700 mt-7">Update</button>
