@@ -63,6 +63,13 @@
         } else {
             Documentation = data;
         }
+
+        const { data: data2, error: error2 } = await supabase.from("Language").select("*")
+        if (error2) {
+            console.log(error2);
+        } else {
+            Language = data2;
+        }
     });
 
 
