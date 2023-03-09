@@ -22,19 +22,19 @@
         .order("created_at", { ascending: false })
     const docs: Documentation[]=d as Documentation[];
 
-        const { data: u, error: userError } = await supabase
-            .from("Users")
-            .select("*")
+        // const { data: u, error: userError } = await supabase
+        //     .from("Users")
+        //     .select("*")
 
-            supabase.from("Users").insert({
-                user_id: currentUser.id,
-                // email: currentUser.email,
-                user_name: currentUser.email,
-                // avatar: currentUser.avatar_url,
-                // bio: "I'm a new user",
-                created_at: new Date().toISOString(),
-                points : 0,
-            })
+        //     supabase.from("Users").insert({
+        //         user_id: currentUser.id,
+        //         // email: currentUser.email,
+        //         user_name: currentUser.email,
+        //         // avatar: currentUser.avatar_url,
+        //         // bio: "I'm a new user",
+        //         created_at: new Date().toISOString(),
+        //         points : 0,
+        //     })
 
 ---
  
