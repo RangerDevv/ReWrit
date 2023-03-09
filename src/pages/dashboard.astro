@@ -30,8 +30,8 @@
                 usr = u as Users[];
             }
 
-            // if the user is not in the database
-            supabase.from("Users").insert({
+        async function addUsr(){
+            await supabase.from("Users").insert({
                 id: 1,
                 user_id: currentUser,
                 user_name: currentUser.email,
@@ -40,6 +40,9 @@
             }).then((res) => {
                 console.log(res)
             })
+        }
+
+        addUsr()
 ---
  
 <script>
