@@ -30,11 +30,10 @@
             }
         async function addUsr(){
             await supabase.from("Users").insert({
-                id: 1,
-                user_id: currentUser,
+                user_id: currentUser.uuid,
                 user_name: currentUser.email,
                 created_at: new Date().toISOString(),
-                points : 0,
+                points: 0,
             }).then((res) => {
                 console.log(res)
             })
