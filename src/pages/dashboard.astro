@@ -34,7 +34,7 @@
         const { error } = await supabase.auth.updateUser({
             data: {
                 // metadata
-                user_metadata: {
+                raw_user_meta_data: {
                     name: "John Doe",
                 },
             },
