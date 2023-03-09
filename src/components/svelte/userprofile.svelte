@@ -10,6 +10,7 @@ async function updateName() {
         name: name,
     },
     })
+    window.location.href = "/dashboard";
 }
 
 async function updateEmail() {    
