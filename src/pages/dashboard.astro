@@ -27,7 +27,7 @@
             .from("User")
             .select("*")
 
-            supabase.from("Users").upsert({
+            supabase.from("Users").insert({
                 user_id: currentUser.id,
                 email: currentUser.email,
                 user_name: currentUser.email,
