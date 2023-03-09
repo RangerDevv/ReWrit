@@ -44,7 +44,7 @@
         id:getRandomInt(10000),
         created_at: current_time,
         user_id: user.id,
-        user_email: user.email,
+        user_email: user.user_metadata.name,
     }
 
     let Contents: Contents = {

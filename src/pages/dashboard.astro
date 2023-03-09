@@ -21,28 +21,6 @@
         // order by the time created
         .order("created_at", { ascending: false })
     const docs: Documentation[]=d as Documentation[];let usr: Users[] =data as Users[]; 
-
-        const { data: u, error: userError } = await supabase
-            .from("Users")
-            .select("*")
-            if(u){
-                usr = u as Users[];
-            }
-        async function addUsr(){
-            await supabase.from("Users").insert({
-                user_id: currentUser.uuid,
-                user_name: currentUser.email,
-                created_at: new Date().toISOString(),
-                points: 0,
-            }).then((res) => {
-                console.log(res)
-            })
-            if(userError){
-                console.log(userError)
-            }
-        }
-
-        addUsr()
 ---
  
 <script>

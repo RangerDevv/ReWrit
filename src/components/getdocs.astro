@@ -26,10 +26,6 @@ const { pid } = Astro.props
     
     const currlang: Language[] = (await supabase.from('Language').select('*').eq('id', doc[0].lang)).data as Language[]
 
-    let Usr= [] = [] as any
-    const { data, error } = await supabase.from('auth').select('*').eq('id', doc[0].user_id)
-    Usr = data
-
     const moredocs: Documentation[] = (await supabase.from('Documentation').select('*').eq('lang', doc[0].lang).neq('id', pid).limit(5)).data as Documentation[]
 
     console.log(doc);
@@ -45,8 +41,8 @@ const { pid } = Astro.props
     <div class="flex text-white flex-col gap-2">
         <p class=" text-center text-2xl">{title}</p>
         <p class=" text-center text-xl">{description}</p>
-        <!-- get the supabase metadata name -->
-        <p class=" text-center text-xl">By: {Usr[0].user_metadata.name}</p>
+        <p class=" text-center text-xl">By: {user_email}</p>
+        <!-- <p class=" text-center text-xl">By {user_name}</p> -->
         <div class="flex justify-center gap-2">
              {owner && <button onclick={`window.location = "/edit/${pid}"`} class="btn btn-error btn-sm btn-square btn-outline text-white place-self-center pl-2 pr-2 h-12 text-xl w-24 bg-green-700 rounded-lg mt-5">Edit</button>} 
          <Comnt client:only="svelte" id={pid} />
