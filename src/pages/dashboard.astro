@@ -31,11 +31,6 @@
     }else {        
         // window.location.href = "/dashboard"
         // change the user's name to John Doe
-        const { error } = await supabase.auth.updateUser({
-            data: {
-                    name: "RangerDevv",
-            },
-        })
 
 }
 </script>
@@ -51,7 +46,7 @@
     {!currentUser && <img src={`https://avatars.dicebear.com/api/bottts/${Math.random()}.svg`} id="Avatar" class="w-32 h-32 rounded-full mx-auto mt-10" />}
 
     <div class="flex justify-center">
-        <!-- {currentUser && <button class="bg-orange-700 hover:bg-orange-800 text-white font-bold py-2 px-4 rounded-full mt-6">Profile</button>} -->
+        {currentUser && <a href="/profile"><button class="bg-orange-700 hover:bg-orange-800 text-white font-bold py-2 px-4 rounded-full mt-6">Profile Settings</button></a>}
     </div>
     <!-- made with ❤️ by @RangerDevv -->
     <p class="text-white text-center text-sm mt-6">Made with ❤️ by <a href="https://github.com/RangerDevv" class="text-blue-500">RangerDevv</a></p>
