@@ -26,16 +26,13 @@
     onMount(async () => {
         await getDoc();
     });
-
-    // why is highlight.js not working
-    // Answer: https://stackoverflow.com/questions/64857593/svelte-highlight-js-not-working
 </script>
 
 <main>
 <div>
     <!--  loop through the content and display only is_toc = true as a table of contents -->
     <div class="" id="Tableofcontents">
-        <h1 class="">📰Contents</h1>
+        <h1 class="">📰 Contents</h1>
         <div class="">
             <ul class="">
                 {#each contentText as content}

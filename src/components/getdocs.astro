@@ -24,9 +24,9 @@ const { pid } = Astro.props
     const doc: Documentation[] = (await supabase.from('Documentation').select('*').eq('id', pid)).data as Documentation[]
     const { title, description,upvotes,user_email } = doc[0];
     
-    const lang: Language[] = (await supabase.from('Language').select('*').eq('id', doc[0].lang)).data as Language[]
+    const currlang: Language[] = (await supabase.from('Language').select('*').eq('id', doc[0].lang)).data as Language[]
 
-    const moredocs: Documentation[] = (await supabase.from('Documentation').select('*').eq('lang', lang).limit(5)).data as Documentation[]
+    const moredocs: Documentation[] = (await supabase.from('Documentation').select('*').eq('lang', doc[0].lang).neq('id', pid).limit(5)).data as Documentation[]
 
     console.log(doc);
 
@@ -49,13 +49,12 @@ const { pid } = Astro.props
     </div>
     <Getdocs client:only="svelte" pid={pid} />
     <div class="flex flex-col gap-2">
-        <p class=" text-center text-2xl">More Docs</p>
-        <div class="flex flex-col gap-2">
-            {moredocs.map((doc) => (
-                <div class="flex flex-col gap-2">
-                    <a href={`/docs/${doc.id}`} class="text-center text-xl">{doc.title}</a>
-                    <p class=" text-center text-xl">{doc.description}</p>
-                    <p class=" text-center text-xl">By: {doc.user_email}</p>
+        <div class="flex flex-col gap-2 justify-center sm:justify-start ">
+            <p class=" text-center text-2xl">More Docs</p>
+            {moredocs?.map((doc) => (
+                <div class="flex flex-col gap-2 w-96 sm:w-7/12 h-auto bg-gray-800 rounded-lg cursor-pointer self-center" onclick={`window.location = "/docs/${doc.id}"`}>
+                    <p class=" text-center text-xl pt-4">{doc.title}</p>
+                    <p class=" text-center text-lg pb-4">{doc.description}</p>
                 </div>
             ))}
         </div>
