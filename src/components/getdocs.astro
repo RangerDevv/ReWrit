@@ -5,7 +5,7 @@ export interface Props {
 
 import Layout from "../layouts/Layout.astro";
 import { supabase } from "../lib/backend";
-import { onMount } from "svelte/internal";
+import { identity, onMount } from "svelte/internal";
 import Comnt from "./svelte/comnt.svelte";
 import Getdocs from "./svelte/getdocs.svelte";
 
@@ -20,8 +20,13 @@ var authed = currentUser !== null
 
 const { pid } = Astro.props
 
+
     const doc: Documentation[] = (await supabase.from('Documentation').select('*').eq('id', pid)).data as Documentation[]
     const { title, description,upvotes,user_email } = doc[0];
+    
+    const lang: Language[] = (await supabase.from('Language').select('*').eq('id', doc[0].lang)).data as Language[]
+
+    const moredocs: Documentation[] = (await supabase.from('Documentation').select('*').eq('lang', lang).limit(5)).data as Documentation[]
 
     console.log(doc);
 
@@ -43,6 +48,18 @@ const { pid } = Astro.props
          </div>
     </div>
     <Getdocs client:only="svelte" pid={pid} />
+    <div class="flex flex-col gap-2">
+        <p class=" text-center text-2xl">More Docs</p>
+        <div class="flex flex-col gap-2">
+            {moredocs.map((doc) => (
+                <div class="flex flex-col gap-2">
+                    <a href={`/docs/${doc.id}`} class="text-center text-xl">{doc.title}</a>
+                    <p class=" text-center text-xl">{doc.description}</p>
+                    <p class=" text-center text-xl">By: {doc.user_email}</p>
+                </div>
+            ))}
+        </div>
+    </div>
 </div>
 </main>
 </Layout>
