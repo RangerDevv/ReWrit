@@ -39,18 +39,9 @@
                 // bio: "I'm a new user",
                 created_at: new Date().toISOString(),
                 points : 0,
+            }).then((res) => {
+                console.log(res)
             })
-
-            // supabase.from("Users").insert({
-            //     user_id: currentUser.id,
-            //     // email: currentUser.email,
-            //     user_name: currentUser.email,
-            //     // avatar: currentUser.avatar_url,
-            //     // bio: "I'm a new user",
-            //     created_at: new Date().toISOString(),
-            //     points : 0,
-            // })
-    }
 ---
  
 <script>
