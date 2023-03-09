@@ -2,6 +2,9 @@
 
 import Layout from "../layouts/Layout.astro";
 import Userprofile from "../components/svelte/userprofile.svelte";
+import { supabase } from "../lib/backend";
+
+const currentUser = (await supabase.auth.getUser(Astro.cookies.get("my-access-token").value)).data.user as any;
 
 ---
 <script>
@@ -16,5 +19,5 @@ import Userprofile from "../components/svelte/userprofile.svelte";
 }
 </script>
 <Layout title="User Profile">
-    <Userprofile  client:only="svelte" />
+    <Userprofile  client:only="svelte" uuid={currentUser.id} />
 </Layout>

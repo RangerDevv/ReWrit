@@ -1,6 +1,7 @@
 <script lang="ts">
 import { supabase } from "../../lib/backend";
 
+export let uuid = "";
 let name = "";
 let email = "";
 
@@ -11,6 +12,19 @@ async function updateName() {
     },
     })
     window.location.href = "/dashboard";
+    // get the docs from the database
+    const { data: d, error: docsError } = await supabase
+        .from("Documentation")
+        .select("user_email")
+        .eq("user_id", uuid)
+    
+    // change the user_email to the new name if the user_id matches the uuid in the database
+    if(d){
+        await supabase
+            .from("Documentation")
+            .upsert({ user_email: name })
+            .eq("user_id", uuid)
+    }
 }
 
 async function updateEmail() {    
