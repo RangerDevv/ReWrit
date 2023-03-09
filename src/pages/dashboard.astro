@@ -30,6 +30,15 @@
         // window.location.href = "/"
     }else {        
         // window.location.href = "/dashboard"
+        // change the user's name to John Doe
+        const { error } = await supabase.auth.updateUser({
+            data: {
+                // metadata
+                user_metadata: {
+                    name: "John Doe",
+                },
+            },
+        })
 
 }
 </script>
