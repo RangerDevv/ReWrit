@@ -22,9 +22,8 @@
         .order("created_at", { ascending: false })
     const docs: Documentation[]=d as Documentation[];
 
-    if (currentUser) {
         const { data: u, error: userError } = await supabase
-            .from("User")
+            .from("Users")
             .select("*")
 
             supabase.from("Users").insert({
@@ -36,7 +35,7 @@
                 created_at: new Date().toISOString(),
                 points : 0,
             })
-    }
+
 ---
  
 <script>
