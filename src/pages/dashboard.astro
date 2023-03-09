@@ -1,6 +1,6 @@
 ---
  import { supabase } from "../lib/backend";
- import type { Language , Documentation } from "../lib/db";
+ import type { Language , Documentation, Users } from "../lib/db";
  import Logout from "../components/logout.svelte";
  import Layout from "../layouts/Layout.astro";
  import Search from "../components/svelte/search.svelte";
@@ -20,22 +20,37 @@
         .select("*")
         // order by the time created
         .order("created_at", { ascending: false })
-    const docs: Documentation[]=d as Documentation[];
+    const docs: Documentation[]=d as Documentation[];let usr: Users[] =data as Users[]; 
 
-        // const { data: u, error: userError } = await supabase
-        //     .from("Users")
-        //     .select("*")
+    if(currentUser){
+        const { data: u, error: userError } = await supabase
+            .from("Users")
+            .select("*")
+            if(u){
+                usr = u as Users[];
+            }
 
-        //     supabase.from("Users").insert({
-        //         user_id: currentUser.id,
-        //         // email: currentUser.email,
-        //         user_name: currentUser.email,
-        //         // avatar: currentUser.avatar_url,
-        //         // bio: "I'm a new user",
-        //         created_at: new Date().toISOString(),
-        //         points : 0,
-        //     })
+            // if the user is not in the database
+            supabase.from("Users").insert({
+                user_id: currentUser.id,
+                // email: currentUser.email,
+                user_name: currentUser.email,
+                // avatar: currentUser.avatar_url,
+                // bio: "I'm a new user",
+                created_at: new Date().toISOString(),
+                points : 0,
+            })
 
+            // supabase.from("Users").insert({
+            //     user_id: currentUser.id,
+            //     // email: currentUser.email,
+            //     user_name: currentUser.email,
+            //     // avatar: currentUser.avatar_url,
+            //     // bio: "I'm a new user",
+            //     created_at: new Date().toISOString(),
+            //     points : 0,
+            // })
+    }
 ---
  
 <script>
