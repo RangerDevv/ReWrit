@@ -15,7 +15,7 @@ async function updateName() {
     // get the docs from the database
     const { data: d, error: docsError } = await supabase
         .from("Documentation")
-        .select("user_email")
+        .select("*")
         .eq("user_id", uuid)
     
     // change the user_email to the new name if the user_id matches the uuid in the database
