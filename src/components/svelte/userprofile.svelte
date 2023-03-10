@@ -18,6 +18,7 @@ async function updateName() {
         .select("*")
         .eq("user_id", uuid)
     
+        console.log(d)
     // change the user_email to the new name if the user_id matches the uuid in the database
     if(d){
         await supabase
