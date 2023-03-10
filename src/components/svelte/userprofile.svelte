@@ -24,14 +24,12 @@ onMount(async () => {
 })
 
 async function updateName() {    
-    const { error } = await supabase.auth.updateUser({
-    data: {
-        name: name,
-    },
-    })
-    if(error){
-        console.log(error)
-    }
+
+    const { data: user, error } = await supabase.auth.admin.updateUserById(
+    uuid,
+  { user_metadata: { hello: 'world' } }
+)
+
 
     // loop through the docs array and set the user_email field to the name variable
     docs.forEach((doc) => {
