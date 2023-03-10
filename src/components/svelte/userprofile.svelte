@@ -1,9 +1,24 @@
 <script lang="ts">
 import { supabase } from "../../lib/backend";
+import { Documentation } from "../../lib/db";
+import { onMount } from "svelte";
 
 export let uuid : any;
 let name = "";
 let email = "";
+
+onMount(async () => {
+    const { data, error } = await supabase
+        .from("Documentation")
+        .select("*")
+        .eq("user_id", uuid)
+    if(data){
+        name = data[0].user_email
+    }
+    if(error){
+        console.log(error)
+    }
+})
 
 async function updateName() {    
     const { error } = await supabase.auth.updateUser({
@@ -12,23 +27,13 @@ async function updateName() {
     },
     })
     window.location.href = "/dashboard";
-    // get the docs from the database
-    const { data: d, error: docsError } = await supabase
+
+    // upsert the name into the documentation table
+    const { data } = await supabase
         .from("Documentation")
-        .select("*")
-        .eq("user_id", uuid)
-    
-        console.log(d)
-    // change the user_email to the new name if the user_id matches the uuid in the database
-    if(d){
-        await supabase
-            .from("Documentation")
-            .upsert({ user_email: name })
-            .eq("user_id", uuid)
-    }
-    if(docsError){
-        console.log(docsError)
-    }
+        .upsert({
+            user_name: name,
+        })
 }
 
 async function updateEmail() {    
