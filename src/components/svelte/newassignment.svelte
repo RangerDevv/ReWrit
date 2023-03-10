@@ -160,9 +160,13 @@
         <!-- table of content -->
         {#each contenttext as content (content.id)}
             <div class="flex flex-col pt-7 w-full place-items-center">
-            <!-- <textarea rows="6" bind:value={content.text} placeholder="Contents (This text editor uses Markdown. Please use the markdown syntax.)" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white rounded-b-lg outline-none" id={"content" + content.number}/> -->
-            <Txtbox bind:value={content.text} />
 
+            {#if content.is_code ==false}
+            <Txtbox bind:value={content.text} />
+            {/if}
+            {#if content.is_code ==true}
+            <textarea rows="6" bind:value={content.text} placeholder="Contents (This text editor uses Markdown. Please use the markdown syntax.)" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white rounded-b-lg outline-none" id={"content" + content.number}/>
+            {/if}
             </div>
             <button on:click={() => removeContent(contenttext.indexOf(content))} class="block p-2.5 w-24 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-7">Remove</button>
         {/each}
