@@ -9,7 +9,7 @@
         return Math.floor(Math.random() * Math.floor(max));
     }
 
-    // export let user : any;
+    export let user : any;
 
     let contnumber = 0;
 
@@ -43,8 +43,8 @@
         lang: 0,
         id:getRandomInt(10000),
         created_at: current_time,
-        // user_id: user.id,
-        // user_email: user.user_metadata.name,
+        user_id: user.id,
+        user_email: user.user_metadata.name,
     }
 
     let Contents: Contents = {
@@ -54,7 +54,7 @@
         text: "",
         connect: NewAssignment.id,
         is_code: false,
-        // user_id: user.id,
+        user_id: user.id,
         is_toc: false,
     }
 
@@ -72,12 +72,12 @@
 
     // make the items in the array equal to the content of Contents
     let contenttext: Contents[] = []
-    const addContent = () => contenttext = [...contenttext, {text: "", id: getRandomInt(10000), created_at: current_time , number: contnumber, is_code: false, }]
+    const addContent = () => contenttext = [...contenttext, {text: "", id: getRandomInt(10000), created_at: current_time , number: contnumber, is_code: false, user_id: user.id,}]
     function removeContent(index: number) {
         contenttext.splice(index, 1)
         contenttext = [...contenttext]
     }
-    const addCode = () => {contenttext = [...contenttext, {text: "", id: getRandomInt(10000), created_at: current_time , number: contnumber, is_code: true, }]}
+    const addCode = () => {contenttext = [...contenttext, {text: "", id: getRandomInt(10000), created_at: current_time , number: contnumber, is_code: true, user_id: user.id,}]}
 
     console.log(contenttext)
 
