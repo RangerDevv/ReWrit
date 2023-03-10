@@ -140,7 +140,7 @@
             // loop through the array and insert the contents
             setTimeout(() => {
             // go to the docs/newAssignment.id
-            // window.location.href = "/docs/" + newAssignment.id
+            window.location.href = "/docs/" + newAssignment.id
         }, 1500);
         }
 
