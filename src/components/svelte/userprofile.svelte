@@ -1,11 +1,13 @@
 <script lang="ts">
 import { supabase } from "../../lib/backend";
-import { Documentation } from "../../lib/db";
+import type { Documentation } from "../../lib/db";
 import { onMount } from "svelte";
 
 export let uuid : any;
 let name = "";
 let email = "";
+
+let docs : Documentation[] = [] as any;
 
 onMount(async () => {
     const { data, error } = await supabase
@@ -14,6 +16,7 @@ onMount(async () => {
         .eq("user_id", uuid)
     if(data){
         name = data[0].user_email
+        docs = data
     }
     if(error){
         console.log(error)
@@ -28,13 +31,15 @@ async function updateName() {
     })
     window.location.href = "/dashboard";
 
-    // upsert the name into the documentation table
+    // loop through the docs array and set the user_email field to the name variable
+    docs.forEach((doc) => {
+        doc.user_email = name
+    })
+    // set the name to the user_email field from the docs array
+
     await supabase
         .from("Documentation")
-        .upsert({
-            user_id: uuid,
-            user_email: name,
-        })
+        .upsert(docs)
         .eq("user_id", uuid)
 }
 
