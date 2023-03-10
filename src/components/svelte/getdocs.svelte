@@ -8,6 +8,7 @@
     import SvelteMarkdown from 'svelte-markdown';
     import { HighlightAuto } from "svelte-highlight";
     import javascript from "svelte-highlight/languages/javascript";
+  import { fix } from 'svelte-highlight/languages';
 
     export let pid: any;
     let contentText: Contents[] = [];
@@ -31,6 +32,7 @@
 <main>
 <div>
     <!--  loop through the content and display only is_toc = true as a table of contents -->
+    <div style="position: sticky; top: 0; z-index: 1; padding: 1rem;">
     <div class="" id="Tableofcontents">
         <h1 class="">📰 Contents</h1>
         <div class="">
@@ -44,6 +46,7 @@
                 {/each}
             </ul>
         </div>
+    </div>
     </div>
 <div class="body">
   {#each contentText as content}
@@ -126,17 +129,24 @@
 
   .body {
     white-space: pre-wrap;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    height: 100vh;
+    /* overflow-x: hidden; */
+    /* overflow-y: scroll; */
+    padding-left: 20rem;
   }
+
+    @media (max-width: 600px) {
+        .body {
+            padding-left: 0;
+        }
+    }
 
   /* make the table of contents to the left of the the main content */
   #Tableofcontents {
+        position: sticky;
+        top: 0;
         width: 20rem;
         overflow: auto;
         float: left;
-        height: 100vh;
         /* increase size of text */
         font-size: 1.2rem;
     }

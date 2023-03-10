@@ -39,9 +39,11 @@ const { pid } = Astro.props
 <Layout title="Docs">
 <main>
 <div>
-    <div class="flex text-white flex-col gap-2">
-        <p class=" text-center text-2xl">{title}</p>
-        <p class=" text-center text-xl">{description}</p>
+    <div class="flex text-white flex-col sm:flex-row gap-2 justify-evenly">
+        <div class="flex flex-col gap-5">
+            <p class=" text-center text-xl">{title}</p>
+            <p class=" text-center text-lg w-96">{description}</p>
+        </div>
         <p class=" text-center text-xl">By: {user_email}</p>
         <!-- <p class=" text-center text-xl">By {user_name}</p> -->
         <div class="flex justify-center gap-2">
