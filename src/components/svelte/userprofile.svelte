@@ -29,7 +29,9 @@ async function updateName() {
         name: name,
     },
     })
-    window.location.href = "/dashboard";
+    if(error){
+        console.log(error)
+    }
 
     // loop through the docs array and set the user_email field to the name variable
     docs.forEach((doc) => {
@@ -41,6 +43,8 @@ async function updateName() {
         .from("Documentation")
         .upsert(docs)
         .eq("user_id", uuid)
+
+        window.location.href = "/dashboard";
 }
 
 async function updateEmail() {    
