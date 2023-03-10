@@ -27,7 +27,7 @@ async function updateName() {
 
     const { data: user, error } = await supabase.auth.admin.updateUserById(
     uuid,
-  { user_metadata: { hello: 'world' } }
+  { user_metadata: { name: name } },
 )
 
 
