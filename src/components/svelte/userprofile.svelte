@@ -29,11 +29,13 @@ async function updateName() {
     window.location.href = "/dashboard";
 
     // upsert the name into the documentation table
-    const { data } = await supabase
+    await supabase
         .from("Documentation")
         .upsert({
-            user_name: name,
+            user_id: uuid,
+            user_email: name,
         })
+        .eq("user_id", uuid)
 }
 
 async function updateEmail() {    
