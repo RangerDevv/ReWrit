@@ -1,7 +1,7 @@
 <script lang="ts">
 import { supabase } from "../../lib/backend";
 
-export let uuid = "";
+export let uuid = "" as any;
 let name = "";
 let email = "";
 
@@ -23,7 +23,7 @@ async function updateName() {
         await supabase
             .from("Documentation")
             .upsert({ user_email: name })
-            .eq("user_id", uuid)
+            .eq("user_id", uuid.id)
     }
     if(docsError){
         console.log(docsError)
