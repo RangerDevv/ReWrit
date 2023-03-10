@@ -19,5 +19,5 @@ const currentUser = (await supabase.auth.getUser(Astro.cookies.get("my-access-to
 }
 </script>
 <Layout title="User Profile">
-    <Userprofile  client:only="svelte" uuid={currentUser.id} />
+    <Userprofile  client:only="svelte" uuid={currentUser} />
 </Layout>

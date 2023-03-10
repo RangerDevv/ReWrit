@@ -25,6 +25,9 @@ async function updateName() {
             .upsert({ user_email: name })
             .eq("user_id", uuid)
     }
+    if(docsError){
+        console.log(docsError)
+    }
 }
 
 async function updateEmail() {    
