@@ -1,9 +1,6 @@
 <script lang="ts">
   import { prevent_default } from "svelte/internal";
 
-
-
-
 export let value: string = "";
 // add bold to the selected text
 function bold(this: any) {
@@ -32,21 +29,6 @@ function italic(this: any) {
     text.focus();
     text.selectionStart = start + 1;
     text.selectionEnd = end + 1;
-    // update the value
-    value = text.value;
-}
-// add underline to the selected text
-function underline(this: any) {
-    prevent_default;
-    let text = this.parentNode.parentNode.querySelector("textarea");
-    let start = text.selectionStart;
-    let end = text.selectionEnd;
-    let selected = text.value.substring(start, end);
-    let replacement = "__" + selected + "__";
-    text.value = text.value.substring(0, start) + replacement + text.value.substring(end);
-    text.focus();
-    text.selectionStart = start + 2;
-    text.selectionEnd = end + 2;
     // update the value
     value = text.value;
 }
@@ -185,13 +167,12 @@ function h6(this: any) {
 <div class="flex w-96 sm:w-1/2 bg-gray-700 rounded-t-lg items-center h-auto">
 
 <!-- headings -->
-<button class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50  focus:ring-blue-500 focus: dark:bg-gray-700 dark: dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus: rounded-tl-lg" on:click={h1}><h1>Heading 1</h1></button>
-<button class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50  focus:ring-blue-500 focus: dark:bg-gray-700 dark: dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:" on:click={h2}><h2>Heading 2</h2></button>
-<button class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50  focus:ring-blue-500 focus: dark:bg-gray-700 dark: dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:" on:click={h3}><h3>Heading 3</h3></button>
+<button class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50  focus:ring-blue-500 focus: dark:bg-gray-700 dark: dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus: rounded-tl-lg" on:click={h1}><h1 class="text-xl">Heading 1</h1></button>
+<button class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50  focus:ring-blue-500 focus: dark:bg-gray-700 dark: dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:" on:click={h2}><h2 class=" text-lg">Heading 2</h2></button>
+<button class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50  focus:ring-blue-500 focus: dark:bg-gray-700 dark: dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:" on:click={h3}><h3 class="text-md">Heading 3</h3></button>
 <button class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50  focus:ring-blue-500 focus: dark:bg-gray-700 dark: dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus: rounded-tl-lg" on:click={bold
 }><strong>B</strong></button>
 <button class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50  focus:ring-blue-500 focus: dark:bg-gray-700 dark: dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:" on:click={italic}><em>I</em></button>
-<button class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50  focus:ring-blue-500 focus: dark:bg-gray-700 dark: dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:" on:click={underline}><u>U</u></button>
 <button class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50  focus:ring-blue-500 focus: dark:bg-gray-700 dark: dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:" on:click={strikethrough}><s>S</s></button>
 <button class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50  focus:ring-blue-500 focus: dark:bg-gray-700 dark: dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus: " on:click={code}><code>Code</code></button>
 <!-- link -->
