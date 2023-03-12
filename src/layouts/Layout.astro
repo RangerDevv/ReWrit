@@ -2,12 +2,15 @@
 import Logout from '../components/logout.svelte';
 import Login from '../components/login.svelte';
 import { supabase } from '../lib/backend.js';
+import Search from '../components/svelte/search.svelte';
 
 export interface Props {
 	title: string,
 	loggedIn?: boolean
+	currlocation?: string
+	path?: string
 }
-const { title, loggedIn = false } = Astro.props;
+const { title, loggedIn = false, currlocation="Documentation", path="docs" } = Astro.props as Props
 const refreshToken = Astro.cookies.get("my-refresh-token").value
 const accessToken = Astro.cookies.get("my-access-token").value
 if (refreshToken && accessToken) {
@@ -31,9 +34,10 @@ var authed = currentUser !== null
 		<title>{title}</title>
 	</head>
 	<body>
-		<nav class="bg-[#03001C] w-screen gap-6 mt-6 flex flex-row justify-between">
-			{!authed && <a href="/" class="text-white text-xl pl-4 font-semibold">Home</a>}
+		<nav class="bg-[#03001C] w-screen gap-6 mt-6 flex flex-row justify-around">
+			{!authed && <a href="/" class="text-white text-xl pl-4 font-semibold pt-2">Home</a>}
 			{authed && <a href="/dashboard" class="text-white pl-4 text-xl pt-2 font-semibold">Home</a>}
+			<Search client:only="svelte" currLocation={currlocation} path={path} />
 			<div class="flex flex-row gap-3 mr-6">
 				{!authed && <Login client:only="svelte"/>}
 				{authed && <a href="/newassignment" class="bg-white text-black px-4 py-2 h-10 text-sm sm:text-base rounded-lg">Create <span class="font-extrabold">+</span></a>}

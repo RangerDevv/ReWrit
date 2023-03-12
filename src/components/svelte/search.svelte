@@ -55,7 +55,7 @@
 </div> -->
 
 <div class=" flex justify-center mt-4 pb-4" id="Search_Modal">
-    <input type="text" bind:value={search} on:input={searchReq}  class="text-black w-56 h-8 bg-gray-300 outline-none rounded-md pl-2" placeholder="Search 🔎"/>
+    <input type="text" bind:value={search} on:input={searchReq}  class="text-black w-96 h-8 bg-gray-300 outline-none rounded-md pl-2" placeholder="Search 🔎"/>
     {#if results.length > 0}
     <div class=" w-96 h-60 overflow-y-scroll fixed mt-11 bg-slate-900 rounded-md shadow-xl">
     {#each results as result}

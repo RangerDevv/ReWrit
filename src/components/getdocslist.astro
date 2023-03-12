@@ -6,7 +6,7 @@ export interface Props {
 import Layout from "../layouts/Layout.astro";
 import { supabase } from "../lib/backend";
 import type { Documentation, Language, Comments } from "../lib/db";
-import Search from "./svelte/search.svelte";
+// import Search from "./svelte/search.svelte";
 
 const { pid } = Astro.props
 
@@ -36,15 +36,6 @@ const { data, error } = await supabase
             console.log(d);
         }
 
-    const { data: searchResults, error: er} = await supabase
-        .from("Documentation")
-        .select("*")
-        .ilike("title", `%${search}%`)
-        .order("id", { ascending: false })
-        .limit(10)
-        
-        let searchResultsDocs: Documentation[]=searchResults as Documentation[];
-
 ---
 
 <Layout title="LangPlace">
@@ -52,10 +43,10 @@ const { data, error } = await supabase
     <!-- description -->
     <p class="text-sm sm:text-lg text-white text-center pl-16 pr-16 pt-4"><span class="w-72">{language[0]?.description}</span></p>
     
-    <Search client:only="svelte" currLocation={"Documentation"} path={"docs"} />
+    <!-- <Search client:only="svelte" currLocation={"Documentation"} path={"docs"} /> -->
     <div class=" flex flex-col sm:row-2 gap-10 place-items-center sm:justify-center">
     {filteredDocs && filteredDocs.map((doc: Documentation) => (
-        <div class="flex flex-row text-white w-96 sm:w-7/12 h-auto bg-slate-900 rounded-xl outline-dashed outline-gray-400 justify-between mt-2">
+        <div class="flex flex-row text-white w-96 sm:w-7/12 h-auto bg-zinc-900 rounded-xl outline-dashed outline-gray-400 justify-between mt-2">
             <div class="flex flex-col">
                 <h1 class="text-left pl-3 text-lg sm:text-2xl pt-2 pb-4 font-bold">{doc.title}</h1>
                 <p class="text-left pl-3 text-sm sm:text-lg pt-2 pb-2 truncate whitespace-pre-wrap">{doc.description}</p>
