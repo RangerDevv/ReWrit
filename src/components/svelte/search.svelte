@@ -7,6 +7,16 @@
     export let path = "";
     let search = "";
     let results: any[] = [];
+    let language = [] as any[];
+
+    onMount(async () => {
+        const { data: lang, error } = await supabase
+            .from("Language")
+            .select("*")
+            .order("id", { ascending: false })
+            .limit(10)
+        language = lang || [];
+    });
 
     async function searchReq(){
     const { data: searchResults, error: er} = await supabase
@@ -47,22 +57,20 @@
 <div class=" flex justify-center mt-4 pb-4" id="Search_Modal">
     <input type="text" bind:value={search} on:input={searchReq}  class="text-black w-56 h-8 bg-gray-300 outline-none rounded-md pl-2" placeholder="Search 🔎"/>
     {#if results.length > 0}
-    <div class=" w-96 h-60 overflow-y-scroll fixed mt-11 bg-zinc-700 rounded-md">
+    <div class=" w-96 h-60 overflow-y-scroll fixed mt-11 bg-slate-900 rounded-md shadow-xl">
     {#each results as result}
-            <div class="flex flex-row text-white w-full h-auto bg-zinc-700 justify-between mt-1 mb-1">
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <div class="flex flex-row text-white w-96 h-auto justify-center cursor-pointer mt-1 mb-1" on:click={() => {
+                window.location.href = `/${path}/${result.id}`;}}>
                 <div class="flex flex-col">
-                    <h1 class="text-left pl-3 text-lg pt-2 pb-4 font-bold">{result.title}</h1>
-                    <p class="text-left pl-3 text-sm pt-2 pb-2 truncate w-80">{result.description}</p>
-                </div>
-                <div class="flex flex-row justify-end">
-                <button class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"  on:click={() => {
-                    window.location.href = `/${path}/${result.id}`;}}>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-4 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                </button>
+                    <h1 class="text-left pl-3 text-lg pt-2 pb-1 font-bold">{result.title}</h1>
+                    <!-- get the language id from the document and get the language name from the language array and display it -->
+                    <p class="text-left pl-3 text-sm pt-2 pb-2 truncate w-80">Category: {language.find((lang) => lang.id === result.lang).title}</p>
+                    <p class="text-left pl-3 text-sm pt-1 pb-2 truncate w-80">{result.description}</p>
                 </div>
             </div>
+            <!-- divider -->
+            <div class="w-96 h-0.5 bg-gray-300"></div>
     {/each}  
 </div>
     {/if}
@@ -72,7 +80,7 @@
 
 /* make the overlfow scrollbar size to 10px */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 0;
 }
 
 </style>
