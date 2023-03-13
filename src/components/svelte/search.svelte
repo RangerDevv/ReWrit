@@ -55,12 +55,12 @@
 </div> -->
 
 <div class=" flex justify-center mt-4 pb-4" id="Search_Modal">
-    <input type="text" bind:value={search} on:input={searchReq}  class="text-black w-96 h-8 bg-gray-300 outline-none rounded-md pl-2" placeholder="Search 🔎"/>
+    <input type="text" bind:value={search} on:input={searchReq}  class="text-black w-52 sm:w-96 h-8 bg-gray-300 outline-none rounded-md pl-2" placeholder="Search 🔎"/>
     {#if results.length > 0}
-    <div class=" w-96 h-60 overflow-y-scroll fixed mt-11 bg-slate-900 rounded-md shadow-xl">
+    <div class=" w-96 h-60 overflow-y-scroll fixed mt-11 bg-slate-900 rounded-md shadow-xl z-50">
     {#each results as result}
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <div class="flex flex-row text-white w-96 h-auto justify-center cursor-pointer mt-1 mb-1" on:click={() => {
+            <div class="flex flex-row text-white w-96 h-auto justify-center cursor-pointer mt-1 mb-1 " on:click={() => {
                 window.location.href = `/${path}/${result.id}`;}}>
                 <div class="flex flex-col">
                     <h1 class="text-left pl-3 text-lg pt-2 pb-1 font-bold">{result.title}</h1>

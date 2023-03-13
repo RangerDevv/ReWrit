@@ -39,8 +39,18 @@ var authed = currentUser !== null
 			{authed && <a href="/dashboard" class="text-white pl-4 text-xl pt-2 font-semibold">Home</a>}
 			<Search client:only="svelte" currLocation={currlocation} path={path} />
 			<div class="flex flex-row gap-3 mr-6">
-				{!authed && <Login client:only="svelte"/>}
-				{authed && <a href="/newassignment" class="bg-white text-black px-4 py-2 h-10 text-sm sm:text-base rounded-lg">Create <span class="font-extrabold">+</span></a>}
+				<div class="dropdown dropdown-end block sm:hidden">
+					<label tabindex="0" class="btn m-1 text-white  bg-gray-800">Menu 🔻</label>
+					<ul tabindex="0" class="dropdown-content menu p-2 shadow bg-zinc-900 rounded-box w-52 ">
+						{!authed && <Login client:only="svelte"/>}
+						{authed && <a href="/newassignment" class="bg-white text-black px-4 py-2 h-10 text-sm sm:text-base rounded-lg w-full">Create <span class="font-extrabold">+</span></a>}
+						{authed && <Logout client:only="svelte"/>}
+					</ul>
+				  </div>
+				  <div class="hidden sm:block">
+					{!authed && <Login client:only="svelte"/>}
+					{authed && <a href="/newassignment" class="bg-white text-black px-4 py-2 h-10 text-sm sm:text-base rounded-lg w-full">Create <span class="font-extrabold">+</span></a>}
+				  </div>
 				{authed && <Logout client:only="svelte"/>}
 			</div>
 		</nav>
@@ -51,6 +61,7 @@ var authed = currentUser !== null
 	:root {
 		--accent: 124, 58, 237;
 		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+		background-color: #03001C;
 	}
 	html {
 		font-family: system-ui, sans-serif;

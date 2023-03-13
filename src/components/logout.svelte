@@ -7,5 +7,5 @@ async function signout() {
 }
 </script>
 <div>
-    <button on:click={signout} class="bg-white text-black px-4 py-2 rounded-lg">Sign out</button>
+    <button on:click={signout} class="bg-white text-black px-4 py-2 rounded-lg w-full sm:w-auto">Sign out</button>
 </div>
