@@ -65,7 +65,44 @@
 <button class="btn btn-error btn-sm btn-square btn-outline text-white font-bold place-self-center w-auto pl-2 pr-2 h-12 text-xl bg-blue-700 rounded-lg mt-5" id="btn" on:click={showComments}>
     Comments <span class="text-red-400 text-xl">{comments.length}</span>
 </button>
+<label for="my-modal-5" class="btn btn-secondary">Comments</label>
 
+<!-- Put this part before </body> tag -->
+<input type="checkbox" id="my-modal-5" class="modal-toggle" />
+<div class="modal">
+  <div class="modal-box w-11/12 max-w-5xl h-96 overflow-y-auto">
+    <div class=" flex flex-row justify-between">
+        <h1 class="text-white text-xl">Comments</h1>
+        <!-- make a svg X button -->
+        <div class="modal-action">
+            <label for="my-modal-5" class="btn btn-error">Close</label>
+          </div>
+        </div>
+        <div>
+            <form>
+       <div class="w-full mb-4 rounded-lg mt-6">
+           <div class="px-4 py-2 bg-transparent rounded-t-lg">
+               <label for="comment" class="sr-only">Your comment</label>
+               <textarea bind:value={comment.text} id="comment" rows="2" class="w-full px-0 text-sm focus:ring-0 bg-transparent outline-none" placeholder="Write a comment..." required></textarea>
+           </div>
+           <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+               <button on:click={addComment} type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800 disabled:bg-gray-400" {disabled}>
+                   Post comment
+               </button>
+           </div>
+       </div>
+    </form>
+    </div>
+    <div>
+        {#each comments as coment}
+            <div class="gap-3 flex flex-row">
+                    <img src={`https://avatars.dicebear.com/api/avataaars/${randomChar()}.svg?options[mood][]=happy`} alt="avatar" class="w-10 h-10 rounded-full mt-2" />
+                <p class="pt-4 whitespace-pre-wrap w-full">{coment.text}</p>
+            </div>
+        {/each}
+    </div>
+  </div>
+</div>
 <main class=" w-96 sm:w-7/12 h-96 place-self-center bg-slate-900 fixed p-10 overflow-auto rounded-2xl drop-shadow-2xl shadow-slate-900 mt-40" id='modal'>
     <div class=" flex flex-row justify-between">
     <h1 class="text-white text-xl">Comments</h1>
