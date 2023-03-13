@@ -47,12 +47,12 @@ var authed = currentUser !== null
 						{authed && <Logout client:only="svelte"/>}
 					</ul>
 				  </div>
-				  <div class="hidden sm:block">
+				  <div class="hidden sm:block sm:flex gap-9">
 					{!authed && <Login client:only="svelte"/>}
-					{authed && <a href="/newassignment" class="bg-white text-black px-4 py-2 rounded-lg w-full sm:w-auto">Create <span class="font-extrabold">+</span></a>}
+					{authed && <a href="/newassignment" class="bg-white text-black px-4 py-2 rounded-lg w-full sm:w-auto ">Create <span class="font-extrabold">+</span></a>}
+					{authed && <Logout client:only="svelte"/>}
 				  </div>
 				  <div class="hidden sm:block">
-					{authed && <Logout client:only="svelte"/>}
 				</div>
 			</div>
 		</nav>
