@@ -48,11 +48,11 @@ var authed = currentUser !== null
 					</ul>
 				  </div>
 				  <div class="hidden sm:block">
-					{authed && <Login client:only="svelte"/>}
-					{!authed && <a href="/newassignment" class="bg-white text-black px-4 py-2 rounded-lg w-full sm:w-auto">Create <span class="font-extrabold">+</span></a>}
+					{!authed && <Login client:only="svelte"/>}
+					{authed && <a href="/newassignment" class="bg-white text-black px-4 py-2 rounded-lg w-full sm:w-auto">Create <span class="font-extrabold">+</span></a>}
 				  </div>
 				  <div class="hidden sm:block">
-					{!authed && <Logout client:only="svelte"/>}
+					{authed && <Logout client:only="svelte"/>}
 				</div>
 			</div>
 		</nav>
