@@ -149,6 +149,7 @@
         float: left;
         /* increase size of text */
         font-size: 1.2rem;
+        padding-top: 3rem;
     }
     /* hide the table of contents on mobile screen */
     @media (max-width: 600px) {
