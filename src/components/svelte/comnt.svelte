@@ -82,7 +82,7 @@
                <label for="comment" class="sr-only">Your comment</label>
                <textarea bind:value={comment.text} id="comment" rows="2" class="w-full px-0 text-sm focus:ring-0 bg-transparent outline-none" placeholder="Write a comment..." required></textarea>
            </div>
-           <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+           <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600 overflow-y-auto bg-gray-100 rounded-b-lg">
                <button on:click={addComment} type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800 disabled:bg-gray-400" {disabled}>
                    Post comment
                </button>
