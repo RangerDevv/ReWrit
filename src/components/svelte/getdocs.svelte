@@ -158,6 +158,19 @@
         }
     }
 
+    /* style table  with a white border */
+    table {
+        border: 1px solid white;
+    }
+    /* style table header with a white border */
+    th {
+        border: 1px solid white;
+    }
+    /* style table body with a white border */
+    td {
+        border: 1px solid white;
+    }
+
 </style>
 </main>
 
