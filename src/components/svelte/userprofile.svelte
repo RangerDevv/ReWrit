@@ -7,7 +7,8 @@ export let uuid : any;
 let name = "";
 let email = "";
 
-let docs : Documentation[] = []
+// array to hold the docs as any 
+let docs: any[] = []
 
 onMount(async () => {
     const { data, error } = await supabase

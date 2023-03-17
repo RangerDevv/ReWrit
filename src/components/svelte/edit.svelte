@@ -14,7 +14,7 @@
         id?:number,
         created_at?:string,
         number?:number,
-        text:string,
+        text?:string,
         connect?:number,
         is_code?:boolean,
         user_id?:string,
@@ -55,8 +55,8 @@
     });
 
     // get the documentation from the database
-    let Documentation: Documentation[] = [];
-    let Language: Language[] = [];
+    let Documentation: any[] = [];
+    let Language: any[] = [];
     onMount(async () => {
         const { data, error } = await supabase.from("Documentation").select("*").eq("id",pid);
         if (error) {
