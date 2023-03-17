@@ -84,7 +84,7 @@
     $: disabled = !NewAssignment.title || !NewAssignment.description || !NewAssignment.lang || !contenttext.length || contenttext.some((content) => !content.text);
 
     let tableofcontent: Contents[] = []
-    const addtoc = () => tableofcontent = [...tableofcontent, {text: "", id: getRandomInt(10000), created_at: current_time , number: contnumber, is_code: false, is_toc: true,}]
+    const addtoc = () => tableofcontent = [...tableofcontent, {text: "", id: getRandomInt(10000), created_at: current_time , number: contnumber, is_code: false, is_toc: true, user_id: user.id,}]
 
     async function pushcontent() {
         await Promise.all(contenttext.map(async (content) => {
