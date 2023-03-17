@@ -112,8 +112,8 @@
   }
 
   #Code {
-     width: 40rem;
-    height: 20rem;
+    width: 40rem;
+    max-height: 20rem;
     overflow: auto;
     /* white space pre wrap */
     white-space: pre-wrap;
@@ -168,6 +168,16 @@
     }
     /* style table body with a white border */
     td {
+        border: 1px solid white;
+    }
+
+    /* make the pre tag look like a code block */
+    code {
+        /* make the bg color a light greyish color */
+        background-color: #363636;
+        border-radius: 5px;
+        padding:5px;
+        color: white;
         border: 1px solid white;
     }
 
