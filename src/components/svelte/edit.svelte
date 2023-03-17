@@ -14,7 +14,7 @@
         id?:number,
         created_at?:string,
         number?:number,
-        text?:string,
+        text:string,
         connect?:number,
         is_code?:boolean,
         user_id?:string,
@@ -47,7 +47,7 @@
         if (error) {
             console.log(error);
         } else {
-            Content = data;
+            Content = data as any;
             console.log(Content.length);
             // set the length of the content to the newId
             newId = Content.length;
@@ -55,21 +55,21 @@
     });
 
     // get the documentation from the database
-    let Documentation: any[] = [];
-    let Language: any[] = [];
+    let Documentation: Documentation[] = [] as any;
+    let Language: Language[] = [] as any;
     onMount(async () => {
         const { data, error } = await supabase.from("Documentation").select("*").eq("id",pid);
         if (error) {
             console.log(error);
         } else {
-            Documentation = data;
+            Documentation = data as any;
         }
 
         const { data: data2, error: error2 } = await supabase.from("Language").select("*")
         if (error2) {
             console.log(error2);
         } else {
-            Language = data2;
+            Language = data2 as any;
         }
     });
 
@@ -136,8 +136,7 @@
     <div class="flex flex-col gap-7 w-full place-items-center">
         <h1>New Docs</h1>
         <textarea rows="1"  bind:value={doc.title} placeholder="Title" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
-        <!-- <textarea rows="1"  bind:value={doc.description} placeholder="Description" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/> -->
-        <Txtbox bind:value={doc.description} />
+        <textarea rows="1"  bind:value={doc.description} placeholder="Description" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         </div>
     {/each}
     {#each Content as cont}
