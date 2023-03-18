@@ -133,15 +133,17 @@
                     console.log(content.connect)
                     console.log(contenttext)
                     console.log(error)
+                    setTimeout(() => {
+                    // go to the docs/newAssignment.id
+                    window.location.href = "/docs/" + newAssignment.id
+                }, 1500);
+
+                // clear the local storage
+                localStorage.clear();
                 })
             }),
             console.log(contenttext)
         }),
-            // loop through the array and insert the contents
-            setTimeout(() => {
-            // go to the docs/newAssignment.id
-            window.location.href = "/docs/" + newAssignment.id
-        }, 1500);
         }
         
         // if the user leaves the page save the data to local storage
