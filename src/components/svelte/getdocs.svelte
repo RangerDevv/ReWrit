@@ -178,6 +178,8 @@
         border-radius: 5px;
         padding:5px;
         color: white;
+        /* make the text a bit small */
+        font-size: 0.8rem;
         border: 1px solid white;
     }
 
