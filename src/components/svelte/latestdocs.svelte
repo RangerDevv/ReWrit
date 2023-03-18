@@ -63,7 +63,7 @@ const getLanguages = async () => {
 
     // if there is data then set the languages to the data
     if (l) {
-        languages = l
+        languages = l as any[]
     }
 }
 
@@ -72,7 +72,7 @@ getLanguages()
 </script>
 
 <main>
-    <div class="w-96 h-96 rounded-lg self-center sm:pt-0 pt-6 mb-16 sm:mb-0">
+    <div class="w-96 2xl:w-7/12 h-96 rounded-lg self-center sm:pt-0 pt-6 mb-16 sm:mb-0">
         <p class="text-white text-center text-2xl font-bold">Latest Docs</p>
         <div class="flex flex-col justify-items-center h-96 pt-3 w-full items-center overflow-y-scroll gap-6">
             <div class="flex flex-row justify-between w-80 h-10 rounded-lg bg-[#1A1A40] text-white outline-none">

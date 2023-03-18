@@ -35,11 +35,8 @@
 }
 </script>
 <Layout title="Dashboard" loggedIn={true}>
-    <!-- <Search client:only="svelte" currLocation={"Language"} path={"language"}/> -->
-    <!-- map the values of lang to a div container -->
-    <!-- get the user values -->
-    <div class="flex flex-col sm:flex-row sm:pt-20 justify-around">
-    <div class="w-96 h-96 sm:h-96 bg-gray-900 rounded-lg self-center">
+    <div class="flex flex-col sm:flex-row sm:pt-20 justify-around 2xl:justify-evenly">
+    <div class="w-96 2xl:w-7/12 h-96 sm:h-96 bg-gray-900 rounded-lg self-center">
     {currentUser && <p class="text-white text-center text-2xl mt-6 font-bold">Welcome {currentUser.user_metadata.name}</p>}
     {!currentUser && <p class="text-white text-center text-2xl mt-6 font-bold">Welcome</p>}
     {currentUser && <img src={`https://avatars.dicebear.com/api/bottts/${currentUser.id}.svg`} id="Avatar" class="w-32 h-32 rounded-full mx-auto mt-10" />}
@@ -52,11 +49,11 @@
     <p class="text-white text-center text-sm mt-6">Made with ❤️ by <a href="https://github.com/RangerDevv" class="text-blue-500">RangerDevv</a></p>
     </div>
     <!-- get the latest docs -->
-    <div class="flex justify-center">
+    <div class="flex justify-center 2xl:w-7/12">
         <Ldocs client:only="svelte"/>
     </div>
     <!-- <Ldocs client:only="svelte"/> -->
-    <div class="w-96 h-96 rounded-lg self-center sm:pt-0 pt-6">
+    <div class="w-96 2xl:w-7/12 h-96 rounded-lg self-center sm:pt-0 pt-6">
     <p class="text-white text-center text-2xl font-bold">Languages</p>
     <!--  -->
     <div class="flex flex-col justify-items-center h-96 pt-3 w-full items-center sm:overflow-y-scroll gap-6">
