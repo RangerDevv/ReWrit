@@ -14,6 +14,10 @@
       'snapshot',
       'zoom',
       'info',
+      'useHardwareAcceleration',
+      'renderer',
+      'quality',
+
     ];
 
     export let src= "";
@@ -29,6 +33,7 @@
     background="transparent"
     height="{400}"
     width="{400}"
+    useHardwareAcceleration="{true}"
     controlsLayout="{controlsLayout}"
-  />
+    setFrsetFrameRate(60f)  />
 </main>
