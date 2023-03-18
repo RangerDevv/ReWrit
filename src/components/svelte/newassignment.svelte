@@ -143,7 +143,25 @@
             window.location.href = "/docs/" + newAssignment.id
         }, 1500);
         }
-
+        
+        // if the user leaves the page save the data to local storage
+        window.onbeforeunload = function() {
+            localStorage.setItem("NewAssignment", JSON.stringify(NewAssignment));
+            localStorage.setItem("contenttext", JSON.stringify(contenttext));
+            localStorage.setItem("tableofcontent", JSON.stringify(tableofcontent));
+        }
+        // if the user comes back to the page load the data from local storage
+        onMount(() => {
+            if (localStorage.getItem("NewAssignment")) {
+                NewAssignment = JSON.parse(localStorage.getItem("NewAssignment") || "");
+            }
+            if (localStorage.getItem("contenttext")) {
+                contenttext = JSON.parse(localStorage.getItem("contenttext") || "");
+            }
+            if (localStorage.getItem("tableofcontent")) {
+                tableofcontent = JSON.parse(localStorage.getItem("tableofcontent") || "");
+            }
+        });
 </script>
 
 <main>
