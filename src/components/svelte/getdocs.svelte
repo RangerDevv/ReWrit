@@ -117,7 +117,8 @@
     overflow: auto;
     /* white space pre wrap */
     white-space: pre-wrap;
-    /* center */
+    font-size: 1.2rem;
+    border: none;
     
   }
 
@@ -180,7 +181,8 @@
         color: white;
         /* make the text a bit small */
         font-size: 0.8rem;
-        border: 1px solid white;
+        /* border color light grey */
+        border: 1px solid grey
     }
 
 </style>
