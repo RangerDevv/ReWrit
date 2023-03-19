@@ -102,11 +102,6 @@
 </div>
 
 <style>
-
-    #modal {
-        display: none;
-    }
-
     /* change the styling of scroll bar */
     ::-webkit-scrollbar {
         width: 10px;
