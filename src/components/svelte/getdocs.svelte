@@ -180,7 +180,7 @@
         padding:5px;
         color: white;
         /* make the text a bit small */
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         /* border color light grey */
         border: 1px solid grey
     }

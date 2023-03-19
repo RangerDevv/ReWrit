@@ -27,7 +27,7 @@
         if (error) {
             console.log(error);
         } else {
-            comments = data;
+            comments = data as Comments[];
         }
     });
 
