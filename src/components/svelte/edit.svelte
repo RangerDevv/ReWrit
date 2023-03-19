@@ -134,7 +134,7 @@
     <!-- use input fields -->
     {#each Documentation as doc}
     <div class="flex flex-col gap-7 w-full place-items-center">
-        <h1>New Docs</h1>
+        <h1>Edit Docs</h1>
         <textarea rows="1"  bind:value={doc.title} placeholder="Title" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         <textarea rows="1"  bind:value={doc.description} placeholder="Description" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
         </div>
@@ -148,7 +148,12 @@
     {#if cont.is_toc == false}
     <div class="text-black flex flex-col pt-7 w-full place-items-center">
         <!-- <input type="text" bind:value={cont.text} /> -->
+        {#if cont.is_code ==false}
         <Txtbox bind:value={cont.text} />
+        {/if}
+        {#if cont.is_code ==true}
+        <textarea rows="6" bind:value={cont.text} placeholder="Code" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white rounded-lg outline-none" id={"content" + cont.number}/>
+        {/if}
         <button on:click={() => deleteContent(cont.number)} class="block p-2.5 w-20 text-sm rounded-lg bg-red-700 border-red-600 placeholder-gray-400 text-white mt-5">Delete</button>
     </div>
     {/if}
