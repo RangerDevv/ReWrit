@@ -166,8 +166,8 @@ function h6(this: any) {
 
 function preview(this: any) {
     prevent_default;
-    let text = this.parentNode.parentNode.querySelector("#editor");
-    let preview = this.parentNode.parentNode.querySelector("#preview");
+    let text = this.parentNode.parentNode.querySelector("editor");
+    let preview = this.parentNode.parentNode.querySelector("preview");
     let is_preview = false
     if (is_preview) {
         preview.style.display = "block";
