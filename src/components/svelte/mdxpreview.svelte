@@ -8,6 +8,9 @@
 <SvelteMarkdown source={content} />
 
 <style>
+    :root {
+        color: white;
+    }
     /* make the headings like headings */
     h1 {
         font-size: 2rem;
