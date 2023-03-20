@@ -166,20 +166,22 @@ function h6(this: any) {
 
 let is_prev = false;
 
-function togglePreview() {
-  let preview = document.getElementById("preview");
-  let editor = document.getElementById("editor");
+function togglePreview(this: any) {
+    // get all the preview and editor elements
+    let preview = this.parentNode.parentNode.querySelector("#preview");
+    let editor = this.parentNode.parentNode.querySelector("#editor");
 
-  if (preview == null || editor == null) return;
-  if (is_prev) {
-    preview.style.display = "none";
-    editor.style.display = "block";
-    is_prev = false;
-  } else {
-    preview.style.display = "block";
-    editor.style.display = "none";
-    is_prev = true;
-  }
+    if (preview == null || editor == null) return;
+    //   do it to all the elements
+    if (is_prev) {
+        preview.style.display = "none";
+        editor.style.display = "block";
+        is_prev = false;
+    } else {
+        preview.style.display = "block";
+        editor.style.display = "none";
+        is_prev = true;
+    }
 }
 </script>
 
