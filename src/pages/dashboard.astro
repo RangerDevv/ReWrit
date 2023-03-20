@@ -35,6 +35,14 @@
 }
 </script>
 <Layout title="Dashboard" loggedIn={true}>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-6G5JS7QPYS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+      
+        gtag('config', 'G-6G5JS7QPYS');
+      </script>
     <div class="flex flex-col sm:flex-row sm:pt-20 justify-around 2xl:justify-evenly">
     <div class="w-96 2xl:w-7/12 h-96 sm:h-96 bg-gray-900 rounded-lg self-center">
     {currentUser && <p class="text-white text-center text-2xl mt-6 font-bold">Welcome {currentUser.user_metadata.name}</p>}

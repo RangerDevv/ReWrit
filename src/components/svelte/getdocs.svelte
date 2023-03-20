@@ -30,6 +30,14 @@
 </script>
 
 <main>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6G5JS7QPYS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+      
+        gtag('config', 'G-6G5JS7QPYS');
+      </script>
 <div>
     <!--  loop through the content and display only is_toc = true as a table of contents -->
     <div style="position: sticky; top: 0; z-index: 1; padding: 1rem;">
