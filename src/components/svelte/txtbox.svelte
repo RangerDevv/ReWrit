@@ -203,7 +203,7 @@ function h6(this: any) {
 <div class=" w-96 sm:w-1/2 h-80 overflow-y-scroll bg-gray-700 p-2" id="preview">
     <Mdxpreview content={value}/>
 </div>
-<div id="editor">
+<div id="editor" class="w-96 sm:w-1/2">
 <textarea rows="15" bind:value={value} placeholder="Contents (This text editor uses Markdown. Please use the markdown syntax.)" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white rounded-b-lg outline-none"/>
 </div>
 
