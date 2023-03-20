@@ -169,14 +169,14 @@ function preview(this: any) {
     let text = this.parentNode.parentNode.querySelector("textarea");
     let preview = this.parentNode.parentNode.querySelector(".preview");
     let is_preview = false
-    if (preview.classList.contains("hidden")) {
+    if (is_preview) {
         preview.style.display = "block";
         text.style.display = "none";
-        is_preview = true
+        is_preview = false
     } else {
         preview.style.display = "none";
         text.style.display = "block";
-        is_preview = false
+        is_preview = true
     }
 }
 </script>
