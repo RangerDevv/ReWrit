@@ -37,14 +37,13 @@ var authed = currentUser !== null
 		import {supabase} from '../lib/backend.js'
 		import LogRocket from 'logrocket';
 		LogRocket.init('qth7mh/rewrit');
-		const currentUser = (await supabase.auth.getUser(Astro.cookies.get("my-access-token").value)).data.user as any
-		if (currentUser !== null) {
-			LogRocket.identify(currentUser.id, {
-				name: currentUser.email,
-				email: currentUser.email,
+		const {user} = supabase.auth.getSession as any
+		if (user) {
+			LogRocket.identify(user.id, {
+				name: user.name,
+				email: user.email,
 			});
 		}
-
 	</script>
 	<body>
 		<nav class="bg-[#03001C] w-screen gap-6 mt-6 flex flex-row justify-around pt-3">
