@@ -3,8 +3,6 @@ import Logout from '../components/logout.svelte';
 import Login from '../components/login.svelte';
 import { supabase } from '../lib/backend.js';
 import Search from '../components/svelte/search.svelte';
-import LogRocket from 'logrocket';
-LogRocket.init('qth7mh/rewrit');
 
 export interface Props {
 	title: string,
@@ -35,6 +33,10 @@ var authed = currentUser !== null
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
+	<script>
+		import LogRocket from 'logrocket';
+		LogRocket.init('qth7mh/rewrit');
+	</script>
 	<body>
 		<nav class="bg-[#03001C] w-screen gap-6 mt-6 flex flex-row justify-around pt-3">
 			{!authed && <a href="/" class="text-white text-xl pl-4 font-semibold pt-2">Home</a>}
