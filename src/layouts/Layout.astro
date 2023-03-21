@@ -3,6 +3,8 @@ import Logout from '../components/logout.svelte';
 import Login from '../components/login.svelte';
 import { supabase } from '../lib/backend.js';
 import Search from '../components/svelte/search.svelte';
+import LogRocket from 'logrocket';
+LogRocket.init('qth7mh/rewrit');
 
 export interface Props {
 	title: string,
