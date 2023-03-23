@@ -2,6 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import Lottie from '../components/svelte/lottie.svelte';
 import Search from '../components/svelte/search.svelte';
+// lottie files
+import Landing1 from '../components/lottie/landing/landing1.svelte';
+import Landing2 from '../components/lottie/landing/landing2.svelte';
+import Landing3 from '../components/lottie/landing/landing3.svelte';
+import Landing4 from '../components/lottie/landing/landing4.svelte';
 ---
 <script>
     import { supabase } from "../lib/backend";
@@ -35,12 +40,12 @@ import Search from '../components/svelte/search.svelte';
 			<h1 class="text-5xl font-extrabold text-center text-blue-600">Features</h1>
 			<div class="flex flex-col sm:flex-row justify-center items-center gap-8">
 				<div class="flex flex-col place-items-center">
-					<Lottie client:only="svelte" src={"https://assets8.lottiefiles.com/packages/lf20_3rwasyjy.json"} />
+					<Landing1 client:only="svelte" />
 					<h1 class="text-3xl font-extrabold text-center text-blue-600">Read</h1>
 					<p class="text-xl w-96 text-center text-white">Read documentation in a better way.</p>
 				</div>
 				<div class="flex flex-col place-items-center">
-					<Lottie client:only="svelte" src={"https://assets8.lottiefiles.com/private_files/lf30_wqypnpu5.json"} />
+					<Landing2 client:only="svelte" />
 					<h1 class="text-3xl font-extrabold text-center text-blue-600">Write</h1>
 					<p class="text-xl w-96 text-center text-white">Write documentation on undocumentaed topics.</p>
 				</div>
@@ -53,7 +58,7 @@ import Search from '../components/svelte/search.svelte';
 				<h1 class="text-5xl font-extrabold text-center md:text-left text-blue-600">Easy to use</h1>
 				<p class="text-xl w-96 text-center md:text-left text-white">ReWriteDoc is easy to use and easy to understand. 0 code required to post a documentation. No HTML, CSS, or JS. We handle it all for you!</p>
 			</div>	
-			<Lottie client:only="svelte" src={"https://assets4.lottiefiles.com/packages/lf20_r3y35yp1.json"} />
+			<Landing3 client:only="svelte" />
 		</div>
 	</div>
 	<div class=" h-screen items-center w-full" id="Footer">
@@ -62,7 +67,7 @@ import Search from '../components/svelte/search.svelte';
 				<h1 class="text-5xl font-extrabold text-center sm:text-center md:text-left text-blue-600 w-[32rem]">Search documentation for everything</h1>
 				<p class="text-xl w-96 text-center sm:text-center md:text-left text-white">Explore 1000+ user made content to help you better understand topics that you do not understand.</p>
 			</div>	
-			<Lottie client:only="svelte" src={"https://assets8.lottiefiles.com/packages/lf20_jjsrh4we.json"} />
+			<Landing4 client:only="svelte" />
 		</div>
 	</div>
 	<!-- Get started -->
