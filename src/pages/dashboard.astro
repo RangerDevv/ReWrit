@@ -23,13 +23,13 @@
     const docs: Documentation[]=d as Documentation[];let usr: Users[] =data as Users[]; 
 
     // if the user is a new user, then inser a user_metadata object that is qeual to the user's user_metadata.name
-    if (currentUser && !currentUser.user_metadata.user_metadata.name) {
+    if (currentUser && !currentUser.raw_user_metadata.name) {
         // change the user's name to John Doe
         const { error } = await supabase.auth.updateUser({
             data: {
                 // metadata
                 raw_user_meta_data: {
-                    name: currentUser.user_metadata.name
+                    name: currentUser.name
                 },
             },
         })
