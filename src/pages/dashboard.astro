@@ -26,8 +26,8 @@
 
     // if the currentUser has user.user_metadata.name then set the name to that or else set it to the user.user_metadata.name
     if (currentUser) {
-        if (currentUser.user_metadata.name) {
-            name = currentUser.user_metadata.name;
+        if (currentUser.user_metadata.raw_user_metadata.name) {
+            name = currentUser.user_metadata.raw_user_metadata.name;
         } else {
             name = currentUser.user_metadata.name;
         }
