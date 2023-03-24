@@ -26,7 +26,15 @@ onMount(async () => {
 
 async function updateName() {    
 
-    const { error } = await supabase.auth.updateUser({ data: { name: name } })
+    // const { error } = await supabase.auth.updateUser({ data: { name: name } })
+    // update the user's metadata
+    const { error } = await supabase.auth.updateUser({
+        data: {
+            user_metadata: {
+                name: name,
+            },
+        },
+    })
 
 
     // loop through the docs array and set the user_email field to the name variable
