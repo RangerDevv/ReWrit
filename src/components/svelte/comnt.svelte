@@ -82,7 +82,7 @@
                <label for="comment" class="sr-only">Your comment</label>
                <textarea bind:value={comment.text} id="comment" rows="2" class="w-full px-0 text-sm focus:ring-0 bg-transparent outline-none" placeholder="Write a comment..." required></textarea>
            </div>
-           <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600 overflow-y-auto bg-gray-100 rounded-b-lg">
+           <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600 overflow-y-auto rounded-b-lg">
                <button on:click={addComment} type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800 disabled:bg-gray-400" {disabled}>
                    Post comment
                </button>
@@ -93,8 +93,11 @@
     <div>
         {#each comments as coment}
             <div class="gap-3 flex flex-row">
-                    <img src={`https://avatars.dicebear.com/api/avataaars/${randomChar()}.svg?options[mood][]=happy`} alt="avatar" class="w-10 h-10 rounded-full mt-2" />
-                <p class="pt-4 whitespace-pre-wrap w-full">{coment.text}</p>
+                <img src={`https://avatars.dicebear.com/api/bottts/${randomChar()}.svg?options[mood][]=happy`} alt="avatar" class="w-10 h-10 rounded-full mt-2" />
+                <div class="flex flex-col">
+                <p class="text-white text-sm">{coment.created_at?.slice(0,10)}</p>
+                <p class="whitespace-pre-wrap w-full">{coment.text}</p>
+                </div>
             </div>
         {/each}
     </div>

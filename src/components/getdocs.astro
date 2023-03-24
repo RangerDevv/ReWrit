@@ -49,10 +49,10 @@ const { pid } = Astro.props
         <p class=" text-center text-md">Created on: {created_at?.toString().split("T")[0]}</p>
         </div>
         <!-- <p class=" text-center text-xl">By {user_name}</p> -->
-        <div class="flex justify-center gap-2">
-             {owner && <button onclick={`window.location = "/edit/${pid}"`} class="btn btn-error btn-sm btn-square btn-outline text-white place-self-center pl-2 pr-2 h-12 text-xl w-24 bg-green-700 rounded-lg mt-5">Edit</button>} 
-         <Comnt client:only="svelte" id={pid} />
-         </div>
+        <div class="">
+        {owner && <button onclick={`window.location = "/edit/${pid}"`} class="btn btn-success btn-sm btn-outline text-white place-self-center pl-2 pr-2 h-12 text-xl w-24 rounded-lg">Edit</button>} 
+        <Comnt client:only="svelte" id={pid} />
+        </div>
     </div>
     <Getdocs client:only="svelte" pid={pid} />
     <div class="flex flex-col gap-2">
