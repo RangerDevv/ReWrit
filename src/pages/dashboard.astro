@@ -21,6 +21,11 @@
         // order by the time created
         .order("created_at", { ascending: false })
     const docs: Documentation[]=d as Documentation[];let usr: Users[] =data as Users[]; 
+
+    // if the user is a new user, then inser a user_metadata object that is qeual to the user's user_metadata.name
+    if (currentUser && !currentUser.user_metadata.user_metadata.name) {
+        const { error } = await supabase.auth.updateUser( data: { user_metadata: { user_metadata: { name: currentUser.user_metadata.name } } } )
+    }
 ---
  
 <script>
