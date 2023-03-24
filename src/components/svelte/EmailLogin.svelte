@@ -5,6 +5,7 @@
 
     let email: string;
     let password: string;
+    export let currentUser: any;
 
     async function signInWithEmail() {
         const { data, error } = await supabase.auth.signInWithPassword({
@@ -18,7 +19,15 @@
             window.alert("Incorrect username or password")
         } else {
             console.log(data)
-            window.location.href = "/dashboard"
+            if (currentUser && currentUser.user_metadata.raw_user_metadata.name == null) {
+    const { error } = await supabase.auth.updateUser({
+        data: {
+            raw_user_metadata: {
+                name: currentUser.user_metadata.name,
+            },
+        }
+    })
+    }
         }
     }
 
@@ -50,7 +59,7 @@
                         Sign in
                     </button>
                     <div class="flex justify-center items-center">
-                    <Login />
+                    <Login currentUser={currentUser} />
                     </div>
                 </form>
             </div>

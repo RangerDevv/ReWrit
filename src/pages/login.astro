@@ -2,11 +2,15 @@
 import Login from "../components/login.svelte";
 import Layout from "../layouts/Layout.astro";
 import EmailLogin from "../components/svelte/EmailLogin.svelte";
+
+import { supabase } from "../lib/backend";
+
+const currentUser = (await supabase.auth.getUser(Astro.cookies.get("my-access-token").value)).data.user as any;
 ---
 
 <Layout title="Login/Register">
     <p class="text-center text-2xl font-bold text-white pt-12">Login/Register</p>
     <div class="flex flex-row justify-center pt-2">
-        <EmailLogin client:only="svelte" />
+        <EmailLogin client:only="svelte" currentUser={currentUser} />
     </div>
 </Layout>

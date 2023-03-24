@@ -2,16 +2,36 @@
     import { supabase } from "../lib/backend";
     import { onMount } from "svelte";
 
+    export let currentUser: any;
+
 async function signInWithGitHub() {
         const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'github',
   })
+  if (currentUser && currentUser.user_metadata.raw_user_metadata.name == null) {
+    const { error } = await supabase.auth.updateUser({
+        data: {
+            raw_user_metadata: {
+                name: currentUser.user_metadata.name,
+            },
+        }
+    })
+    }
 }
 
 async function signInWithGoogle() {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
   })
+  if (currentUser && currentUser.user_metadata.raw_user_metadata.name == null) {
+    const { error } = await supabase.auth.updateUser({
+        data: {
+            raw_user_metadata: {
+                name: currentUser.user_metadata.name,
+            },
+        }
+    })
+    }
 }
 </script>
 <div class=" flex flex-col sm:flex-row">

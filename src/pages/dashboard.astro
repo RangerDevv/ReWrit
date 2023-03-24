@@ -23,15 +23,6 @@
     const docs: Documentation[]=d as Documentation[];let usr: Users[] =data as Users[]; 
 
     // if the user_metadata.raw_user_metadata.name is null, then set it to the user's user_metadata.name
-    if (currentUser && currentUser.user_metadata.raw_user_metadata.name == null) {
-    const { error } = await supabase.auth.updateUser({
-        data: {
-            raw_user_metadata: {
-                name: currentUser.user_metadata.name,
-            },
-        }
-    })
-    }
 ---
  
 <script>
