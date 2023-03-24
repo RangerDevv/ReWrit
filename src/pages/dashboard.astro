@@ -6,7 +6,7 @@
  import Search from "../components/svelte/search.svelte";
  import Ldocs from "../components/svelte/latestdocs.svelte";
 
- const currentUser = (await supabase.auth.getUser(Astro.cookies.get("my-access-token").value)).data.user as any;
+ const currentUser = (await supabase.auth.getUser(Astro.cookies.get("my-access-token").value)).data as any;
 
     const { data, error } = await supabase
         .from("Language")

@@ -66,8 +66,8 @@
 
 <!-- Put this part before </body> tag -->
 <input type="checkbox" id="my-modal-5" class="modal-toggle" />
-<div class="modal">
-  <div class="modal-box w-11/12 max-w-5xl h-96 overflow-y-auto">
+<div class="modal ">
+  <div class="modal-box w-11/12 max-w-5xl h-96 overflow-y-auto bg-zinc-800">
     <div class=" flex flex-row justify-between">
         <h1 class="text-white text-xl">Comments</h1>
         <!-- make a svg X button -->
@@ -95,8 +95,8 @@
             <div class="gap-3 flex flex-row">
                 <img src={`https://avatars.dicebear.com/api/bottts/${randomChar()}.svg?options[mood][]=happy`} alt="avatar" class="w-10 h-10 rounded-full mt-2" />
                 <div class="flex flex-col">
-                <p class="text-white text-sm">{coment.created_at?.slice(0,10)}</p>
-                <p class="whitespace-pre-wrap w-full">{coment.text}</p>
+                <p class="text-gray-400 text-sm">{coment.created_at?.slice(0,10)}</p>
+                <p class="whitespace-pre-wrap w-full text-md">{coment.text}</p>
                 </div>
             </div>
         {/each}
