@@ -19,16 +19,7 @@
             window.alert("Incorrect username or password")
         } else {
             console.log(data)
-            if (currentUser && currentUser.user_metadata.raw_user_metadata.name == null) {
-    const { error } = await supabase.auth.updateUser({
-        data: {
-            raw_user_metadata: {
-                name: currentUser.user_metadata.name,
-            },
-        }
-    })
     }
-        }
     }
 
 </script>
@@ -59,7 +50,7 @@
                         Sign in
                     </button>
                     <div class="flex justify-center items-center">
-                    <Login currentUser={currentUser} />
+                    <Login/>
                     </div>
                 </form>
             </div>
