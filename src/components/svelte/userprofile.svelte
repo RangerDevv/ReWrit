@@ -31,7 +31,9 @@ async function updateName() {
     const { error } = await supabase.auth.updateUser({
         data: {
             user_metadata: {
-                name: name,
+                user_metadata: {
+                    name: name,
+                },
             },
         },
     })
