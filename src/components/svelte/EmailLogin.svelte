@@ -5,7 +5,6 @@
 
     let email: string;
     let password: string;
-    export let currentUser: any;
 
     async function signInWithEmail() {
         const { data, error } = await supabase.auth.signInWithPassword({
