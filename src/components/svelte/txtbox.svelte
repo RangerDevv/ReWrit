@@ -188,9 +188,9 @@ function togglePreview(this: any) {
 <div class="flex w-96 sm:w-1/2 bg-gray-700 rounded-t-lg items-center h-auto overflow-x-auto">
 
 <!-- headings -->
-<button class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50  focus:ring-blue-500 focus: dark:bg-gray-700 dark: dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus: rounded-tl-lg" on:click={h1}><h1 class="text-xl">Heading 1</h1></button>
-<button class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50  focus:ring-blue-500 focus: dark:bg-gray-700 dark: dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:" on:click={h2}><h2 class=" text-lg">Heading 2</h2></button>
-<button class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50  focus:ring-blue-500 focus: dark:bg-gray-700 dark: dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:" on:click={h3}><h3 class="text-md">Heading 3</h3></button>
+<button class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50  focus:ring-blue-500 focus: dark:bg-gray-700 dark: dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus: rounded-tl-lg" on:click={h1}><h1 class="text-xl">H1</h1></button>
+<button class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50  focus:ring-blue-500 focus: dark:bg-gray-700 dark: dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:" on:click={h2}><h2 class=" text-lg">H2</h2></button>
+<button class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50  focus:ring-blue-500 focus: dark:bg-gray-700 dark: dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:" on:click={h3}><h3 class="text-md">H3</h3></button>
 <button class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50  focus:ring-blue-500 focus: dark:bg-gray-700 dark: dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus: rounded-tl-lg" on:click={bold
 }><strong>B</strong></button>
 <button class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50  focus:ring-blue-500 focus: dark:bg-gray-700 dark: dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:" on:click={italic}><em>I</em></button>
