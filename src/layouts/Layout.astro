@@ -3,6 +3,7 @@ import Logout from '../components/logout.svelte';
 import Login from '../components/login.svelte';
 import { supabase } from '../lib/backend.js';
 import Search from '../components/svelte/search.svelte';
+import AI from '../components/svelte/AI.svelte';
 
 export interface Props {
 	title: string,
@@ -50,6 +51,7 @@ var authed = currentUser !== null
 			{!authed && <a href="/" class="text-white text-xl pl-4 font-semibold pt-2">Home</a>}
 			{authed && <a href="/dashboard" class="text-white pl-4 text-xl pt-2 font-semibold">Home</a>}
 			<Search client:only="svelte" currLocation={currlocation} path={path} />
+			{authed && <AI client:only="svelte" />}
 			<div class="flex flex-row gap-3 mr-6">
 				<div class="dropdown dropdown-end block sm:hidden">
 					<label tabindex="0" class="btn m-1 text-white  bg-gray-800">Menu 🔻</label>
