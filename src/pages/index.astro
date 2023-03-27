@@ -7,6 +7,7 @@ import Landing1 from '../components/lottie/landing/landing1.svelte';
 import Landing2 from '../components/lottie/landing/landing2.svelte';
 import Landing3 from '../components/lottie/landing/landing3.svelte';
 import Landing4 from '../components/lottie/landing/landing4.svelte';
+import Landing5 from '../components/lottie/landing/landing5.svelte';
 ---
 <script>
     import { supabase } from "../lib/backend";
@@ -55,7 +56,7 @@ import Landing4 from '../components/lottie/landing/landing4.svelte';
 	<div class="h-screen items-center w-full" id="Footer">
 		<div class="flex flex-col sm:flex-row justify-center w-screen sm:justify-evenly pt-32">
 			<div class=" flex flex-col gap-4 place-items-center">
-				<h1 class="text-5xl font-extrabold text-center md:text-left text-blue-600">Easy to use</h1>
+				<h1 class="text-5xl font-extrabold text-blue-600 w-[32rem]">Easy to use</h1>
 				<p class="text-xl w-96 text-center md:text-left text-white">ReWriteDoc is easy to use and easy to understand. 0 code required to post a documentation. No HTML, CSS, or JS. We handle it all for you!</p>
 			</div>	
 			<Landing3 client:only="svelte" />
@@ -64,11 +65,20 @@ import Landing4 from '../components/lottie/landing/landing4.svelte';
 	<div class=" h-screen items-center w-full" id="Footer">
 		<div class="flex flex-col sm:flex-row justify-center w-screen sm:justify-evenly pt-32">
 			<div class=" flex flex-col gap-4 place-items-center">
-				<h1 class="text-5xl font-extrabold text-center sm:text-center md:text-left text-blue-600 w-[32rem]">Search documentation for everything</h1>
+				<h1 class="text-5xl font-extrabold text-blue-600 w-[32rem]">Search documentation for everything</h1>
 				<p class="text-xl w-96 text-center sm:text-center md:text-left text-white">Explore 1000+ user made content to help you better understand topics that you do not understand.</p>
 			</div>	
 			<Landing4 client:only="svelte" />
 		</div>
+	</div>
+		<div class=" h-screen items-center w-full" id="Footer">
+			<div class="flex flex-col sm:flex-row justify-center w-screen sm:justify-evenly pt-32">
+				<div class=" flex flex-col gap-4 place-items-center">
+					<h1 class="text-5xl font-extrabold text-blue-600 w-[32rem]">Your Personal AI Helper</h1>
+					<p class="text-xl w-96 text-center sm:text-center md:text-left text-white">With OpenAI’s text-davinci-003, you can ask questions about code and receive top-notch answers. It can even write code for you, helping you to better convey your ideas, and speed up your writing process.</p>
+				</div>	
+				<Landing5 client:only="svelte" />
+			</div>
 	</div>
 	<!-- Get started -->
 	<div class="items-center w-full" id="Footer">
