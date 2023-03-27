@@ -49,7 +49,7 @@ async function fetchAI() {
   <div class="form-control">
     <div class="input-group">
       <input type="text" placeholder="Search…" class="input input-bordered" bind:value={prompt} />
-      <button class="btn btn-square bg-zinc-700">
+      <button class="btn btn-square bg-zinc-700" on:click={fetchAI}>
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 17V16.9929M12 14.8571C12 11.6429 15 12.3571 15 9.85714C15 8.27919 13.6568 7 12 7C10.6567 7 9.51961 7.84083 9.13733 9" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
       </button>
     </div>
