@@ -1,26 +1,16 @@
 <script>
-    let prompt = "Write a function that returns the sum of two numbers";
-    let response = "";
+  const { Configuration, OpenAIApi } = require("openai");
 
-    async function getCompletion() {
-        const res = await fetch('https://api.openai.com/v1/engines/davinci/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${'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'}`
-            },
-            body: JSON.stringify({
-                prompt: prompt,
-                max_tokens: 150
-            })
-        });
-        const data = await res.json();
-        if (data.error) {
-            console.error(data.error);
-        } else {
-            response = data.choices[0].text;
-        }
-    }
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
+
+const completion = await openai.createCompletion({
+  model: "text-davinci-003",
+  prompt: "Hello world",
+});
+console.log(completion.data.choices[0].text);
 </script>
 
 <main>
