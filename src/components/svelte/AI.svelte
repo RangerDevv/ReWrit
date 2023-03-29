@@ -88,6 +88,13 @@ async function fetchAI() {
       <span class="label-text"><a href="https://beta.openai.com/account/api-keys" class="text-blue-700 underline">Get APIKey</a></span>
     </label>
   </div>
+  <!-- a dropdown to select a free API key -->
+  <!-- <select class="select select-primary w-full max-w-xs" bind:value={APIKey}>
+    <option value="e">Key 1</option>
+    <option value="f">Key 2</option>
+    <option value="g">Key 3</option>
+    <option value="h">Key 4</option>
+  </select> -->
 {:else}
   <div class="form-control self-center mx-auto" id="prompt">
     <!-- center -->

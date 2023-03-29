@@ -164,6 +164,12 @@
                 tableofcontent = JSON.parse(localStorage.getItem("tableofcontent") || "");
             }
         });
+
+        // clear all of the local storage
+        function clear() {
+            localStorage.clear();
+            window.location.reload();
+        }
 </script>
 
 <main>
@@ -199,6 +205,7 @@
             </select>
             <button on:click={addContent} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700">Text</button>
             <button on:click={addCode} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700">Code</button>
+            <button on:click={clear} class="block p-2.5 w-20 text-sm rounded-lg bg-red-700 border-red-600 placeholder-gray-400 text-white focus:ring-red-500 focus:border-red-500 disabled:bg-gray-800 disabled:hover:bg-gray-700">Clear</button>
         </div>
             <button on:click={() => Push(NewAssignment, Contents)} {disabled} class="block p-2.5 w-20 text-sm rounded-lg bg-blue-700 border-blue-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-800 disabled:hover:bg-gray-700 mt-7">Push</button>
     </div>
