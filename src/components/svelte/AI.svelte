@@ -59,8 +59,9 @@ async function fetchAI() {
     };
   });
 </script>
-
-<label for="my-modal-3" class="w-5">🤖</label>
+<div class="tooltip pt-2" data-tip="AI">
+<label for="my-modal-3" class="text-lg bg-white px-6 py-2 rounded-lg hover:bg-gray-200 transition duration-300 ease-in-out">🤖</label>
+</div>
 
 
 <input type="checkbox" id="my-modal-3" class="modal-toggle" />
