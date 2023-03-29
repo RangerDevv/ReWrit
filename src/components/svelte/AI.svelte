@@ -89,9 +89,6 @@ async function fetchAI() {
     </label>
   </div>
 {:else}
-  <!-- <input bind:value={prompt} class="w-full" />
-  <button on:click={fetchAI}>Ask</button>
-  <p class="whitespace-pre-wrap">{result}</p> -->
   <div class="form-control self-center mx-auto" id="prompt">
     <!-- center -->
     <div class="input-group mx-auto w-auto">
