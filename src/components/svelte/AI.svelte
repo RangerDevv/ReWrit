@@ -69,7 +69,7 @@ async function fetchAI() {
 
 <input type="checkbox" id="my-modal-3" class="modal-toggle" />
 <div class="modal">
-  <div class="modal-box  w-11/12 max-w-5xl h-96 overflow-y-auto bg-zinc-700">
+  <div class="modal-box  w-11/12 max-w-5xl h-96 overflow-y-auto bg-gray-800">
     <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 <main class="items-center">
 {#if APIKey==''}
