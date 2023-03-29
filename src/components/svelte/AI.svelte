@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import { HighlightAuto } from 'svelte-highlight';
   import 'highlight.js/styles/github-dark.css';
-  let result = '';
+  let result = 'waiting...';
   let APIKey = '';
   let prompt = '';
 
