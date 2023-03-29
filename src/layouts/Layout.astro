@@ -51,7 +51,7 @@ var authed = currentUser !== null
 			{!authed && <a href="/" class="text-white text-xl pl-4 font-semibold pt-2">Home</a>}
 			{authed && <a href="/dashboard" class="text-white pl-4 text-xl pt-2 font-semibold">Home</a>}
 			<Search client:only="svelte" currLocation={currlocation} path={path} />
-			{!authed && <AI client:only="svelte" />}
+			{authed && <AI client:only="svelte" />}
 			<div class="flex flex-row gap-3 mr-6">
 				<div class="dropdown dropdown-end block sm:hidden">
 					<label tabindex="0" class="btn m-1 text-white  bg-gray-800">Menu 🔻</label>
@@ -63,11 +63,11 @@ var authed = currentUser !== null
 				  </div>
 				  <!-- for Laptop etc -->
 				  <div class="hidden sm:block sm:flex gap-9">
-					{authed && <Login client:only="svelte"/>}
+					{!authed && <Login client:only="svelte"/>}
 					<div class="tooltip" data-tip="Create">
-						{!authed && <a href="/newassignment" class="bg-white text-black px-4 pb-2 rounded-lg w-full sm:w-auto font-extrabold text-2xl">+</a>}
+						{authed && <a href="/newassignment" class="bg-white text-black px-4 pb-2 rounded-lg w-full sm:w-auto font-extrabold text-2xl">+</a>}
 					</div>
-					{!authed && <Logout client:only="svelte"/>}
+					{authed && <Logout client:only="svelte"/>}
 				  </div>
 				  <div class="hidden sm:block">
 				</div>
