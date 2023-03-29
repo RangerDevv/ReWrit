@@ -92,6 +92,7 @@
   h1 {
       font-size: 2rem;
       font-weight: bold;
+      padding-top: 3rem;
   }
   h2 {
       font-size: 1.5rem;
@@ -132,6 +133,7 @@
     white-space: pre-wrap;
     font-size: 1.2rem;
     border: none;
+    margin-top: 1rem;
     
   }
 
@@ -197,7 +199,6 @@
         /* border color light grey */
         border: 1px solid grey
     }
-
 </style>
 </main>
 

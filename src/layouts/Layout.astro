@@ -47,7 +47,7 @@ var authed = currentUser !== null
 		}
 	</script>
 	<body>
-		<nav class="bg-[#03001C] w-screen gap-6 mt-6 flex flex-row justify-around pt-3">
+		<nav class="bg-[#03001C] w-screen gap-6 flex flex-row justify-around pt-3">
 			{!authed && <a href="/" class="text-white text-xl pl-4 font-semibold pt-2">Home</a>}
 			{authed && <a href="/dashboard" class="text-white pl-4 text-xl pt-2 font-semibold">Home</a>}
 			<Search client:only="svelte" currLocation={currlocation} path={path} />
@@ -73,6 +73,7 @@ var authed = currentUser !== null
 				</div>
 			</div>
 		</nav>
+		<div class="w-screen h-1 bg-gradient-to-r from-[#7B2CBF] to-[#EF4444]"></div>
 		<slot />
 	</body>
 </html>
