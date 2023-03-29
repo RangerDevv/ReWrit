@@ -119,6 +119,11 @@
       text-decoration: underline;
   }
 
+  li {
+      font-size: 1.2rem;
+      list-style-type: disc;
+  }
+
   #Code {
     width: 40rem;
     max-height: 20rem;
