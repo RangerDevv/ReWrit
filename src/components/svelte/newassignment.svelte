@@ -133,16 +133,26 @@
                     console.log(content.connect)
                     console.log(contenttext)
                     console.log(error)
-
-                // clear the all of the contents related to the documentation in the local storage
-                localStorage.removeItem("NewAssignment");
-                localStorage.removeItem("contenttext");
-                localStorage.removeItem("tableofcontent");
+                    contenttext = []
+                    tableofcontent = []
+                    NewAssignment = {
+                        id: getRandomInt(10000),
+                        created_at: current_time,
+                        title: "",
+                        description: "",
+                        lang: 0,
+                        user_id: user.id,
+                        user_email: user.email,
+                    }
+                    if (error) {
+                        window.alert("Something went wrong, please try again later")
+                    } else {
                 // wait 1.5 seconds and then go to the documentation
                 setTimeout(() => {
                     // go to the docs/newAssignment.id
                     window.location.href = "/docs/" + newAssignment.id
                 }, 1500);
+            }
                 })
             })
             console.log(contenttext)
@@ -169,9 +179,18 @@
         });
 
         function clear() {
-            localStorage.removeItem("NewAssignment");
-            localStorage.removeItem("contenttext");
-            localStorage.removeItem("tableofcontent");
+            // set all of the arrays to empty
+            contenttext = []
+            tableofcontent = []
+            NewAssignment = {
+                id: getRandomInt(10000),
+                created_at: current_time,
+                title: "",
+                description: "",
+                lang: 0,
+                user_id: user.id,
+                user_email: user.email,
+            }
             window.location.reload();
         }
 </script>
