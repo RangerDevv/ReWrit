@@ -57,9 +57,6 @@
         user_id: user.id,
         is_toc: false,
     }
-
-    // get the language lost of id and the language name from the database
-    // select all of the language from the database
     let language: Language[] = [];
     onMount(async () => {
         const { data, error } = await supabase.from("Language").select("*");
