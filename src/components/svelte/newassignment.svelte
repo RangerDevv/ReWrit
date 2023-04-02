@@ -134,8 +134,11 @@
                     console.log(contenttext)
                     console.log(error)
 
-                // clear the local storage
-                localStorage.clear();
+                // clear the all of the contents related to the documentation in the local storage
+                localStorage.removeItem("NewAssignment");
+                localStorage.removeItem("contenttext");
+                localStorage.removeItem("tableofcontent");
+                // wait 1.5 seconds and then go to the documentation
                 setTimeout(() => {
                     // go to the docs/newAssignment.id
                     window.location.href = "/docs/" + newAssignment.id
@@ -165,9 +168,10 @@
             }
         });
 
-        // clear all of the local storage
         function clear() {
-            localStorage.clear();
+            localStorage.removeItem("NewAssignment");
+            localStorage.removeItem("contenttext");
+            localStorage.removeItem("tableofcontent");
             window.location.reload();
         }
 </script>
