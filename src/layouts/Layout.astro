@@ -68,7 +68,7 @@ var authed = currentUser !== null
 						{authed && <a href="/newassignment" class="bg-white text-black px-4 pb-2 rounded-lg w-full sm:w-auto font-extrabold text-2xl">+</a>}
 					</div>
 					{authed && <Logout client:only="svelte"/>}
-					{authed && <a href="/profile"><button class="bg-orange-700 hover:bg-orange-800 text-white font-bold py-2 px-4 rounded-full mt-6"> <img src={`https://avatars.dicebear.com/api/bottts/${currentUser.id}.svg`} id="Avatar" class="w-10 h-10 rounded-full mt-10" /></button></a>}
+					{authed && <a href="/profile"><button class="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-2 rounded-full"> <img src={`https://avatars.dicebear.com/api/bottts/${currentUser.id}.svg`} id="Avatar" class="w-7 h-7 rounded-full mt-auto" /></button></a>}
 				  </div>
 				  <div class="hidden sm:block">
 				</div>
