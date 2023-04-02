@@ -22,7 +22,7 @@ if (refreshToken && accessToken) {
 }
 	
 	
-const currentUser = (await supabase.auth.getUser(accessToken)).data.user
+const currentUser = (await supabase.auth.getUser(accessToken)).data.user as any
 var authed = currentUser !== null
 ---
 <!DOCTYPE html>
@@ -68,6 +68,7 @@ var authed = currentUser !== null
 						{authed && <a href="/newassignment" class="bg-white text-black px-4 pb-2 rounded-lg w-full sm:w-auto font-extrabold text-2xl">+</a>}
 					</div>
 					{authed && <Logout client:only="svelte"/>}
+					{authed && <a href="/profile"><button class="bg-orange-700 hover:bg-orange-800 text-white font-bold py-2 px-4 rounded-full mt-6"> <img src={`https://avatars.dicebear.com/api/bottts/${currentUser.id}.svg`} id="Avatar" class="w-10 h-10 rounded-full mt-10" /></button></a>}
 				  </div>
 				  <div class="hidden sm:block">
 				</div>
@@ -75,7 +76,7 @@ var authed = currentUser !== null
 		</nav>
 		<div class="w-screen h-1 bg-gradient-to-r from-[#7B2CBF] to-[#EF4444]"></div>
 		<slot />
-		<footer class="footer footer-center p-4 text-xs">
+		<footer class="footer footer-center p-4 text-xs pt-20">
 			<div>
 			  <p class="text-xs">Copyright © 2023 - All right reserved by RangerDevv. Registered under MIT License. See <a href="/TOS" target="_blank">TOS</a> for more info.</p>
 			</div>

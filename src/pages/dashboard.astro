@@ -53,33 +53,27 @@
       
         gtag('config', 'G-6G5JS7QPYS');
       </script>
-    <div class="flex flex-col sm:flex-row sm:pt-20 justify-around 2xl:justify-evenly">
-    <div class="w-96 2xl:w-7/12 h-96 sm:h-96 bg-gray-900 rounded-lg self-center">
+    <div class="flex flex-col">
+    <div class="flex flex-row gap-24 mx-auto">
+    {currentUser && <img src={`https://avatars.dicebear.com/api/bottts/${currentUser.id}.svg`} id="Avatar" class="w-32 h-32 rounded-full mt-10" />}
+    {!currentUser && <img src={`https://avatars.dicebear.com/api/bottts/${Math.random()}.svg`} id="Avatar" class="w-32 h-32 rounded-full mt-10" />}
+    <div class="">
     {currentUser && <p class="text-white text-center text-2xl mt-6 font-bold">Welcome {name}</p>}
     {!currentUser && <p class="text-white text-center text-2xl mt-6 font-bold">Welcome</p>}
-    {currentUser && <img src={`https://avatars.dicebear.com/api/bottts/${currentUser.id}.svg`} id="Avatar" class="w-32 h-32 rounded-full mx-auto mt-10" />}
-    {!currentUser && <img src={`https://avatars.dicebear.com/api/bottts/${Math.random()}.svg`} id="Avatar" class="w-32 h-32 rounded-full mx-auto mt-10" />}
-
-    <div class="flex justify-center">
-        {currentUser && <a href="/profile"><button class="bg-orange-700 hover:bg-orange-800 text-white font-bold py-2 px-4 rounded-full mt-6">Profile Settings</button></a>}
-    </div>
     <!-- made with ❤️ by @RangerDevv -->
     <p class="text-white text-center text-sm mt-6">Made with ❤️ by <a href="https://github.com/RangerDevv" class="text-blue-500">RangerDevv</a></p>
     </div>
-    <!-- get the latest docs -->
-    <div class="flex justify-center 2xl:w-7/12">
-        <Ldocs client:only="svelte"/>
     </div>
-    <!-- <Ldocs client:only="svelte"/> -->
-    <div class="w-96 2xl:w-7/12 h-96 rounded-lg self-center sm:pt-0 pt-6">
+    <div class="rounded-lg self-center sm:pt-0 pt-6">
     <p class="text-white text-center text-2xl font-bold">Languages</p>
     <!--  -->
-    <div class="flex flex-col justify-items-center h-96 pt-3 w-full items-center sm:overflow-y-scroll gap-6">
+    <div class="pt-3 w-full gap-6 grid md:grid-cols-3 2xl:grid-cols-5 sm:grid-cols-2 grid-cols-1 items-center">
     {lang?.map(l => (
-    <div class="flex flex-col justify-items-center text-white w-80 h-auto bg-[#1A1A40] rounded-xl outline-dashed outline-gray-400 cursor-pointer">
-        <div onclick={`window.location = "/language/${l.id}"`}>
-            <p class="text-center text-2xl pt-2 pb-7 font-bold">{l.title}</p>
-            <p class="text-center text-sm pt-2 pb-7 truncate" id="desc">{l.description}</p>
+        // transition to gradient on hover
+    <div class="flex flex-col justify-items-center text-white w-80 h-80 bg-zinc-900 bg-gradient-to-bl hover:from-zinc-900 hover:to-gray-900 rounded-xl outline-dashed outline-gray-400 cursor-pointer transition duration-500 ease-in-out transform hover:-translate-y-1.5 hover:scale-100" onclick={`window.location = "/language/${l.id}"`}>
+        <div>
+            <p class="text-center text-3xl pt-2 pb-7 font-bold from-slate-800 via-black to-slate-900 bg-gradient-to-r h-24 w-72 mt-3 rounded-xl self-center items-center mx-auto hover:from-slate-900 hover:to-slate-800 hover:via-black">{l.title}</p>
+            <p class="text-center text-sm p-4" id="desc">{l.description}</p>
         </div>
         </div>
     ))}
