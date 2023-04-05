@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Error404 from '../components/svelte/404.svelte';
+import Code from '../components/svelte/code.svelte';
 ---
 
 <Layout title="Page not found">
@@ -8,5 +9,6 @@ import Error404 from '../components/svelte/404.svelte';
     <p class=" text-center text-black">404</p>
     <Error404 client:only="svelte" />
     <p class=" text-center text-black">Page not found<a href="/">Go back to home</a></p>
+    <Code client:only="svelte" />
 </main>
 </Layout>
