@@ -1,13 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Lottie from '../components/svelte/lottie.svelte';
-import Search from '../components/svelte/search.svelte';
-// lottie files
-import Landing1 from '../components/lottie/landing/landing1.svelte';
-import Landing2 from '../components/lottie/landing/landing2.svelte';
-import Landing3 from '../components/lottie/landing/landing3.svelte';
 import Landing4 from '../components/lottie/landing/landing4.svelte';
 import Landing5 from '../components/lottie/landing/landing5.svelte';
+
+import Header from '../components/svelte/landing/header.svelte';
+import Comparision from '../components/svelte/landing/comparision.svelte';
+import Body1 from '../components/svelte/landing/body1.svelte';
 ---
 <script>
     import { supabase } from "../lib/backend";
@@ -25,43 +23,9 @@ import Landing5 from '../components/lottie/landing/landing5.svelte';
 	  
 		gtag('config', 'G-6G5JS7QPYS');
 	  </script>
-	<div class=" items-center w-full h-screen" id="Header">
-		<div class="flex flex-col place-items-center pt-24">
-			<h1 class="text-5xl font-extrabold text-center text-blue-600">Welcome to ReWriteDoc</h1>
-			<p class="text-xl w-96 text-center text-white">A better way to read documentation.</p>
-			<div class="flex flex-row justify-center items-center mt-10 gap-8">
-				<!-- <a href="/login" class="bg-blue-600 text-white px-4 py-2 rounded-lg">Login</a>
-				<a href="/register" class="bg-green-600 text-white px-4 py-2 rounded-lg">Register</a> -->
-				<a href="/language/7" class="bg-orange-600 text-white px-4 py-2 rounded-lg w-auto place-self-center">Docs →</a>
-			</div>
-		</div>
-	</div>
-	<div class="items-center w-full" id="Features">
-		<div class="flex flex-col place-items-center">
-			<h1 class="text-5xl font-extrabold text-center text-blue-600">Features</h1>
-			<div class="flex flex-col sm:flex-row justify-center items-center gap-8">
-				<div class="flex flex-col place-items-center">
-					<Landing1 client:only="svelte" />
-					<h1 class="text-3xl font-extrabold text-center text-blue-600">Read</h1>
-					<p class="text-xl w-96 text-center text-white">Read documentation in a better way.</p>
-				</div>
-				<div class="flex flex-col place-items-center">
-					<Landing2 client:only="svelte" />
-					<h1 class="text-3xl font-extrabold text-center text-blue-600">Write</h1>
-					<p class="text-xl w-96 text-center text-white">Write documentation on undocumentaed topics.</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="h-screen items-center w-full" id="Footer">
-		<div class="flex flex-col sm:flex-row justify-center w-screen sm:justify-evenly pt-32">
-			<div class=" flex flex-col gap-4 place-items-center">
-				<h1 class="text-5xl font-extrabold text-blue-600 w-[32rem]">Easy to use</h1>
-				<p class="text-xl w-96 text-center md:text-left text-white">ReWriteDoc is easy to use and easy to understand. 0 code required to post a documentation. No HTML, CSS, or JS. We handle it all for you!</p>
-			</div>	
-			<Landing3 client:only="svelte" />
-		</div>
-	</div>
+	<Header client:only="svelte" />
+	<Comparision client:only="svelte" />
+	<Body1 client:only="svelte" />
 	<div class=" h-screen items-center w-full" id="Footer">
 		<div class="flex flex-col sm:flex-row justify-center w-screen sm:justify-evenly pt-32">
 			<div class=" flex flex-col gap-4 place-items-center">
@@ -106,12 +70,8 @@ import Landing5 from '../components/lottie/landing/landing5.svelte';
 	}
 
 	#Header {
-		/* image */
-		background-image: url("../components/images/background_landing.jpg");
-		background-repeat: no-repeat;
-		background-size: cover;
-		background-position: center;
-		
+		/*  make a gradient blob at the top */
+		background: linear-gradient(180deg, rgba(76, 26, 68, 0.644) 0%, rgba(255, 255, 255, 0) 100%);
 	}
 
 	@media (max-width: 768px) {

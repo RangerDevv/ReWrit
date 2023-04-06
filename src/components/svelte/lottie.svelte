@@ -27,13 +27,13 @@
   <LottiePlayer
     src= {src}
     autoplay="{true}"
-    loop="{true}"
+    loop="{false}"
     controls="{false}"
     renderer="svg"
     background="transparent"
     height="{400}"
     width="{400}"
-    useHardwareAcceleration="{true}"
+ 
     controlsLayout="{controlsLayout}"
-    setFrsetFrameRate(60f)  />
+   />
 </main>
