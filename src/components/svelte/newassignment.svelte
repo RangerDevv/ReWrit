@@ -3,7 +3,6 @@
     import { onMount } from "svelte";
     import type { Language } from "../../lib/db";
     import Txtbox from "./txtbox.svelte";
-    import Code from "./code.svelte";
 
     // Generate a random 4 digit number
     function getRandomInt(max: number) {
