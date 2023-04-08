@@ -134,8 +134,16 @@
     font-size: 1.2rem;
     border: none;
     margin-top: 1rem;
-    
   }
+
+  /*  make the code block have another bg color */
+    #Code {
+        /* gradient */
+        background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+        border-radius: 5px;
+        padding:10px;
+        color: white;
+    }
 
   @media (max-width: 600px) {
     #Code {

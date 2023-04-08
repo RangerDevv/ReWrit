@@ -39,18 +39,6 @@
             comments = [...comments];
         }
     }
-
-    function showComments() {
-        let modal = document.getElementById('modal')!;
-        modal.style.display = "block";
-        // close the modal when the user clicks outside of it
-    }
-
-    function hideComments() {
-        let modal = document.getElementById('modal')!;
-        modal.style.display = "none";
-    }
-
     // generate a random character
     const randomChar = () => {
         const n = Math.floor(Math.random() * 62);
