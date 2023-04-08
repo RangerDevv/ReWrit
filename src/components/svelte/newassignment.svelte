@@ -261,16 +261,6 @@
     <style>
         #CodeEditor {
             font-family: monospace;
-            font-size: 1rem;
-            line-height: 1.5;
-            color: #e2e8f0;
-            background-color: #1a202c;
-            border-color: #2d3748;
-            border-radius: 0.25rem;
-            padding: 0.5rem;
-            width: 100%;
-            height: 100%;
-            resize: none;
         }
     </style>
 </main>
