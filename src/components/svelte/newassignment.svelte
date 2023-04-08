@@ -234,7 +234,7 @@
                 <div>
             <div class="w-96 md:w-[40rem] bg-gray-700 rounded-t-lg items-center h-10 p-1.5">Code
             </div>
-                <textarea rows="6" bind:value={content.text} placeholder="Contents (This text editor uses Markdown. Please use the markdown syntax.)" class="sm:order-2 order-1 block p-2.5 w-96 md:w-[40rem] text-sm text-gray-900 bg-gray-50 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white outline-none" id={"content" + content.number}/>
+                <textarea rows="6" bind:value={content.text} placeholder="Contents (This text editor uses Markdown. Please use the markdown syntax.)" class="sm:order-2 order-1 block p-2.5 w-96 md:w-[40rem] text-sm text-gray-900 bg-gray-50 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white outline-none" id="CodeEditor"/>
                 <div class="flex flex-col sm:flex-row">
                     <div class="w-96 md:w-[40rem] bg-gray-700 rounded-b-lg items-center h-10 p-1">
                     <button on:click={() => removeContent(contenttext.indexOf(content))} class="block p-1.5 w-24 text-xs text-gray-900 bg-gray-50 rounded-sm border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mx-auto h-8">Remove</button>
@@ -259,9 +259,18 @@
     </div>
 
     <style>
-        /* make the textbox have a pre tag font */
-        textarea {
+        #CodeEditor {
             font-family: monospace;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #e2e8f0;
+            background-color: #1a202c;
+            border-color: #2d3748;
+            border-radius: 0.25rem;
+            padding: 0.5rem;
+            width: 100%;
+            height: 100%;
+            resize: none;
         }
     </style>
 </main>
