@@ -9,14 +9,16 @@
         return Math.floor(Math.random() * Math.floor(max));
     }
 
+    export let user: any;
+
     // make a fake user
-    let user = {
-        id: "1234",
-        email: "eerere@asdjf.coe",
-        user_metadata: {
-            name: "test",
-        },
-    };
+    // let user = {
+    //     id: "1234",
+    //     email: "eerere@asdjf.coe",
+    //     user_metadata: {
+    //         name: "test",
+    //     },
+    // };
 
     let contnumber = 0;
 
