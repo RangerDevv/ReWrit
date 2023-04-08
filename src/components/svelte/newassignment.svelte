@@ -9,7 +9,14 @@
         return Math.floor(Math.random() * Math.floor(max));
     }
 
-    export let user : any;
+    // make a fake user
+    let user = {
+        id: "1234",
+        email: "eerere@asdjf.coe",
+        user_metadata: {
+            name: "test",
+        },
+    };
 
     let contnumber = 0;
 
@@ -208,14 +215,33 @@
             <div class="flex flex-col pt-7 w-full place-items-center">
 
             {#if content.is_code ==false}
-            <Txtbox bind:value={content.text} />
+            <div class="flex flex-col">
+                <div class="flex flex-col">
+                <Txtbox bind:value={content.text} />
+                </div>
+                <!--  make a bottom bar for the text editor which has delete button -->
+                <div class="flex flex-col sm:flex-row">
+                <div class="w-96 md:w-[40rem] bg-gray-700 rounded-b-lg items-center h-10 p-1">
+                <button on:click={() => removeContent(contenttext.indexOf(content))} class="block p-1.5 w-24 text-xs text-gray-900 bg-gray-50 rounded-sm border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mx-auto h-8">Remove</button>
+                </div>
+                </div>
+            </div>
             {/if}
             {#if content.is_code ==true}
-            <div class="w-96 sm:w-1/2 bg-gray-700 rounded-t-lg items-center h-10 p-1.5">Code</div>
-                <textarea rows="6" bind:value={content.text} placeholder="Contents (This text editor uses Markdown. Please use the markdown syntax.)" class="block p-2.5 w-96 sm:w-1/2 text-sm text-gray-900 bg-gray-50 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white rounded-b-lg outline-none" id={"content" + content.number}/>
+            <div class="flex flex-col sm:flex-row gap-6">
+                <div>
+            <div class="w-96 md:w-[40rem] bg-gray-700 rounded-t-lg items-center h-10 p-1.5">Code
+            </div>
+                <textarea rows="6" bind:value={content.text} placeholder="Contents (This text editor uses Markdown. Please use the markdown syntax.)" class="sm:order-2 order-1 block p-2.5 w-96 md:w-[40rem] text-sm text-gray-900 bg-gray-50 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white outline-none" id={"content" + content.number}/>
+                <div class="flex flex-col sm:flex-row">
+                    <div class="w-96 md:w-[40rem] bg-gray-700 rounded-b-lg items-center h-10 p-1">
+                    <button on:click={() => removeContent(contenttext.indexOf(content))} class="block p-1.5 w-24 text-xs text-gray-900 bg-gray-50 rounded-sm border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mx-auto h-8">Remove</button>
+                    </div>
+                    </div>
+            </div>
+            </div>
             {/if}
             </div>
-            <button on:click={() => removeContent(contenttext.indexOf(content))} class="block p-2.5 w-24 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-7">Remove</button>
         {/each}
         <div class="flex flex-row gap-6 pt-6">
             <select bind:value={NewAssignment.lang} class="block p-2.5 w-auto text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">

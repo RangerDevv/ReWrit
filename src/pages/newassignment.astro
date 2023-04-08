@@ -17,7 +17,7 @@ const currentUser = (await supabase.auth.getUser(Astro.cookies.get("my-access-to
 import {supabase} from "../lib/backend";
 const { data: { user } } = await supabase.auth.getUser()
 if (!user) {
-  window.location.href = "/login";
+  // window.location.href = "/login";
 } 
 
 
@@ -32,5 +32,5 @@ if (!user) {
   
     gtag('config', 'G-6G5JS7QPYS');
   </script>
-  <Newassignment client:only="svelte" user={currentUser} />
+  <Newassignment client:only="svelte"/>
 </Layout>
